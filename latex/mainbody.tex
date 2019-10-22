@@ -1,0 +1,146 @@
+%=================================================================
+
+\section{Introduction}\label{sec-intro}
+
+\hspace*{0.3cm}1.1 Problem Summary\\
+\hspace*{0.4cm}There are three types of ghastly creatures, which are called ghoul, ghost and goblins, just like the picture shows. The problem is to identify 371 data of ghastly creatures. \\
+\begin{figure}[htbp]\centering
+	\graphicspath{{figures/}{mine/}}
+	\includegraphics[scale=0.3]{1.jpg}
+	\caption{name}
+\end{figure}
+
+
+\hspace*{0.3cm}1.2 Data fields\\
+\hspace*{0.4cm}id - id of the creature\\
+\hspace*{0.4cm}bone_length - average length of bone in the creature, normalized between 0 and 1\\
+\hspace*{0.4cm}rotting_flesh - percentage of rotting flesh in the creature\\
+\hspace*{0.4cm}hair_length - average hair length, normalized between 0 and 1\\
+\hspace*{0.4cm}has_soul - percentage of soul in the creature\\
+\hspace*{0.4cm}Color - dominant color of the creature: 'white','black','clear','blue','green','blood'\\
+\hspace*{0.4cm}type - target variable: 'Ghost', 'Goblin', and 'Ghoul'\\
+\hspace*{0.4cm}1.3 Train Data and Test Data\\
+\hspace*{0.4cm}Because this game is over, it can't submit the predictive values for testing. So divide the train data into train data and test data, and the ratio between the two is 4:1.\\
+
+\section{Data exploration} \label{sec-data_exploration}
+2.1 Data Information
+\hspace*{0.4cm}There are 4 numerical variables and 1 categorical. And no missing values, which is nice! Numerical columns are either normalized or show a percentage, so no need to scale them. The following table is the statistical result of the attribute values.
+It seems that all numerical features may be useful.\\
+\begin{table}[htbp]  \centering
+	\caption{Data Information}
+	\label{tbl:data information}
+	\begin{tabular}{ccccccc}
+		\hline
+		% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+		& bone_length & rotting_flesh & hair_length & has_soul & color & type\\
+		\hline
+		count & 371.0 & 371.0 & 371.0 & 371.0 & 371 & 371 \\
+		unique & NaN & NaN & NaN & NaN & 6 & 3 \\
+		top & NaN & NaN & NaN & NaN & white & Ghoul \\
+		freq & NaN & NaN & NaN & NaN & 137 & 129\\
+		mean & 0.434160 & 0.506848 & 0.529114 & 0.471392 & NaN & NaN \\
+		std & 0.132833 & 0.146358 & 0.169902 & 0.176129 & NaN & NaN \\
+		min & 0.061032 & 0.095687 & 0.134600 & 0.009402 & NaN & NaN \\
+		25\% & 0.340006 & 0.414812 & 0.407428 & 0.348002 & NaN & NaN \\
+		50\% & 0.43891 & 0.501552 & 0.538642 & 0.466372 & NaN & NaN\\
+		75\% & 0.517223 & 0.603977 & 0.647244 & 0.600610 & NaN & NaN\\
+		max &  0.817001 & 0.932466 & 1.000000 & 0.935721 & NaN & NaN\\
+		\hline 
+		%\bottomrule
+	\end{tabular}
+\end{table}
+\hspace*{0.4cm}2.2 Data Visualization
+\hspace*{0.4cm}In order to observate the data intuitively, use the data to plot some figures which show the 
+%Test citation~\cite{BL12J01}. 
+%\begin{JournalOnly}
+%and~\citep{BJL11J01} or~\citet{BJL11J01}.
+%\end{JournalOnly}
+
+%This is for~\cref{tbl:overall-experiments}, 
+%\todo[fancyline]{Testing.}
+%and this is for~\cref{sec-conclusions}.
+%\todo[noline]{A note with no line back to the text.}%
+%\gangli{This is comment from Gang.}
+%\qwu{Response from QW}
+
+Number:
+\num{123}.
+\numlist{10;30;50;70},
+\numrange{10}{30},
+\SIlist{10;30;45}{\metre},
+and
+\SI{10}{\percent}
+
+\missingfigure[figcolor=white]{Testing figcolor}
+
+
+\begin{ConferenceOnly}
+We have \SI{10}{\hertz},
+\si{\kilogram\metre\per\second},
+the range: \SIrange{10}{100}{\hertz}.
+$\nicefrac[]{1}{2}$.
+
+\missingfigure{Make a sketch of the structure of a trebuchet.}
+
+\end{ConferenceOnly}
+
+
+For~\cref{eq:test},
+as shown below:
+
+\begin{equation}\label{eq:test}
+a = b \times \sqrt{ab}
+\end{equation}
+
+\blindmathpaper
+
+\section{Preliminaries} \label{sec-preliminaries}
+
+\blindtext
+
+\gliMarker  %TODO: GLi Here
+
+
+\section{Method} \label{sec-method}
+
+\blindtext
+\blindlist{itemize}[3]
+\blinditemize
+\blindenumerate
+
+\blindmathtrue
+\blindmathfalse
+\blinddescription
+
+\qwuMarker %TODO: QWu Here
+
+\section{Experiment and Analysis} \label{sec-experiment}
+
+
+\begin{table}  \centering
+  \caption{Precision Comparison on Event Detection Methods}
+  \label{tbl:overall-experiments}
+  \begin{tabular}{cccc}
+\toprule
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+    & OR Event Detection & AC Event Detection & TC Event Detection \\
+\midrule
+    precision & 0.83 & 0.69 & 0.46 \\
+    recall & 0.68 & 0.48 & 0.36 \\
+    F-score & 0.747 & 0.57 & 0.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section{Conclusions} \label{sec-conclusions}
+
+\blindtext
+
+\section*{Acknowledgment}
+
+\lipsum[1]
+
+
+The authors would like to thank \ldots
+
