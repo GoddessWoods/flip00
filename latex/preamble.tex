@@ -21,10 +21,16 @@
 %\usepackage[disable]{todonotes} % notes not showed
 %\usepackage[draft]{todonotes}   % notes showed
 %
-\makeatletter \providecommand\@dotsep{5} \def\listtodoname{List of Todos} \def\listoftodos{\@starttoc{tdo}\listtodoname} \makeatother
+\makeatletter
+ \providecommand\@dotsep{5}
+ \def\listtodoname{List of Todos}
+ \def\listoftodos{\@starttoc{tdo}\listtodoname}
+ \makeatother
 %
 %=================================================================
 %
+\usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{color}
 \newcommand{\draftnote}[3]{ 
 	\todo[author=#2,color=#1!30,size=\footnotesize]{\textsf{#3}}	}
@@ -32,12 +38,16 @@
 %
 \newcommand{\gangli}[1]{\draftnote{blue}{GLi:}{#1}}
 \newcommand{\qwu}[1]{\draftnote{red}{QWu:}{#1}}
+\newcommand{\ShuxiaLin}[1]{\draftnote{blue}{SXLin:}{#1}}
 \newcommand{\gliMarker}
 	{\todo[author=GLi,size=\tiny,inline,color=blue!40]
 	{Gang Li has worked up to here.}}
 \newcommand{\qwuMarker}
 	{\todo[author=QWu,size=\tiny,inline,color=red!40]
 	{Qiong Wu has worked up to here.}}
+\newcommand{\SXLinMarker}
+	{\todo[author=ShuxiaLin,size=\tiny,inline,color=blue!40]
+	{Shuxia Lin has worked up to here.}}
 %=================================================================
 
 %=================================================================
@@ -47,6 +57,7 @@
 %  https://en.wikibooks.org/wiki/LaTeX/Package_Reference
 %
 %=================================================================
+\usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage{algorithm}
 \usepackage{algorithmic}
