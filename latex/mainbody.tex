@@ -50,6 +50,8 @@ It seems that all numerical features may be useful.\\
 		%\bottomrule
 	\end{tabular}
 \end{table}
+
+
 \hspace*{0.1cm}2.2 Data Visualization\\
 \hspace*{0.4cm}In order to observate the data intuitively, use EDA to plot the distribution of the data to find the relation between the attribute values. The followings are codes, analysis and figuers about data visualization.\\
 \hspace*{0.4cm}A. Histogram\\
@@ -66,6 +68,33 @@ It seems that all numerical features may be useful.\\
 \end{figure}
 
 
+\hspace*{0.4cm}B. Boxplot\\
+\hspace*{0.4cm}Through the boxplot, when analyzing the data, the boxplot can effectively help us identify the characteristics of the data: visually identify outliers in the dataset. Determine the data dispersion and bias of the data set. Through the figure, know that the two types of Ghost and Ghoul in the monster have higher discrimination on the four variables, while Goblin is in the middle position, which intersects with the other two types of features.\\
+\begin{figure}[h]\centering
+	%\graphicspath{{figures/}{mine/}}
+	\includegraphics[scale=0.3]{4.eps}
+	\caption{Boxplot Grouped by Type}
+\end{figure}
+
+
+\hspace*{0.4cm}C. Pairwise Plot\\
+\hspace*{0.4cm}Pairwise plot is a favorite in exploratory analysis to understand the relationship between all possible pairs of numeric variables. This pairplot shows that data is distributed normally. And while most pairs are widely scattered (in relationship to the type), some of them show clusters: hair_length and has_soul, hair_length and bone_length. So it's needed to reassemble the data.\\%I decided to create new variables with multiplication of these columns and it worked great!
+\begin{figure}[h]\centering
+	%\graphicspath{{figures/}{mine/}}
+	\includegraphics[scale=0.3]{5.eps}
+	\caption{Feature Scatterplot}
+\end{figure}
+
+
+\hspace*{0.4cm}D. Correllogram\\
+\hspace*{0.4cm}Correlogram is used to visually see the correlation metric between all possible pairs of numeric variables in a given dataframe. This image help us to analyze features and their impact on the 'type' column. As we can see the 'type' column has a high value of negative correlation with columns 'has_soul' and 'rotting_flesh'. Although the correlation with the 'hair_length' is not very big.\\
+\begin{figure}[h]\centering
+	%\graphicspath{{figures/}{mine/}}
+	\includegraphics[scale=0.3]{7.eps}
+	\caption{Correllogram}
+\end{figure}
+
+%Analyzing the correlation between other features it's possible to see that 'has_soul' and 'hair_length' have an interesting value as well as the column 'has_soul' with 'rotting_flesh'. Lets then try to extract some new features from here. 
 %Test citation~\cite{BL12J01}. 
 %\begin{JournalOnly}
 %and~\citep{BJL11J01} or~\citet{BJL11J01}.
