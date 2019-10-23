@@ -2,44 +2,39 @@
 
 \section{Introduction}\label{sec-intro}
 
-Shuxia is a bad girl
-\gangli{is it true? Yes, very very bad!}
-
 \subsection{Problem Statement}
+There are three types of ghastly creatures, which are called ghoul, ghost and goblins, just like the picture shows. The problem is to identify 371 data of ghastly creatures. 
 
-1.1 Problem Summary\\
-\hspace*{0.4cm}There are three types of ghastly creatures, which are called ghoul, ghost and goblins, just like the picture shows. The problem is to identify 371 data of ghastly creatures. \\
+
 \begin{figure}[htbp]\centering
-	%\graphicspath{{figures/}{mine/}}
-	\includegraphics[scale=0.3]{1.eps}
+	%\graphicspath{figures}
+	\includegraphics[scale=0.3]{bar.eps}
 	\caption{name}
 \end{figure}
 
 
-1.2 Data List\\
-
-\gangli{use description}
+\subsection{Data List}
 
 \begin{description}
-	\item[abc] adfadaf
-	\item[abc] adfadaf
+	\item[id] id of the creature
+	\item[bone_length] average length of bone in the creature, normalized between 0 and 1
+	\item[rotting_flesh] percentage of rotting flesh in the creature
+	\item[hair_length] average hair length, normalized between 0 and 1
+	\item[has_soul] percentage of soul in the creature
+	\item[Color] dominant color of the creature: 'white','black','clear','blue','green','blood'
+	\item[type] target variable: 'Ghost', 'Goblin', and 'Ghoul'
 \end{description}
 
-\hspace*{0.4cm}id - id of the creature\\
-\hspace*{0.4cm}bone_length - average length of bone in the creature, normalized between 0 and 1\\
-\hspace*{0.4cm}rotting_flesh - percentage of rotting flesh in the creature\\
-\hspace*{0.4cm}hair_length - average hair length, normalized between 0 and 1\\
-\hspace*{0.4cm}has_soul - percentage of soul in the creature\\
-\hspace*{0.4cm}Color - dominant color of the creature: 'white','black','clear','blue','green','blood'\\
-\hspace*{0.4cm}type - target variable: 'Ghost', 'Goblin', and 'Ghoul'\\
-\hspace*{0.4cm}1.3 Train Data and Test Data\\
-\hspace*{0.4cm}Because this game is over, it can't submit the predictive values for testing. So divide the train data into train data and test data, and the ratio between the two is 4:1.\\
+\subsection{Train Data and Test Data}
+Because this game is over, it can't submit the predictive values for testing. So divide the train data into train data and test data, and the ratio between the two is 4:1.
 
 \section{Data exploration} \label{sec-data_exploration}
 
-2.1 Data Information\\
-\hspace*{0.4cm}There are 4 numerical variables and 1 categorical. And no missing values, which is nice! Numerical columns are either normalized or show a percentage, so no need to scale them. The following table is the statistical result of the attribute values.
-It seems that all numerical features may be useful.\\
+\subsection{Data Information}
+There are 4 numerical variables and 1 categorical. And no missing values, which is nice! Numerical columns are either normalized or show a percentage, so no need to scale them. The following table is the statistical result of the attribute values.
+%It seems that all numerical features may be useful.\\
+
+
 \begin{table}[h]  \centering
 	\caption{Data Information}
 	\label{tbl:data information}
@@ -65,48 +60,73 @@ It seems that all numerical features may be useful.\\
 \end{table}
 
 
-\hspace*{0.1cm}2.2 Data Visualization\\
-\hspace*{0.4cm}In order to observate the data intuitively, use EDA to plot the distribution of the data to find the relation between the attribute values. The followings are codes, analysis and figuers about data visualization.\\
-\hspace*{0.4cm}A. Histogram\\
-\hspace*{0.4cm}The figures below are the mean of the four attribute values  and the number of different color about the three types of ghastly creatures.It seems that all numerical features may be useful, but many colors are evenly distributes among the monsters. So they maybe nor very useful for analysis.\\
+\subsection{Data Visualization}
+In order to observate the data intuitively, use EDA to plot the distribution of the data to find the relation between the attribute values. The followings are codes, analysis and figuers about data visualization.\\
+
+\subsubsection{ Histogram}
+The figures below are the mean of the four attribute values  and the number of different color about the three types of ghastly creatures.It seems that all numerical features may be useful, but many colors are evenly distributes among the monsters. So they maybe nor very useful for analysis.\\
+
+
 \begin{figure}[htbp]\centering
 	%\graphicspath{{figures/}{mine/}}
-	\includegraphics[scale=0.3]{2.eps}
+	\includegraphics[scale=0.3]{his_1.eps}
 	\caption{mean}
 \end{figure}
+
+
 \begin{figure}[htbp]\centering
 	%\graphicspath{{figures/}{mine/}}
-	\includegraphics[scale=0.3]{3.eps}
+	\includegraphics[scale=0.3]{his_2.eps}
 	\caption{color}
 \end{figure}
 
 
-\hspace*{0.4cm}B. Boxplot\\
-\hspace*{0.4cm}Through the boxplot, when analyzing the data, the boxplot can effectively help us identify the characteristics of the data: visually identify outliers in the dataset. Determine the data dispersion and bias of the data set. Through the figure, know that the two types of Ghost and Ghoul in the monster have higher discrimination on the four variables, while Goblin is in the middle position, which intersects with the other two types of features.\\
+\subsubsection{Boxplot}
+Through the boxplot, when analyzing the data, the boxplot can effectively help us identify the characteristics of the data: visually identify outliers in the dataset. Determine the data dispersion and bias of the data set. Through the figure, know that the two types of Ghost and Ghoul in the monster have higher discrimination on the four variables, while Goblin is in the middle position, which intersects with the other two types of features.
+
+
 \begin{figure}[h]\centering
 	%\graphicspath{{figures/}{mine/}}
-	\includegraphics[scale=0.3]{4.eps}
+	\includegraphics[scale=0.3]{boxplot.eps}
 	\caption{Boxplot Grouped by Type}
 \end{figure}
 
 
-\hspace*{0.4cm}C. Pairwise Plot\\
-\hspace*{0.4cm}Pairwise plot is a favorite in exploratory analysis to understand the relationship between all possible pairs of numeric variables. This pairplot shows that data is distributed normally. And while most pairs are widely scattered (in relationship to the type), some of them show clusters: hair_length and has_soul, hair_length and bone_length. So it's needed to reassemble the data.\\%I decided to create new variables with multiplication of these columns and it worked great!
+\subsubsection{Pairwise Plot} 
+Pairwise plot is a favorite in exploratory analysis to understand the relationship between all possible pairs of numeric variables. This pairplot shows that data is distributed normally. And while most pairs are widely scattered (in relationship to the type), some of them show clusters: hair_length and has_soul, hair_length and bone_length. So it's needed to reassemble the data.%I decided to create new variables with multiplication of these columns and it worked great!
+
+
 \begin{figure}[h]\centering
 	%\graphicspath{{figures/}{mine/}}
-	\includegraphics[scale=0.3]{5.eps}
+	\includegraphics[scale=0.3]{pairplot.eps}
 	\caption{Feature Scatterplot}
 \end{figure}
 
 
-\hspace*{0.4cm}D. Correllogram\\
-\hspace*{0.4cm}Correlogram is used to visually see the correlation metric between all possible pairs of numeric variables in a given dataframe. This image help us to analyze features and their impact on the 'type' column. As we can see the 'type' column has a high value of negative correlation with columns 'has_soul' and 'rotting_flesh'. Although the correlation with the 'hair_length' is not very big.\\
+\subsubsection{Correllogram}
+Correlogram is used to visually see the correlation metric between all possible pairs of numeric variables in a given dataframe. This image help us to analyze features and their impact on the 'type' column. As we can see the 'type' column has a high value of negative correlation with columns 'has_soul' and 'rotting_flesh'. Although the correlation with the 'hair_length' is not very big.
+
+
 \begin{figure}[h]\centering
 	%\graphicspath{{figures/}{mine/}}
-	\includegraphics[scale=0.3]{7.eps}
+	\includegraphics[scale=0.3]{corr.eps}
 	\caption{Correllogram}
 \end{figure}
 
+
+\subsubsection{Other Figures}
+The following pictures are independent of the choice of algorithm. Because they look great, so I want to share with you.
+
+\begin{figure}[h]\centering
+	%\graphicspath{{figures/}{mine/}}
+	\includegraphics[scale=0.3]{MHis.eps}
+	\caption{Marginal Histogram}
+\end{figure}
+
+
+
+Parallel Coordinates 
+Parallel coordinates helps to visualize if a feature helps to segregate the groups effectively. If a segregation is effected, that feature is likely going to be very useful in predicting that group.
 %Analyzing the correlation between other features it's possible to see that 'has_soul' and 'hair_length' have an interesting value as well as the column 'has_soul' with 'rotting_flesh'. Lets then try to extract some new features from here. 
 %Test citation~\cite{BL12J01}. 
 %\begin{JournalOnly}
