@@ -2,16 +2,16 @@
 
 \section{Introduction}\label{sec-intro}
 
-\hspace*{0.3cm}1.1 Problem Summary\\
+1.1 Problem Summary\\
 \hspace*{0.4cm}There are three types of ghastly creatures, which are called ghoul, ghost and goblins, just like the picture shows. The problem is to identify 371 data of ghastly creatures. \\
 \begin{figure}[htbp]\centering
-	\graphicspath{{figures/}{mine/}}
-	\includegraphics[scale=0.3]{1.jpg}
+	%\graphicspath{{figures/}{mine/}}
+	\includegraphics[scale=0.3]{1.eps}
 	\caption{name}
 \end{figure}
 
 
-\hspace*{0.3cm}1.2 Data fields\\
+1.2 Data List\\
 \hspace*{0.4cm}id - id of the creature\\
 \hspace*{0.4cm}bone_length - average length of bone in the creature, normalized between 0 and 1\\
 \hspace*{0.4cm}rotting_flesh - percentage of rotting flesh in the creature\\
@@ -23,10 +23,11 @@
 \hspace*{0.4cm}Because this game is over, it can't submit the predictive values for testing. So divide the train data into train data and test data, and the ratio between the two is 4:1.\\
 
 \section{Data exploration} \label{sec-data_exploration}
-2.1 Data Information
+
+2.1 Data Information\\
 \hspace*{0.4cm}There are 4 numerical variables and 1 categorical. And no missing values, which is nice! Numerical columns are either normalized or show a percentage, so no need to scale them. The following table is the statistical result of the attribute values.
 It seems that all numerical features may be useful.\\
-\begin{table}[htbp]  \centering
+\begin{table}[h]  \centering
 	\caption{Data Information}
 	\label{tbl:data information}
 	\begin{tabular}{ccccccc}
@@ -49,8 +50,22 @@ It seems that all numerical features may be useful.\\
 		%\bottomrule
 	\end{tabular}
 \end{table}
-\hspace*{0.4cm}2.2 Data Visualization
-\hspace*{0.4cm}In order to observate the data intuitively, use the data to plot some figures which show the 
+\hspace*{0.1cm}2.2 Data Visualization\\
+\hspace*{0.4cm}In order to observate the data intuitively, use EDA to plot the distribution of the data to find the relation between the attribute values. The followings are codes, analysis and figuers about data visualization.\\
+\hspace*{0.4cm}A. Histogram\\
+\hspace*{0.4cm}The figures below are the mean of the four attribute values  and the number of different color about the three types of ghastly creatures.It seems that all numerical features may be useful, but many colors are evenly distributes among the monsters. So they maybe nor very useful for analysis.\\
+\begin{figure}[htbp]\centering
+	%\graphicspath{{figures/}{mine/}}
+	\includegraphics[scale=0.3]{2.eps}
+	\caption{mean}
+\end{figure}
+\begin{figure}[htbp]\centering
+	%\graphicspath{{figures/}{mine/}}
+	\includegraphics[scale=0.3]{3.eps}
+	\caption{color}
+\end{figure}
+
+
 %Test citation~\cite{BL12J01}. 
 %\begin{JournalOnly}
 %and~\citep{BJL11J01} or~\citet{BJL11J01}.
