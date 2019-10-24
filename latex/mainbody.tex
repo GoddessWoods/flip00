@@ -170,8 +170,9 @@ Train Random Forest model first, then using the Feature Importance this function
 
 \section{Method}
 
-\subsection{Model Selection}
-There are many machine learning algorithms, select the following machine learning algorithms as Ensemble Model’s base models. 
+\subsection{Ensemble Model}
+There are many machine learning algorithms, 
+select the following machine learning algorithms as Ensemble Model’s base models. 
 
 \begin{itemize}
 	\item RandomForestClassifier
@@ -184,15 +185,40 @@ There are many machine learning algorithms, select the following machine learnin
 \end{itemize}
 
 \subsection{Model Training}
-A model often has many parameters,but the more important ones are generally not too many. Determine a set of optimal parameters through Grid Search. Because the training data is relatively small, a ten-fold cross-validation is used. The details are showed below, best score is the score which is best in ten-fold cross-validation, best parameters is the parameters of the algorithms that can gain the best score, and the accuracy score is the accuracy of the algorithms on the test data.  
+meters,but the more important ones are generally not too many. Determine a set of optimal parameters through Grid Search. Because the training data is relatively small, a ten-fold cross-validation is used. %
+
+\subsection{Neural Network}
+There are three targets, 
+use pandas.get_dummies this funtion to implement one-hot encoding of the tpyes.
+The network contains forward, 
+softmax and backpropagaation.
+
+
+\section{Experiment and Result}
+
+\subsection{Ensemble Model Training Result}
+                                                                                                                                                                                                                                                                                                                                                            
+The results of using Grid Search to find the optimal parameters and the best accuracy of the algorithm are as follows. The best score is the score which is best in ten-fold cross-validation, best parameters is the parameters of the algorithms that can gain the best score, and the accuracy score is the accuracy of the algorithms on the test data. 
+
+\begin{itemize}
+	\item RandomForestClassifier
+	\begin{description}
+		\item[Best Score] 0.7142857142857143
+		\item[Best Parameters] 'criterion': 'entropy', 'max_depth': 5, 'max_features': None, 'n_estimators': 100
+		\item[Accuracy Score] 0.8133333333333334
+	\end{description}
+	
+	\item BaggingClassifier
+	\item GradientBoostingClassifier
+	\item LogisticRegression
+	\item SVC
+	\item KNeighborsClassifier 
+	\item XGBClassifier
+\end{itemize}
+ 
 
 \subsubsection{RandomForestClassifier} 
 
-\begin{description}
-	\item[Best Score] 0.7142857142857143
-	\item[Best Parameters] 'criterion': 'entropy', 'max_depth': 5, 'max_features': None, 'n_estimators': 100
-	\item[Accuracy Score] 0.8133333333333334
-\end{description}
 
 \subsubsection{BaggingClassifier}
 
