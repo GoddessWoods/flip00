@@ -87,7 +87,7 @@ Through the boxplot, when analyzing the data, the boxplot can effectively help u
 
 \begin{figure}[h]\centering
 	%\graphicspath{{figures/}{mine/}}
-	\includegraphics[scale=0.3]{boxplot.eps}
+	\includegraphics[scale=0.3]{figures/boxplot.eps}
 	\caption{Boxplot Grouped by Type}
 \end{figure}
 
@@ -98,7 +98,7 @@ Pairwise plot is a favorite in exploratory analysis to understand the relationsh
 
 \begin{figure}[h]\centering
 	%\graphicspath{{figures/}{mine/}}
-	\includegraphics[scale=0.3]{pairplot.eps}
+	\includegraphics[scale=0.3]{figures/pairplot.eps}
 	\caption{Feature Scatterplot}
 \end{figure}
 
@@ -123,7 +123,68 @@ The following pictures are independent of the choice of algorithm. Because they 
 	\caption{Marginal Histogram}
 \end{figure}
 
+\begin{figure}[h]\centering
+	%\graphicspath{{figures/}{mine/}}
+	\includegraphics[scale=0.3]{figures/BDF.eps}
+	\caption{Binary Density Function}
+\end{figure}
 
+
+\begin{figure}[h]\centering
+	%\graphicspath{{figures/}{mine/}}
+	\includegraphics[scale=0.3]{figures/MBDF.eps}
+	\caption{Marginal Binary Density Function}
+\end{figure}
+
+\subsection{Data Preparation}
+\subsubsection{Great New Features}
+As can be seen from the picture above the data is distributed normally. And while most pairs are widely scattered (in relationship to the type), some of them show clusters: hair_length and has_soul, hair_length and bone_length. So can create new variables with multiplication of these columns: 
+
+
+\begin{description}
+	\item[hair_soul] row[’hair_length’]*row[’has_soul’] 
+	\item[hair_bone]  row[hair_length]*row[bone_length] 
+	\item[bone_soul]  row[bone_length]*row[has_soul] 
+	\item[hair_soul_bone]  row[hair_length]*row[has_soul]*row[bone_length] 
+\end{description}
+
+Then analyse the new features in a pairplot, showing the picture below. It can be seen from the picture that there is a clear linear relationship between the variables. 
+
+
+\begin{figure}[h]\centering
+	%\graphicspath{{figures/}{mine/}}
+	\includegraphics[scale=0.3]{figures/hist_1.eps}
+	\caption{New Feature Pairplot}
+\end{figure}
+
+\subsubsection{Feature Selection}
+Train Random Forest model first, then using the Feature Importance this function to select the most important features. The following figure is a histogram ordered by feature importance. 
+
+
+\begin{figure}[h]\centering
+	%\graphicspath{{figures/}{mine/}}
+	\includegraphics[scale=0.3]{figures/FEATURE.eps}
+	\caption{Feature Importance}
+\end{figure}
+
+
+\section{Method}
+
+\subsection{Model Selection}
+There are many machine learning algorithms, select the following machine learning algorithms as Ensemble Model’s base models. 
+
+\begin{itemize}
+	\item RandomForestClassifier
+	\item BaggingClassifier
+	\item GradientBoostingClassifier
+	\item LogisticRegression
+	\item SVC
+	\item KNeighborsClassifier 
+	\item XGBClassifier
+\end{itemize}
+
+\subsection{Model Training}
+A model often has many parameters,but the more important ones are generally not too many. Determine a set of optimal parameters through Grid Search. Because the training data is relatively small, a ten-fold cross-validation is used. The details are showed below. 
 
 Parallel Coordinates 
 Parallel coordinates helps to visualize if a feature helps to segregate the groups effectively. If a segregation is effected, that feature is likely going to be very useful in predicting that group.
