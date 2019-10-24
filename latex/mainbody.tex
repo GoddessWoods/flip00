@@ -184,7 +184,67 @@ There are many machine learning algorithms, select the following machine learnin
 \end{itemize}
 
 \subsection{Model Training}
-A model often has many parameters,but the more important ones are generally not too many. Determine a set of optimal parameters through Grid Search. Because the training data is relatively small, a ten-fold cross-validation is used. The details are showed below. 
+A model often has many parameters,but the more important ones are generally not too many. Determine a set of optimal parameters through Grid Search. Because the training data is relatively small, a ten-fold cross-validation is used. The details are showed below, best score is the score which is best in ten-fold cross-validation, best parameters is the parameters of the algorithms that can gain the best score, and the accuracy score is the accuracy of the algorithms on the test data.  
+
+\subsubsection{RandomForestClassifier} 
+
+\begin{description}
+	\item[Best Score] 0.7142857142857143
+	\item[Best Parameters] 'criterion': 'entropy', 'max_depth': 5, 'max_features': None, 'n_estimators': 100
+	\item[Accuracy Score] 0.8133333333333334
+\end{description}
+
+\subsubsection{BaggingClassifier}
+
+\begin{description}
+	\item[Best Score] 0.7304582210242587
+	\item[Best Parameters] 'max_samples': 10, 'n_estimators': 100 'n_estimators': 100
+	\item[Accuracy Score] 0.68
+\end{description}
+
+\subsubsection{GradientBoostingClassifier}
+
+\begin{description}
+	\item[Best Score] 0.7358490566037735
+	\item[Best Parameters] 'learning_rate': 0.3, 'max_depth': 2, 'n_estimators': 20
+	\item[Accuracy Score] 0.88
+\end{description}
+
+\subsubsection{LogisticRegression}
+
+\begin{description}
+	\item[Best Score] 0.7331536388140162
+	\item[Best Parameters] 'C': 1, 'penalty': 'l1'
+	\item[Accuracy Score] 0.76
+\end{description}
+
+\subsubsection{SVC}
+
+\begin{description}
+	\item[Best Score] 0.738544474393531
+	\item[Best Parameters] 'C': 10, 'degree': 3, 'kernel': 'linear'
+	\item[Accuracy Score] 0.7466666666666667
+\end{description}
+
+\subsubsection{KNeighborsClassifier }
+
+\begin{description}
+	\item[Best Score] 0.7088948787061995
+	\item[Best Parameters] 'algorithm': 'auto', 'leaf_size': 10, 'n_neighbors': 20, 'p': 5, 'weights': 'uniform'
+	\item[Accuracy Score] 0.7333333333333333
+\end{description}
+
+
+
+%\lstset{language=python}         
+%\begin{lstlisting}[frame=single]  % Start your code-block
+%rf = RandomForestClassifier(random_state = 0)
+%clf = GridSearchCV(rf, param_grid = params, scoring = accuracy_scorer, cv = 10, n_jobs = -1)
+%clf.fit(X_train, y_train)
+%y_pred = clf.predict(X_test)
+%\end{lstlisting}
+
+
 
 Parallel Coordinates 
 Parallel coordinates helps to visualize if a feature helps to segregate the groups effectively. If a segregation is effected, that feature is likely going to be very useful in predicting that group.
