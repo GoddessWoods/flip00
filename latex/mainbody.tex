@@ -3,16 +3,19 @@
 \section{Introduction}\label{sec-intro}
 
 \subsection{Problem Statement}
+
+
 After a month of making scientific observations 
 and taking careful measurements, 
-can determined that 900 ghouls, ghosts, and goblins.
+can determined that 900 ghouls, ghosts, and goblins
+like the ~\cref{fig:animal} shows .
+There are train data and test data,
+through the train data to find the relationship
+between the attributes and species.
+Then identify 371 of the ghastly creatures
 
 
-
-There are three types of ghastly creatures, which are called ghoul, ghost and goblins, just like the picture shows. The problem is to identify 371 data of ghastly creatures. 
-
-
-\begin{figure}[htbp]\centering
+\begin{figure}[htbp]\centering\label{fig:animal}
 	%\graphicspath{figures}
 	\includegraphics[scale=0.3]{figures/bar.eps}
 	\caption{name}
@@ -20,6 +23,14 @@ There are three types of ghastly creatures, which are called ghoul, ghost and go
 
 
 \subsection{Data List}
+
+
+There are bone length measurements, 
+severity of rot, extent of soullessness, 
+and other characteristics of the intruders,
+the fllowings are the  
+name and meaning of attributes
+
 
 \begin{description}
 	\item[id] id of the creature
@@ -31,8 +42,44 @@ There are three types of ghastly creatures, which are called ghoul, ghost and go
 	\item[type] target variable: 'Ghost', 'Goblin', and 'Ghoul'
 \end{description}
 
-\subsection{Train Data and Test Data}
-Because this game is over, it can't submit the predictive values for testing. So divide the train data into train data and test data, and the ratio between the two is 4:1.
+
+\subsection{Problem Analysis}
+
+\subsubsection{Train Data and Test Data}
+
+
+Because this game is over, 
+it can't submit the predictive values for testing. 
+So divide the train data into train data and test data, 
+and the ratio between the two is 8:2. 
+And the data is small, 
+so use ten-fold cross-validation 
+to train the data.
+
+
+\subsubsection{Problem Possible Solutions}
+
+
+There are many machine learning algorithms 
+can solve the three classification problem,
+such as ensemble algorithms,
+decision tree algorithm and so on.
+Use CV to find the best parameters of the algorithms 
+and then validate with testing data 
+
+
+\subsubsection{Evaluation Methods}
+
+
+Before experiment, determine the evaluation methods
+to assess the model performance is very important,
+usually it has two kinds of method for classification problem:
+
+\begin{itemize}
+	\item F1 Score/AUC
+	\item Class Accuracy
+\end{itemize} 
+
 
 \section{Data exploration} \label{sec-data_exploration}
 
