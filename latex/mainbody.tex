@@ -162,7 +162,6 @@ So they maybe not very useful for classification.
 \begin{figure}[htbp]
 	\centering
 	\label{fig:his_2}
-	%\graphicspath{{figures/}{mine/}}
 	\includegraphics[scale=0.3]{figures/his_2.eps}
 	\caption{Color distribution Grouped by Type}
 \end{figure}
@@ -192,7 +191,6 @@ which can be ignored.
 \begin{figure}[htbp]
 	\centering
 	\label{fig:boxplot}
-	%\graphicspath{{figures/}{mine/}}
 	\includegraphics[scale=0.3]{figures/boxplot.eps}
 	\caption{Boxplot Grouped by Type}
 \end{figure}
@@ -201,42 +199,73 @@ which can be ignored.
 \subsubsection{Pairwise Plot} 
 
 
-Pairwise plot is a favorite in exploratory analysis to understand the relationship between all possible pairs of numeric variables. This pairplot shows that data is distributed normally. And while most pairs are widely scattered (in relationship to the type), some of them show clusters: hair_length and has_soul, hair_length and bone_length. So it's needed to reassemble the data.%I decided to create new variables with multiplication of these columns and it worked great!
+Pairwise plot is 
+a favorite in exploratory analysis 
+to understand the relationship 
+between all possible pairs 
+of numeric variables. 
+This pairplot ~\cref{fig:feature_scatterplot} 
+shows that data is distributed normally. 
+And while most pairs are widely scattered 
+(in relationship to the type), 
+some of them show clusters: 
+hair_length and has_soul, 
+hair_length and bone_length. 
+So it may need to reassemble the data.
 
-
-\begin{figure}[h]\centering
-	%\graphicspath{{figures/}{mine/}}
+\begin{figure}[htbp]
+	\centering
+	\label{fig:feature_scatterplot}
 	\includegraphics[scale=0.3]{figures/pairplot.eps}
 	\caption{Feature Scatterplot}
 \end{figure}
 
 
 \subsubsection{Correllogram}
-Correlogram is used to visually see the correlation metric between all possible pairs of numeric variables in a given dataframe. This image help us to analyze features and their impact on the 'type' column. As we can see the 'type' column has a high value of negative correlation with columns 'has_soul' and 'rotting_flesh'. Although the correlation with the 'hair_length' is not very big.
 
 
-\begin{figure}[h]\centering
-	%\graphicspath{{figures/}{mine/}}
+Correlogram is used to 
+visually see the correlation metric 
+between all possible pairs of numeric variables 
+in a given dataframe. 
+This figure ~\cref{fig:corr} 
+help us to analyze features 
+and their impact on the 'type' column. 
+As we can see the 'type' column 
+has a high value of negative correlation 
+with columns 'has_soul' and 'rotting_flesh'. 
+Although the correlation 
+with the 'hair_length' is not very big.
+There is no obvious linear relationship 
+between variables
+
+\begin{figure}[htbp]
+	\centering
+	\label{fig:corr}
 	\includegraphics[scale=0.3]{figures/corr.eps}
 	\caption{Correllogram}
 \end{figure}
 
 
 \subsubsection{Other Figures}
-The following pictures are independent of the choice of algorithm. Because they look great, so I want to share with you.
+
+
+The following pictures 
+are independent of 
+the choice of algorithm. 
+Because they look great, 
+so I want to share with you.
+%如果有时间的话，把这三张图片放在一排，然后稍微介绍一下
 
 \begin{figure}[h]\centering
-	%\graphicspath{{figures/}{mine/}}
 	\includegraphics[scale=0.3]{figures/MHis.eps}
 	\caption{Marginal Histogram}
 \end{figure}
 
 \begin{figure}[h]\centering
-	%\graphicspath{{figures/}{mine/}}
 	\includegraphics[scale=0.3]{figures/BDF.eps}
 	\caption{Binary Density Function}
 \end{figure}
-
 
 \begin{figure}[h]\centering
 	%\graphicspath{{figures/}{mine/}}
@@ -244,10 +273,20 @@ The following pictures are independent of the choice of algorithm. Because they 
 	\caption{Marginal Binary Density Function}
 \end{figure}
 
-\subsection{Data Preparation}
-\subsubsection{Great New Features}
-As can be seen from the picture above the data is distributed normally. And while most pairs are widely scattered (in relationship to the type), some of them show clusters: hair_length and has_soul, hair_length and bone_length. So can create new variables with multiplication of these columns: 
 
+\subsection{Data Preparation}
+
+\subsubsection{Great New Features}
+
+
+As it can be seen from 
+the pictures above 
+the data is distributed normally. 
+But some of them show clusters: 
+hair_length and has_soul, 
+hair_length and bone_length. 
+So create new variables 
+with multiplication of these columns: 
 
 \begin{description}
 	\item[hair_soul] row[’hair_length’]*row[’has_soul’] 
@@ -256,16 +295,25 @@ As can be seen from the picture above the data is distributed normally. And whil
 	\item[hair_soul_bone]  row[hair_length]*row[has_soul]*row[bone_length] 
 \end{description}
 
-Then analyse the new features in a pairplot, showing the picture below. It can be seen from the picture that there is a clear linear relationship between the variables. 
+
+Then analyse the new features in a pairplot, 
+showing the picture ~\cref{fig:new_pairplot}
+below. 
+It can be seen from the picture that 
+there is a clear linear relationship 
+between the variables. 
 
 
-\begin{figure}[h]\centering
-	%\graphicspath{{figures/}{mine/}}
+\begin{figure}[htbp]\centering
+	\label{fig:new_pairplot}
 	\includegraphics[scale=0.3]{figures/hist_1.eps}
-	\caption{New Feature Pairplot}
+	\caption{New Features Pairplot}
 \end{figure}
 
+
 \subsubsection{Feature Selection}
+
+
 Train Random Forest model first, then using the Feature Importance this function to select the most important features. The following figure is a histogram ordered by feature importance. 
 
 
