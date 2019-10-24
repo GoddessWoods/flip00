@@ -15,10 +15,12 @@ between the attributes and species.
 Then identify 371 of the ghastly creatures
 
 
-\begin{figure}[htbp]\centering\label{fig:animal}
+\begin{figure}[htbp]
+	\centering
+	\label{fig:animal}
 	%\graphicspath{figures}
 	\includegraphics[scale=0.3]{figures/bar.eps}
-	\caption{name}
+	\caption{The Picture of Ghastly}
 \end{figure}
 
 
@@ -84,11 +86,16 @@ usually it has two kinds of method for classification problem:
 \section{Data exploration} \label{sec-data_exploration}
 
 \subsection{Data Information}
-There are 4 numerical variables and 1 categorical. And no missing values, which is nice! Numerical columns are either normalized or show a percentage, so no need to scale them. The following table is the statistical result of the attribute values.
-%It seems that all numerical features may be useful.\\
 
 
-\begin{table}[h]  \centering
+The following table ~\cref{tbl:data information}
+is the statistical result of the attribute values.
+There are 4 numerical variables and 1 categorical. 
+And no missing values.
+Numerical columns are either normalized or show a percentage, 
+so no need to scale them. 
+
+\begin{table}[htbp]  \centering
 	\caption{Data Information}
 	\label{tbl:data information}
 	\begin{tabular}{ccccccc}
@@ -114,31 +121,77 @@ There are 4 numerical variables and 1 categorical. And no missing values, which 
 
 
 \subsection{Data Visualization}
-In order to observate the data intuitively, use EDA to plot the distribution of the data to find the relation between the attribute values. The followings are codes, analysis and figuers about data visualization.\\
+
+
+Use EDA to plot the distribution of the data 
+to can observate the data intuitively and
+find the relation between the attribute values. 
+For example boxplot can visually observe 
+the distribution of numerical variables, 
+scatterplot can show their distribution trends 
+and whether there are outliers.
+And for classification problems, 
+the data is drawn according to 
+the different colors of the Label, 
+which is very helpful for 
+the construction of the Feature.
+
 
 \subsubsection{ Histogram}
-The figures below are the mean of the four attribute values  and the number of different color about the three types of ghastly creatures.It seems that all numerical features may be useful, but many colors are evenly distributes among the monsters. So they maybe nor very useful for analysis.\\
 
 
-\begin{figure}[htbp]\centering
+The figure ~\cref{fig:his_1} 
+shows the mean of the four numerical variables  
+and the figure ~\cref{fig:his_2} 
+is the number of different color 
+about types of ghastly creatures.
+It seems that all numerical features may be useful, 
+but many colors are evenly distributes among the monsters. 
+So they maybe not very useful for classification.
+
+
+\begin{figure}[htbp]
+	\centering
+	\label{fig:his_1}
 	%\graphicspath{{figures/}{mine/}}
 	\includegraphics[scale=0.3]{figures/his_1.eps}
-	\caption{mean}
+	\caption{The Mean of Four Numerical Variables}
 \end{figure}
 
 
-\begin{figure}[htbp]\centering
+\begin{figure}[htbp]
+	\centering
+	\label{fig:his_2}
 	%\graphicspath{{figures/}{mine/}}
 	\includegraphics[scale=0.3]{figures/his_2.eps}
-	\caption{color}
+	\caption{Color distribution Grouped by Type}
 \end{figure}
 
 
 \subsubsection{Boxplot}
-Through the boxplot, when analyzing the data, the boxplot can effectively help us identify the characteristics of the data: visually identify outliers in the dataset. Determine the data dispersion and bias of the data set. Through the figure, know that the two types of Ghost and Ghoul in the monster have higher discrimination on the four variables, while Goblin is in the middle position, which intersects with the other two types of features.
+
+ 
+When analyzing the data, 
+the boxplot can effectively 
+help us identify the characteristics of the data: 
+visually identify outliers in the dataset. 
+Determine the data dispersion and 
+bias of the data set. 
+Through the figure ~\cref{fig:boxplot}, 
+know that the two types of Ghost and Ghoul 
+in the monster have higher discrimination 
+on the four variables, 
+while Goblin is in the middle position, 
+which intersects with the other two types of features.
+Guess that the predictive accuracy of Ghost and Ghoul 
+will be better than Goblin.
+And the outliers are very small,
+which can be ignored.
 
 
-\begin{figure}[h]\centering
+\begin{figure}[htbp]
+	\centering
+	\label{fig:boxplot}
 	%\graphicspath{{figures/}{mine/}}
 	\includegraphics[scale=0.3]{figures/boxplot.eps}
 	\caption{Boxplot Grouped by Type}
@@ -146,6 +199,8 @@ Through the boxplot, when analyzing the data, the boxplot can effectively help u
 
 
 \subsubsection{Pairwise Plot} 
+
+
 Pairwise plot is a favorite in exploratory analysis to understand the relationship between all possible pairs of numeric variables. This pairplot shows that data is distributed normally. And while most pairs are widely scattered (in relationship to the type), some of them show clusters: hair_length and has_soul, hair_length and bone_length. So it's needed to reassemble the data.%I decided to create new variables with multiplication of these columns and it worked great!
 
 
