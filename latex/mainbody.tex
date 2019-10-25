@@ -3,7 +3,7 @@
 \section{Introduction}\label{sec-intro}
 
 \subsection{Problem Statement}
-
+\
 
 After a month of making scientific observations 
 and taking careful measurements, 
@@ -12,7 +12,8 @@ like what is shown in~\Cref{fig:animal}  .
 The raw dataset contains train set with 10000 %modify as your true values
 samples and 5000 unlabeled samples as test set.
 Through the train data, I can find the relationship
-between the attributes and species, and then identify 371 of the ghastly creatures.
+between the attributes and species, 
+and then identify 371 of the ghastly creatures.
 
 
 \begin{figure}[htbp]
@@ -24,7 +25,7 @@ between the attributes and species, and then identify 371 of the ghastly creatur
 
 
 \subsection{Data List}
-
+\
 
 There are bone length measurements, 
 severity of rot, extent of soullessness, 
@@ -47,7 +48,7 @@ name and meaning of attributes
 \subsection{Problem Analysis}
 
 \subsubsection{Train Data and Test Data}
-
+\
 
 Because this game is over, 
 it can't submit the predictive values for testing. 
@@ -59,7 +60,7 @@ to train the data.
 
 
 \subsubsection{Problem Possible Solutions}
-
+\
 
 There are many machine learning algorithms 
 can solve the three classification problem,
@@ -85,9 +86,9 @@ usually it has two kinds of method for classification problem:
 \section{Data exploration} \label{sec-data_exploration}
 
 \subsection{Data Information}
+\
 
-
-The following table ~\cref{tbl:data information}
+The following  ~\cref{tbl:data information}
 is the statistical result of the attribute values.
 There are 4 numerical variables and 1 categorical. 
 And no missing values.
@@ -120,7 +121,7 @@ so no need to scale them.
 
 
 \subsection{Data Visualization}
-
+\
 
 Use EDA to plot the distribution of the data 
 to can observate the data intuitively and
@@ -137,7 +138,7 @@ the construction of the Feature.
 
 
 \subsubsection{ Histogram}
-
+\
 
 The figure ~\Cref{fig:his_1} 
 shows the mean of the four numerical variables  
@@ -157,7 +158,6 @@ So they maybe not very useful for classification.
 	\caption{The Mean of Four Numerical Variables}\label{fig:his_1}
 \end{figure}
 
-
 \begin{figure}[htbp]
 	\centering
 	
@@ -165,9 +165,8 @@ So they maybe not very useful for classification.
 	\caption{Color distribution Grouped by Type}\label{fig:his_2}
 \end{figure}
 
-
 \subsubsection{Boxplot}
-
+\
  
 When analyzing the data, 
 the boxplot can effectively 
@@ -189,14 +188,13 @@ which can be ignored.
 
 \begin{figure}[htbp]
 	\centering
-	
 	\includegraphics[scale=0.3]{figures/boxplot.eps}
 	\caption{Boxplot Grouped by Type}\label{fig:boxplot}
 \end{figure}
 
 
 \subsubsection{Pairwise Plot} 
-
+\
 
 Pairwise plot is 
 a favorite in exploratory analysis 
@@ -214,13 +212,12 @@ So it may need to reassemble the data.
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[scale=0.3]{figures/pairplot.eps}
+	\includegraphics[scale=0.4]{figures/pairplot.eps}
 	\caption{Feature Scatterplot}\label{fig:feature_scatterplot}
 \end{figure}
 
-
 \subsubsection{Correllogram}
-
+\
 
 Correlogram is used to 
 visually see the correlation metric 
@@ -239,7 +236,7 @@ between variables
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[scale=0.3]{figures/corr.eps}
+	\includegraphics[scale=0.4]{figures/corr.eps}
 	\caption{Correllogram}\label{fig:corr}
 \end{figure}
 
@@ -255,18 +252,18 @@ so I want to share with you.
 %如果有时间的话，把这三张图片放在一排，然后稍微介绍一下
 
 \begin{figure}[h]\centering
-	\includegraphics[scale=0.3]{figures/MHis.eps}
+	\includegraphics[scale=0.4]{figures/MHis.eps}
 	\caption{Marginal Histogram}
 \end{figure}
 
 \begin{figure}[h]\centering
-	\includegraphics[scale=0.3]{figures/BDF.eps}
+	\includegraphics[scale=0.4]{figures/BDF.eps}
 	\caption{Binary Density Function}
 \end{figure}
 
 \begin{figure}[h]\centering
 	%\graphicspath{{figures/}{mine/}}
-	\includegraphics[scale=0.3]{figures/MBDF.eps}
+	\includegraphics[scale=0.4]{figures/MBDF.eps}
 	\caption{Marginal Binary Density Function}
 \end{figure}
 
@@ -274,7 +271,7 @@ so I want to share with you.
 \subsection{Data Preparation}
 
 \subsubsection{Great New Features}
-
+\
 
 As it can be seen from 
 the pictures above 
@@ -309,7 +306,7 @@ between the variables.
 
 
 \subsubsection{Feature Selection}
-
+\
 
 Train Random Forest model first, 
 then using the Feature Importance this function 
@@ -325,7 +322,7 @@ is a histogram ordered by feature importance.
 	\caption{Feature Importance}\label{fig:feature_importance}
 \end{figure}
 
-Take the top six features 
+Take the top seven features 
 with higher importance 
 to form a new train data.
 
@@ -351,7 +348,7 @@ show the most important parameters.
 \end{itemize}
 
 \subsection{RandomForest}
-
+\
 
 Random forest is a classifier with 
 multiple decision trees, and
@@ -401,6 +398,7 @@ the mode of the individual tree output.
 
 
 \subsection{LogisticRegression}
+\
 
 Logistic regression is the algorithm that 
 processing a large amount of 
@@ -428,7 +426,7 @@ the internal laws of things
 %J=sum(logloss(f(xi), yi)) + C* penalty
 
 \subsection{Bagging}
-
+\
 
 Bagging can improve the stability and accuracy 
 of machine learning algorithms, 
@@ -460,6 +458,7 @@ the model and avoid overfitting
 \end{itemize}
 
 \subsection{GradientBoosting}
+\
 
 Gradient boosting uses gradient descend 
 to find the best solvtion.
@@ -479,6 +478,7 @@ a classic numerical optimization method.
 		\sum\nolimits_{i=1}^n L(y_i,\gamma)$
 		
 		\item[for $m=1$ to $M$] 
+		\
 		
 		\begin{itemize}
 			\item calculate negative gradient
@@ -503,7 +503,7 @@ a classic numerical optimization method.
 \end{itemize}
 %\frac{\partial f}{\partial x} = 2\,\sqrt{a}\,x
 \subsection{SVC}
-
+\
 
 The basic principle of the SVM algorithm is 
 to find a hyper plane that can 
@@ -530,6 +530,7 @@ so that the margin is the largest.
 \end{itemize}
 
 \subsection{KNeighbors}
+\
 
 The meaning of the knn algorithm is that 
 enter new data without tags, 
@@ -567,6 +568,7 @@ the most similar feature (nearest neighbor: k)
 \end{itemize}
 
 \subsection{XGBoost}
+\
  
 XGBoost is to establish K regression trees 
 so that the predicted value of 
@@ -580,11 +582,13 @@ this is a functional optimization, multi-target.
 	\item Princible
 	\begin{description}
 		\item[predictive model] $\hat{y_i}=\sum\nolimits_{k=1}^K f_k(x_i)$
+		
 		$K$ is the number of trees,
 		$f_k$ represents the kth tree,
 		$\hat{y_i}$ is the predictive result of $x_i$
 		\item[loss function] $Obj(\theta)=\sum\nolimits_{i=1}^n l(y_i,\hat{y_i})+
 		\sum\nolimits_{k=1}^K \Omega(f_k)$
+		
 		$l(y_i,\hat{y_i}$ is the train error of example 
 		$x-i$, $\Omega(f_k)$ is the regular item of the kth tree.
 	\end{description}
@@ -603,6 +607,7 @@ this is a functional optimization, multi-target.
 \end{itemize} 
 
 \subsection{Netual Network}
+\
 
 Netual network is widely used in various fields.
 
@@ -632,6 +637,7 @@ Netual network is widely used in various fields.
 \end{itemize}
 
 \subsection{Ensemble Model}
+\
 
 There are many machine learning algorithms, 
 use the above machine learning algorithms 
@@ -658,8 +664,8 @@ the base models of ensemble model,
 then do experiment. 
 
 \subsection{Base Models Training Result}
-
 \subsubsection{Original Train Data}
+\
 
 The following are the best parameters and 
 the Best Score in training of 
@@ -681,7 +687,8 @@ in original train data.
 		'n_neighbors': 20, 'p': 5, 'weights': 'uniform'
 		\item[XGBoost] 'learning_rate':0.08,'n_estimators':50,
 		'max_depth':5,'gamma':0,'subsample':0.9,'colsample_bytree':0.5
-		\item[Netual Network] 'activation': 'relu', 'hidden_layer_sizes': 9, 'learning_rate': 'adaptive', 'solver': 'adam'
+		\item[Netual Network] 'activation': 'relu', 'hidden_layer_sizes': 9, 
+		'learning_rate': 'adaptive', 'solver': 'adam'
 	\end{description}
 	
 	\item Best Score in Ten-Fold Cross-Validation
@@ -694,16 +701,20 @@ in original train data.
 	\begin{table}[h]  \centering
 		\caption{Best Score of the Base Models}
 		\label{tbl:best_score_base_models_old}
-		\begin{tabular}{ccccccccc}
-			\hline
-			% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-			Base Models& RandomForest & Bagging & GradientBoosting & 
-			LogisticRegression & SVC & KNeighbors & XGBoost & Netual Network\\
-			\hline
-			Best Score & 0.7224 & 0.7251 & 0.7385 & 
-			0.7547 & 0.7493 & 0.7251 & 0.9314 & 0.7466\\
-			\hline 
+		\begin{tabular}{ccccc}
 			%\bottomrule
+			\toprule
+			& RandomForest & Bagging & GradientBoosting & 
+			LogisticRegression \\
+			\midrule
+			Best Score & 0.7224 & 0.7251 & 0.7385 & 
+			0.7547\\
+			\bottomrule
+			\toprule
+			& SVC & KNeighbors & XGBoost & Netual Network\\
+			\midrule
+			Best Score & 0.7493 & 0.7251 & 0.9314 & 0.7466\\
+			\bottomrule
 		\end{tabular}
 	\end{table}
 \end{itemize}
@@ -743,15 +754,20 @@ in new train data.
 	\begin{table}[h]  \centering
 		\caption{Best Score of the Base Models}
 		\label{tbl:best_score_base_models_new}
-		\begin{tabular}{ccccccccc}
-			\hline
+		\begin{tabular}{ccccc}
+			\toprule
 			% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-			Base Models& RandomForest & Bagging & GradientBoosting & 
-			LogisticRegression & SVC & KNeighbors & XGBoost & Netual Network\\
-			\hline
+			& RandomForest & Bagging & GradientBoosting & 
+			LogisticRegression \\
+			\midrule
 			Best Score & 0.7224 & 0.7251 & 0.7385 & 
-			0.7547 & 0.7493 & 0.7251 & 0.9326 & 0.7466\\
-			\hline 
+			0.7547 \\
+			\bottomrule
+			\toprule 
+			& SVC & KNeighbors & XGBoost & Netual Network\\
+			\midrule
+			Best Score & 0.7493 & 0.7251 & 0.9326 & 0.7466\\
+			\bottomrule
 			%\bottomrule
 		\end{tabular}
 	\end{table}
@@ -759,6 +775,7 @@ in new train data.
 
 
 \subsection{Ensemble Model Training Result}
+\
 
 Ensemble model means using 
 more than 1 model to finish the prediction.
@@ -766,6 +783,10 @@ Here just averaging the prediction results
 by using voting. 
 
 \subsubsection{Original Train Data}
+\
+
+The table below is the metrics classification report 
+of ensemble model in original train data.
 
 \begin{table}[h]  \centering
 	\caption{Metrics Classification Report of Ensemble Model}
@@ -787,7 +808,10 @@ by using voting.
 \end{table}
 	
 \subsubsection{New Train Data}
+\
 
+The table below is the metrics classification report 
+of ensemble model in new train data.
 \begin{table}[h]  \centering
 	\caption{Metrics Classification Report of Ensemble Model}
 	\label{tbl:metrics_classification_ensemble_new}
@@ -808,6 +832,7 @@ by using voting.
 \end{table}	
 
 \subsection{Forecast Result of all Models}
+\
 
 From the table below,
 can find that 
@@ -816,29 +841,37 @@ increased the most.
 And ensemble model has 
 the highest accuracy
 
-%\begin{table}[h]  \centering
-    %\caption{{Forecast Result of all Models}
-	%\label{tbl:forecast_score_models}
-    %\begin{tabular}{cccccccccc}
-	%\hline
-	% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-	%Models& RandomForest & Bagging & GradientBoosting & 
-	%LogisticRegression & SVC & KNeighbors & XGBoost & Netual Network & Ensemble\\
-	%\hline
-	%Accuracy_old & 0.8133 & 0.6800 & 0.8800 & 
-	%0.7600 & 0.7467 & 0.7333 & 0.9200 & 0.7333 & 0.7867\\
-	%Accuracy_new & 0.8267 & 0.7200 & 0.7866 &
-	%0.7333 & 0.6933 & 0.7067 & 0.9467 &0.68 & 0.8667\\
-	%F1_score_old & 0.8133 & 0.6800 & 0.8800 &
-	%0.7600 & 0.7467 & 0.7333 & 0.9200 & 0.7333 & 0.7867\\
-	%F1_score_new & 0.8267 & 0.7200 & 0.7866 &
-	%0.7333 & 0.6933 & 0.7067 & 0.9467 &0.68 & 0.8667\\
-	%\hline 
+\begin{table}[h]  \centering
+	\caption{Forecast Result of all Models}
+	\label{tbl:forecast_score_models}
+	\begin{tabular}{cccccc}
+		\toprule
+		% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+		& RandomForest & Bagging & GradientBoosting & 
+		LogisticRegression & SVC \\
+		\midrule
+		Accuracy_old & 0.8133 & 0.6800 & 0.8800 & 
+		0.7600 & 0.7467 \\
+		Accuracy_new & 0.8267 & 0.7200 & 0.7866 &
+		0.7333 & 0.6933 \\
+		F1_score_old & 0.8133 & 0.6800 & 0.8800 &
+		0.7600 & 0.7467 \\
+		F1_score_new & 0.8267 & 0.7200 & 0.7866 &
+		0.7333 & 0.6933 \\
+		\bottomrule 
+		\toprule
+		& KNeighbors & XGBoost & Netual Network & Ensemble &\\
+		\midrule
+		Accuracy_old & 0.7333 & 0.9200 & 0.7333 & 0.7867 &\\
+		Accuracy_new & 0.7067 & 0.9467 & 0.6800 & 0.8667 &\\
+		F1_score_old & 0.7333 & 0.9200 & 0.7333 & 0.7867 &\\
+		F1_score_new & 0.7067 & 0.9467 & 0.6800 & 0.8667 &\\
+		\bottomrule
 		%\bottomrule
-	%\end{tabular}
-%\end{table}
+	\end{tabular}
+\end{table}
 
-
+\section{Conclusion}
 
 %\lstset{language=python}         
 %\begin{lstlisting}[frame=single]  % Start your code-block
