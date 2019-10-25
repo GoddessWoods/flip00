@@ -513,11 +513,11 @@ so that the margin is the largest.
 \begin{itemize}
 	\item Princible
 	
-	\begin{description}
+	\begin{itemize}
 		\item choose a kernel function, reduce the amount of calculation
 		\item determining the hyperplane equation
 		\item optimization model
-	\end{description}
+	\end{itemize}
 
 	\item Parameters
 	
@@ -555,19 +555,56 @@ the most similar feature (nearest neighbor: k)
 	
 	\item Parameters
 	\begin{description}
-		\item[n_neighbors] description
-		\item[leaf_size] description
-		\item[p] description
-		\item[weights] description
-		\item[algorithm] description
+		\item[n_neighbors] number of neighbors to use 
+		by default for kneighbors queries
+		\item[leaf_size] leaf size passed to BallTree or KDTree
+		\item[p] power parameter for choosing 
+		the distance calculation formula
+		\item[weights] used in prediction
+		\item[algorithm] compute the nearest neighbors
 	\end{description}
 	
 \end{itemize}
 
 \subsection{XGBoost}
  
+XGBoost is to establish K regression trees 
+so that the predicted value of 
+the tree group is as close as possible to 
+the true value (accuracy) and 
+has the greatest generalization ability. 
+From a mathematical point of view, 
+this is a functional optimization, multi-target.
+
+\begin{itemize}
+	\item Princible
+	\begin{description}
+		\item[predictive model] $\hat{y_i}=\sum\nolimits_{k=1}^K f_k(x_i)$
+		$K$ is the number of trees,
+		$f_k$ represents the kth tree,
+		$\hat{y_i}$ is the predictive result of $x_i$
+		\item[loss function] $Obj(\theta)=\sum\nolimits_{i=1}^n l(y_i,\hat{y_i})+
+		\sum\nolimits_{k=1}^K \Omega(f_k)$
+		$l(y_i,\hat{y_i}$ is the train error of example 
+		$x-i$, $\Omega(f_k)$ is the regular item of the kth tree.
+	\end{description}
+	
+	\item Parameters
+	\begin{description}
+		\item[learning_rate]  control the speed of each update
+		\item[n_estimators] number of iterations
+		\item[max_depth] the depth of tree
+		\item[gamma] penalty factor%惩罚系数
+		\item[subsample] the proportion of data used in 
+		all training sets when training each tree
+		\item[colsample_bytree] the proportion of features used 
+		in all trees when training each tree
+	\end{description}
+\end{itemize} 
 
 \subsection{Netual Network}
+
+
 
 
 \subsection{Ensemble Model}
@@ -575,18 +612,12 @@ There are many machine learning algorithms,
 select the following machine learning algorithms as Ensemble Model’s base models. 
 
 
+\section{Experiment and Result}
 
 \subsection{Model Training}
 meters,but the more important ones are generally not too many. Determine a set of optimal parameters through Grid Search. Because the training data is relatively small, a ten-fold cross-validation is used. %
 
-\subsection{Neural Network}
-There are three targets, 
-use pandas.get_dummies this funtion to implement one-hot encoding of the tpyes.
-The network contains forward, 
-softmax and backpropagaation.
 
-
-\section{Experiment and Result}
 
 \subsection{Ensemble Model Training Result}
 
