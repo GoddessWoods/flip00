@@ -340,17 +340,17 @@ these algorithms and
 show the most important parameters.
 
 \begin{itemize}
-	\item RandomForestClassifier
-	\item BaggingClassifier
-	\item GradientBoostingClassifier
+	\item RandomForest 
+	\item Bagging
+	\item GradientBoosting
 	\item LogisticRegression
 	\item SVC
-	\item KNeighborsClassifier 
-	\item XGBClassifier
+	\item KNeighbors 
+	\item XGB
 	\item Netual Network
 \end{itemize}
 
-\subsection{RandomForestClassifier}
+\subsection{RandomForest}
 
 
 Random forest is a classifier with 
@@ -427,7 +427,7 @@ the internal laws of things
 \end{itemize}
 %J=sum(logloss(f(xi), yi)) + C* penalty
 
-\subsection{BaggingClassifier}
+\subsection{Bagging}
 
 
 Bagging can improve the stability and accuracy 
@@ -459,7 +459,7 @@ the model and avoid overfitting
 	
 \end{itemize}
 
-\subsection{GradientBoostingClassifier}
+\subsection{GradientBoosting}
 
 Gradient boosting uses gradient descend 
 to find the best solvtion.
@@ -495,17 +495,76 @@ a classic numerical optimization method.
 	\item Parameters
 	
 	\begin{description}
-		\item[learning_rate] learning rate
+		\item[learning_rate] control the speed of each update
+		\item[n_estimators] he number of decision trees that 
+		need to be used
+		\item[max_depth] the maximum depth of the tree
 	\end{description}
 \end{itemize}
 %\frac{\partial f}{\partial x} = 2\,\sqrt{a}\,x
 \subsection{SVC}
 
 
-\subsection{KNeighborsClassifier}
+The basic principle of the SVM algorithm is 
+to find a hyper plane that can 
+distinguish between two types, 
+so that the margin is the largest.
 
+\begin{itemize}
+	\item Princible
+	
+	\begin{description}
+		\item choose a kernel function, reduce the amount of calculation
+		\item determining the hyperplane equation
+		\item optimization model
+	\end{description}
 
-\subsection{XGBClassifier}
+	\item Parameters
+	
+	\begin{description}
+		\item[kernel] kernel function
+		\item[C] penalty factor for error terms
+		\item[degree] order of polynomial kernel function
+	\end{description}
+	
+\end{itemize}
+
+\subsection{KNeighbors}
+
+The meaning of the knn algorithm is that 
+enter new data without tags, 
+compare each feature of the new data with 
+each feature in the training set, 
+and select the classification tag with 
+the most similar feature (nearest neighbor: k)
+
+\begin{itemize}
+	\item Princible
+	\begin{itemize}
+		\item calculate the Euler distance of 
+		the new sample point in the sample space 
+		from all training samples
+		\item Sort the Euler distances and 
+		find the nearest k points
+		\item Classify statistics on k points to 
+		see which type of points has 
+		the most number. 
+		This type is the type of 
+		prediction for new samples.
+	\end{itemize}
+	
+	\item Parameters
+	\begin{description}
+		\item[n_neighbors] description
+		\item[leaf_size] description
+		\item[p] description
+		\item[weights] description
+		\item[algorithm] description
+	\end{description}
+	
+\end{itemize}
+
+\subsection{XGBoost}
  
 
 \subsection{Netual Network}
