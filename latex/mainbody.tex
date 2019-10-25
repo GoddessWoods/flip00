@@ -139,9 +139,9 @@ the construction of the Feature.
 \subsubsection{ Histogram}
 
 
-The figure \ref{fig:his_1} 
+The figure ~\Cref{fig:his_1} 
 shows the mean of the four numerical variables  
-and the figure ~\cref{fig:his_2} 
+and the figure ~\Cref{fig:his_2} 
 is the number of different color 
 about types of ghastly creatures.
 It seems that all numerical features may be useful, 
@@ -151,18 +151,18 @@ So they maybe not very useful for classification.
 
 \begin{figure}[htbp]
 	\centering
-	\label{fig:his_1}
+	
 	%\graphicspath{{figures/}{mine/}}
 	\includegraphics[scale=0.3]{figures/his_1.eps}
-	\caption{The Mean of Four Numerical Variables}
+	\caption{The Mean of Four Numerical Variables}\label{fig:his_1}
 \end{figure}
 
 
 \begin{figure}[htbp]
 	\centering
-	\label{fig:his_2}
+	
 	\includegraphics[scale=0.3]{figures/his_2.eps}
-	\caption{Color distribution Grouped by Type}
+	\caption{Color distribution Grouped by Type}\label{fig:his_2}
 \end{figure}
 
 
@@ -175,7 +175,7 @@ help us identify the characteristics of the data:
 visually identify outliers in the dataset. 
 Determine the data dispersion and 
 bias of the data set. 
-Through the figure ~\cref{fig:boxplot}, 
+Through the figure ~\Cref{fig:boxplot}, 
 know that the two types of Ghost and Ghoul 
 in the monster have higher discrimination 
 on the four variables, 
@@ -189,9 +189,9 @@ which can be ignored.
 
 \begin{figure}[htbp]
 	\centering
-	\label{fig:boxplot}
+	
 	\includegraphics[scale=0.3]{figures/boxplot.eps}
-	\caption{Boxplot Grouped by Type}
+	\caption{Boxplot Grouped by Type}\label{fig:boxplot}
 \end{figure}
 
 
@@ -203,7 +203,7 @@ a favorite in exploratory analysis
 to understand the relationship 
 between all possible pairs 
 of numeric variables. 
-This pairplot ~\cref{fig:feature_scatterplot} 
+This pairplot ~\Cref{fig:feature_scatterplot} 
 shows that data is distributed normally. 
 And while most pairs are widely scattered 
 (in relationship to the type), 
@@ -214,9 +214,8 @@ So it may need to reassemble the data.
 
 \begin{figure}[htbp]
 	\centering
-	\label{fig:feature_scatterplot}
 	\includegraphics[scale=0.3]{figures/pairplot.eps}
-	\caption{Feature Scatterplot}
+	\caption{Feature Scatterplot}\label{fig:feature_scatterplot}
 \end{figure}
 
 
@@ -227,7 +226,7 @@ Correlogram is used to
 visually see the correlation metric 
 between all possible pairs of numeric variables 
 in a given dataframe. 
-This figure ~\cref{fig:corr} 
+This figure ~\Cref{fig:corr} 
 help us to analyze features 
 and their impact on the 'type' column. 
 As we can see the 'type' column 
@@ -240,9 +239,8 @@ between variables
 
 \begin{figure}[htbp]
 	\centering
-	\label{fig:corr}
 	\includegraphics[scale=0.3]{figures/corr.eps}
-	\caption{Correllogram}
+	\caption{Correllogram}\label{fig:corr}
 \end{figure}
 
 
@@ -296,17 +294,17 @@ with multiplication of these columns:
 
 
 Then analyse the new features in a pairplot, 
-showing the picture Fig~\cref{fig:new_pairplot}
+showing the picture ~\Cref{fig:new_pairplot}
 below. 
 It can be seen from the picture that 
 there is a clear linear relationship 
 between the variables. 
 
 
-\begin{figure}[htbp]\centering
-	\label{fig:new_pairplot}
+\begin{figure}[htbp]
+	\centering
 	\includegraphics[scale=0.3]{figures/hist_1.eps}
-	\caption{New Features Pairplot}
+	\caption{New Features Pairplot}\label{fig:new_pairplot}
 \end{figure}
 
 
@@ -316,23 +314,30 @@ between the variables.
 Train Random Forest model first, 
 then using the Feature Importance this function 
 to select the most important features. 
-The following figure is 
-a histogram ordered by feature importance. 
+The following figure ~\Cref{fig:feature_importance}
+is a histogram ordered by feature importance. 
 
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 	\centering
 	%\graphicspath{{figures/}{mine/}}
 	\includegraphics[scale=0.3]{figures/FEATURE.eps}
-	\caption{Feature Importance}
+	\caption{Feature Importance}\label{fig:feature_importance}
 \end{figure}
+
+Take the top six features 
+with higher importance 
+to form a new train data.
 
 
 \section{Method}
 
-\subsection{Ensemble Model}
-There are many machine learning algorithms, 
-select the following machine learning algorithms as Ensemble Model’s base models. 
+There are many machine learning algorithms 
+for classification problem. 
+Choose the following algorithms, 
+explain the principles of
+these algorithms and 
+show the code.
 
 \begin{itemize}
 	\item RandomForestClassifier
@@ -342,7 +347,58 @@ select the following machine learning algorithms as Ensemble Model’s base mode
 	\item SVC
 	\item KNeighborsClassifier 
 	\item XGBClassifier
+	\item Netual Network
 \end{itemize}
+
+\subsection{RandomForestClassifier}
+
+
+Random forest is a classifier with 
+multiple decision trees, and
+the output is determined by 
+the mode of the individual tree output.
+
+\begin{itemize}
+	\item Principle
+	
+	\begin{itemize}
+		\item Use M to indicate the number of training samples, 
+		and N to indicate the number of features.
+		\item The number of feature inputs n is 
+		used to determine the decision result 
+		of a node on the decision tree; 
+		where n should be much smaller than N.
+		\item From the M training samples, 
+		the sampling is performed k times to 
+		form a training set (ie bootstrap sampling), 
+		and the unused use cases (samples) are 
+		used for prediction to evaluate the error.
+		\item For each node, 
+		n features are randomly selected, 
+		and the decision of each node on each decision tree is 
+		determined based on these characteristics. 
+		According to these n features, 
+		calculate the best split mode.
+		\item Finally, predict the test data and 
+		decide the classification 
+		according to each tree in a multi-winning manner.
+	\end{itemize}
+	
+	\item Parameter
+	
+	\begin{description}
+		\item[n_estimators] 
+		\item[criteriom] description 
+	\end{description}
+	
+	\item Code
+\end{itemize}
+
+\subsection{Ensemble Model}
+There are many machine learning algorithms, 
+select the following machine learning algorithms as Ensemble Model’s base models. 
+
+
 
 \subsection{Model Training}
 meters,but the more important ones are generally not too many. Determine a set of optimal parameters through Grid Search. Because the training data is relatively small, a ten-fold cross-validation is used. %
