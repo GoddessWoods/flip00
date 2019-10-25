@@ -9,10 +9,10 @@ After a month of making scientific observations
 and taking careful measurements, 
 can determined that 900 ghouls, ghosts, and goblins
 like what is shown in~\Cref{fig:animal}  .
-There are train data and test data,
-through the train data to find the relationship
-between the attributes and species.
-Then identify 371 of the ghastly creatures
+The raw dataset contains train set with 10000 %modify as your true values
+samples and 5000 unlabeled samples as test set.
+Through the train data, I can find the relationship
+between the attributes and species, and then identify 371 of the ghastly creatures.
 
 
 \begin{figure}[htbp]
@@ -51,10 +51,10 @@ name and meaning of attributes
 
 Because this game is over, 
 it can't submit the predictive values for testing. 
-So divide the train data into train data and test data, 
+So I divide the raw train set into train data and test data, 
 and the ratio between the two is 8:2. 
-And the data is small, 
-so use ten-fold cross-validation 
+Another vexed problem is the data too small, 
+so I use ten-fold cross-validation 
 to train the data.
 
 
