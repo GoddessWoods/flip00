@@ -646,17 +646,25 @@ In the Data Exploration,
 has created some new feaures.
 The following experiment is divided into two parts,
 one is to use the original train data, 
-the other is to use new features.
+the other is to use new features as train data.
 Determine a set of optimal parameters 
 through Grid Search. 
-Because the training data is relatively small, 
+Because the train data is relatively small, 
 a ten-fold cross-validation is used. 
 Test the trained models using test data and 
 analyze the experimental results.
+And use the trained models as 
+the base models of ensemble model,
+then do experiment. 
 
 \subsection{Base Models Training Result}
 
 \subsubsection{Original Train Data}
+
+The following are the best parameters and 
+the Best Score in training of 
+the base models 
+in original train data. 
 
 \begin{itemize}
 	\item Best Parameters of Models
@@ -673,16 +681,15 @@ analyze the experimental results.
 		'n_neighbors': 20, 'p': 5, 'weights': 'uniform'
 		\item[XGBoost] 'learning_rate':0.08,'n_estimators':50,
 		'max_depth':5,'gamma':0,'subsample':0.9,'colsample_bytree':0.5
-		\item[Netual Network] 'activation': 'relu', 'hidden_layer_sizes': 9, 'learning_rate': 'adaptive', 
-		'solver': 'adam'
+		\item[Netual Network] 'activation': 'relu', 'hidden_layer_sizes': 9, 'learning_rate': 'adaptive', 'solver': 'adam'
 	\end{description}
 	
 	\item Best Score in Ten-Fold Cross-Validation
 	
-	From the table, 
-	can find that the performance of 
-	these algorithms on the train data 
-	is not much different.
+	From the table ~\Cref{tbl:best_score_base_models_old},
+	it shows that the accuracy of 
+	each model is not much different,
+	except XGBoost.
 	
 	\begin{table}[h]  \centering
 		\caption{Best Score of the Base Models}
@@ -693,8 +700,8 @@ analyze the experimental results.
 			Base Models& RandomForest & Bagging & GradientBoosting & 
 			LogisticRegression & SVC & KNeighbors & XGBoost & Netual Network\\
 			\hline
-			Best Score & 0.7143 & 0.7305 & 0.7358 & 
-			0.7332 & 0.7385 & 0.7088 & 0 & 0.7439\\
+			Best Score & 0.7224 & 0.7251 & 0.7385 & 
+			0.7547 & 0.7493 & 0.7251 & 0.9314 & 0.7466\\
 			\hline 
 			%\bottomrule
 		\end{tabular}
@@ -703,25 +710,35 @@ analyze the experimental results.
 
 \subsubsection{New Train Data}
 
+The following are the best parameters and 
+the Best Score in training of 
+the base models 
+in new train data. 
+
 \begin{itemize}
 	\item Best Parameters of Models
 	\begin{description}
-		\item[RandomForest] 
-		\item[Bagging] 
-		\item[GradientBoosting] '
-		\item[LogisticRegression] 
-		\item[SVC] 
-		\item[KNeighbors]  
-		\item[XGBoost] 
-		\item[Netual Network] 
+		\item[RandomForest] 'criterion': 'entropy', 'max_depth': 5, 
+		'max_features': 'auto', 'n_estimators': 100 
+		\item[Bagging] 'max_samples': 10, 'n_estimators': 50
+		\item[GradientBoosting] 'learning_rate': 0.3, 
+		'max_depth': 1, 'n_estimators': 10
+		\item[LogisticRegression] 'C': 10, 'penalty': 'l2'
+		\item[SVC] 'C': 5, 'degree': 3, 'kernel': 'rbf'
+		\item[KNeighbors] 'algorithm': 'auto', 'leaf_size': 10, 
+		'n_neighbors': 10, 'p': 2, 'weights': 'uniform' 
+		\item[XGBoost] 'learning_rate':0.07,'n_estimators':50,
+		'max_depth':6,'gamma':0,'subsample':0.9,'colsample_bytree':0.5
+		\item[Netual Network] 'activation': 'identity', 
+		'hidden_layer_sizes': 8, 'learning_rate': 'adaptive', 'solver': 'adam'
 	\end{description}
 	
 	\item Best Score in Ten-Fold Cross-Validation
 	
-	From the table, 
-	can find that the performance of 
-	these algorithms on the train data 
-	is not much different.
+	Compare with the table ~\Cref{tbl:best_score_base_models_old}
+	above,
+	can find that the accuracy of the models increases,
+	although it's not obvious.
 	
 	\begin{table}[h]  \centering
 		\caption{Best Score of the Base Models}
@@ -732,7 +749,8 @@ analyze the experimental results.
 			Base Models& RandomForest & Bagging & GradientBoosting & 
 			LogisticRegression & SVC & KNeighbors & XGBoost & Netual Network\\
 			\hline
-			Best Score & \\
+			Best Score & 0.7224 & 0.7251 & 0.7385 & 
+			0.7547 & 0.7493 & 0.7251 & 0.9326 & 0.7466\\
 			\hline 
 			%\bottomrule
 		\end{tabular}
@@ -768,22 +786,22 @@ by using voting.
 	\end{tabular}
 \end{table}
 	
-\subsubsection{Original Train Data}
+\subsubsection{New Train Data}
 
 \begin{table}[h]  \centering
 	\caption{Metrics Classification Report of Ensemble Model}
 	\label{tbl:metrics_classification_ensemble_new}
 	\begin{tabular}{ccccc}
 		\hline
-		& precision  &  recall & f1-score &  support\\
+		&precision & recall & f1-score & support\\
 		\hline
-		Ghost   &    0.80   &   0.83  & 0.82 & 24\\
-		Ghoul  &  0.88  &  0.79  &   0.84   &   29\\
-		Goblin  &   0.67  &  0.73 &  0.70  &   22\\
+		Ghost  &  0.84  &  0.88  & 0.86 &  24\\
+		Ghoul  &  0.93  & 0.97 &  0.95 &   29\\
+		Goblin  &  0.80 &  0.73  & 0.76  &  22\\
 		\hline
-		micro avg  &  0.79  &  0.79  & 0.79    &  75\\
-		macro avg  &  0.78  & 0.78  &  0.78  &  75\\
-		weighted avg  &   0.79  &  0.79 &  0.79  &  75\\
+		micro avg & 0.87  & 0.87  & 0.87  & 75\\
+		macro avg &  0.86  &  0.86 & 0.86 &   75\\
+		weighted avg  &  0.86 & 0.87  &  0.86  &  75\\
 		\hline 
 		%\bottomrule
 	\end{tabular}
@@ -791,9 +809,34 @@ by using voting.
 
 \subsection{Forecast Result of all Models}
 
-\subsection{Analysis}
- 
+From the table below,
+can find that 
+the accuracy of ensemble model is 
+increased the most.
+And ensemble model has 
+the highest accuracy
 
+%\begin{table}[h]  \centering
+    %\caption{{Forecast Result of all Models}
+	%\label{tbl:forecast_score_models}
+    %\begin{tabular}{cccccccccc}
+	%\hline
+	% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+	%Models& RandomForest & Bagging & GradientBoosting & 
+	%LogisticRegression & SVC & KNeighbors & XGBoost & Netual Network & Ensemble\\
+	%\hline
+	%Accuracy_old & 0.8133 & 0.6800 & 0.8800 & 
+	%0.7600 & 0.7467 & 0.7333 & 0.9200 & 0.7333 & 0.7867\\
+	%Accuracy_new & 0.8267 & 0.7200 & 0.7866 &
+	%0.7333 & 0.6933 & 0.7067 & 0.9467 &0.68 & 0.8667\\
+	%F1_score_old & 0.8133 & 0.6800 & 0.8800 &
+	%0.7600 & 0.7467 & 0.7333 & 0.9200 & 0.7333 & 0.7867\\
+	%F1_score_new & 0.8267 & 0.7200 & 0.7866 &
+	%0.7333 & 0.6933 & 0.7067 & 0.9467 &0.68 & 0.8667\\
+	%\hline 
+		%\bottomrule
+	%\end{tabular}
+%\end{table}
 
 
 
@@ -807,92 +850,9 @@ by using voting.
 
 
 
-Parallel Coordinates 
-Parallel coordinates helps to visualize if a feature helps to segregate the groups effectively. If a segregation is effected, that feature is likely going to be very useful in predicting that group.
-%Analyzing the correlation between other features it's possible to see that 'has_soul' and 'hair_length' have an interesting value as well as the column 'has_soul' with 'rotting_flesh'. Lets then try to extract some new features from here. 
-%Test citation~\cite{BL12J01}. 
-%\begin{JournalOnly}
-%and~\citep{BJL11J01} or~\citet{BJL11J01}.
-%\end{JournalOnly}
-
-%This is for~\cref{tbl:overall-experiments}, 
-%\todo[fancyline]{Testing.}
-%and this is for~\cref{sec-conclusions}.
-%\todo[noline]{A note with no line back to the text.}%
-%\gangli{This is comment from Gang.}
-%\qwu{Response from QW}
-
-Number:
-\num{123}.
-\numlist{10;30;50;70},
-\numrange{10}{30},
-\SIlist{10;30;45}{\metre},
-and
-\SI{10}{\percent}
-
-\missingfigure[figcolor=white]{Testing figcolor}
 
 
-\begin{ConferenceOnly}
-We have \SI{10}{\hertz},
-\si{\kilogram\metre\per\second},
-the range: \SIrange{10}{100}{\hertz}.
-$\nicefrac[]{1}{2}$.
-
-\missingfigure{Make a sketch of the structure of a trebuchet.}
-
-\end{ConferenceOnly}
 
 
-For~\cref{eq:test},
-as shown below:
 
-\begin{equation}\label{eq:test}
-a = b \times \sqrt{ab}
-\end{equation}
-
-\blindmathpaper
-
-
-\section{Method} \label{sec-method}
-
-\blindtext
-\blindlist{itemize}[3]
-\blinditemize
-\blindenumerate
-
-\blindmathtrue
-\blindmathfalse
-\blinddescription
-
-
-\section{Experiment and Analysis} \label{sec-experiment}
-
-
-\begin{table}  \centering
-  \caption{Precision Comparison on Event Detection Methods}
-  \label{tbl:overall-experiments}
-  \begin{tabular}{cccc}
-\toprule
-    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-    & OR Event Detection & AC Event Detection & TC Event Detection \\
-\midrule
-    precision & 0.83 & 0.69 & 0.46 \\
-    recall & 0.68 & 0.48 & 0.36 \\
-    F-score & 0.747 & 0.57 & 0.4 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-
-\section{Conclusions} \label{sec-conclusions}
-
-\blindtext
-
-\section*{Acknowledgment}
-
-\lipsum[1]
-
-
-The authors would like to thank \ldots
 
