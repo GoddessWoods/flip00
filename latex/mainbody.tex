@@ -346,7 +346,7 @@ show the most important parameters.
 	\item LogisticRegression
 	\item SVC
 	\item KNeighbors 
-	\item XGB
+	\item XGBoost
 	\item Netual Network
 \end{itemize}
 
@@ -640,7 +640,7 @@ Through Grid Search and
 ten-fold cross-validation
 to find the optimal parameters.
 
-\section{Experiment and Result}
+\section{Experiment and Analysis}
 
 In the Data Exploration, 
 has created some new feaures.
@@ -654,164 +654,144 @@ a ten-fold cross-validation is used.
 Test the trained models using test data and 
 analyze the experimental results.
 
-\subsection{Model Training Result}
+\subsection{Base Models Training Result}
 
 \subsubsection{Original Train Data}
 
 \begin{itemize}
 	\item Best Parameters of Models
-	
+	\begin{description}
+		\item[RandomForest] 'criterion': 'entropy', 'max_depth': 5, 
+		'max_features': None, 'n_estimators': 100
+		\item[Bagging] 'max_samples': 10, 'n_estimators': 100,
+		'n_estimators': 100
+		\item[GradientBoosting] 'learning_rate': 0.3, 'max_depth': 2, 
+		'n_estimators': 20
+		\item[LogisticRegression] 'C': 1, 'penalty': 'l1'
+		\item[SVC] 'C': 10, 'degree': 3, 'kernel': 'linear'
+		\item[KNeighbors] 'algorithm': 'auto', 'leaf_size': 10, 
+		'n_neighbors': 20, 'p': 5, 'weights': 'uniform'
+		\item[XGBoost] 'learning_rate':0.08,'n_estimators':50,
+		'max_depth':5,'gamma':0,'subsample':0.9,'colsample_bytree':0.5
+		\item[Netual Network] 'activation': 'relu', 'hidden_layer_sizes': 9, 'learning_rate': 'adaptive', 
+		'solver': 'adam'
+	\end{description}
 	
 	\item Best Score in Ten-Fold Cross-Validation
-\end{itemize}
-
-\subsection{Ensemble Model Training Result}
-
-The results of using Grid Search to find the optimal parameters and the best accuracy of the algorithm are as 
- 
-follows. The best score is the score which is best in ten-fold cross-validation, best parameters is the 
-
-parameters of the algorithms that can gain the best score, and the accuracy score is the accuracy of the 
-
-algorithms on the test data. 
-
-\subsubsection[Train_Data_1]{Use the all attribute value}
-
-\begin{itemize}
-	\item Best Parameters of the Base Models
 	
-	\begin{itemize}
-		\item RandomForestClassifier
-		
-		\begin{description}
-			\item[Best Parameters] 'criterion': 'entropy', 'max_depth': 5, 'max_features': None, 'n_estimators': 100
-		\end{description}
-		
-		\item BaggingClassifier
-		
-		\begin{description}
-			\item[Best Parameters] 'max_samples': 10, 'n_estimators': 100 'n_estimators': 100
-		\end{description}
-		
-		\item GradientBoostingClassifier
-		
-		\begin{description}
-			\item[Best Parameters] 'learning_rate': 0.3, 'max_depth': 2, 'n_estimators': 20
-		\end{description}
-		
-		\item LogisticRegression
-		
-		\begin{description}
-			\item[Best Parameters] 'C': 1, 'penalty': 'l1'
-		\end{description}
-		
-		\item SVC
-		
-		\begin{description}
-			\item[Best Parameters] 'C': 10, 'degree': 3, 'kernel': 'linear'
-		\end{description}
-		
-		\item KNeighborsClassifier
-		
-		\begin{description}
-			\item[Best Parameters] 'algorithm': 'auto', 'leaf_size': 10, 'n_neighbors': 20, 'p': 5, 'weights': 'uniform'
-		\end{description}
-		
-	\end{itemize}
-		
-	
-	\item Best Score of the Base Models
+	From the table, 
+	can find that the performance of 
+	these algorithms on the train data 
+	is not much different.
 	
 	\begin{table}[h]  \centering
 		\caption{Best Score of the Base Models}
-		\label{tbl:best_score}
-		\begin{tabular}{ccccccc}
+		\label{tbl:best_score_base_models_old}
+		\begin{tabular}{ccccccccc}
 			\hline
 			% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-			Base Models& RandomForest & Bagging & Boosting & LogisticRegression & SVC & KNN \\
+			Base Models& RandomForest & Bagging & GradientBoosting & 
+			LogisticRegression & SVC & KNeighbors & XGBoost & Netual Network\\
 			\hline
-			Best Score & 0.7143 & 0.7305 & 0.7358 & 0.7332 & 0.7385 & 0.7088 \\
+			Best Score & 0.7143 & 0.7305 & 0.7358 & 
+			0.7332 & 0.7385 & 0.7088 & 0 & 0.7439\\
 			\hline 
 			%\bottomrule
 		\end{tabular}
 	\end{table}
-		
-	
-	\item Metrics Classification Report of Ensemble Model
-	
-	\begin{table}[h]  \centering
-		\caption{Metrics Classification Report of Ensemble Model}
-		\label{tbl:metrics_classification_ensemble}
-		\begin{tabular}{ccccc}
-			\hline
-			& precision  &  recall & f1-score &  support\\
-			\hline
-			Ghost   &    0.80   &   0.83  & 0.82 & 24\\
-			Ghoul  &  0.88  &  0.79  &   0.84   &   29\\
-			Goblin  &   0.67  &  0.73 &  0.70  &   22\\
-			\hline
-			micro avg  &  0.79  &  0.79  & 0.79    &  75\\
-			macro avg  &  0.78  & 0.78  &  0.78  &  75\\
-			weighted avg  &   0.79  &  0.79 &  0.79  &  75\\
-			\hline 
-			%\bottomrule
-		\end{tabular}
-	\end{table}
-	
-	
 \end{itemize}
 
+\subsubsection{New Train Data}
 
 \begin{itemize}
-	\item RandomForestClassifier
-	
+	\item Best Parameters of Models
 	\begin{description}
-		\item[Best Score] 0.7142857142857143
-		\item[Best Parameters] 'criterion': 'entropy', 'max_depth': 5, 'max_features': None, 'n_estimators': 100
-		\item[Accuracy Score] 0.8133333333333334
+		\item[RandomForest] 
+		\item[Bagging] 
+		\item[GradientBoosting] '
+		\item[LogisticRegression] 
+		\item[SVC] 
+		\item[KNeighbors]  
+		\item[XGBoost] 
+		\item[Netual Network] 
 	\end{description}
 	
-	\item BaggingClassifier
+	\item Best Score in Ten-Fold Cross-Validation
 	
-	\begin{description}
-		\item[Best Score] 0.7304582210242587
-		\item[Best Parameters] 'max_samples': 10, 'n_estimators': 100 'n_estimators': 100
-		\item[Accuracy Score] 0.68
-	\end{description}
+	From the table, 
+	can find that the performance of 
+	these algorithms on the train data 
+	is not much different.
 	
-	\item GradientBoostingClassifier
-	
-	\begin{description}
-		\item[Best Score] 0.7358490566037735
-		\item[Best Parameters] 'learning_rate': 0.3, 'max_depth': 2, 'n_estimators': 20
-		\item[Accuracy Score] 0.88
-	\end{description}
-	
-	\item LogisticRegression
-	
-	\begin{description}
-		\item[Best Score] 0.7331536388140162
-		\item[Best Parameters] 'C': 1, 'penalty': 'l1'
-		\item[Accuracy Score] 0.76
-	\end{description}
-	
-	\item SVC
-	
-	\begin{description}
-		\item[Best Score] 0.738544474393531
-		\item[Best Parameters] 'C': 10, 'degree': 3, 'kernel': 'linear'
-		\item[Accuracy Score] 0.7466666666666667
-	\end{description}
-	
-	\item KNeighborsClassifier
-	
-	\begin{description}
-		\item[Best Score] 0.7088948787061995
-		\item[Best Parameters] 'algorithm': 'auto', 'leaf_size': 10, 'n_neighbors': 20, 'p': 5, 'weights': 'uniform'
-		\item[Accuracy Score] 0.7333333333333333
-	\end{description}
-	%\item XGBClassifier
+	\begin{table}[h]  \centering
+		\caption{Best Score of the Base Models}
+		\label{tbl:best_score_base_models_new}
+		\begin{tabular}{ccccccccc}
+			\hline
+			% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+			Base Models& RandomForest & Bagging & GradientBoosting & 
+			LogisticRegression & SVC & KNeighbors & XGBoost & Netual Network\\
+			\hline
+			Best Score & \\
+			\hline 
+			%\bottomrule
+		\end{tabular}
+	\end{table}
 \end{itemize}
+
+
+\subsection{Ensemble Model Training Result}
+
+Ensemble model means using 
+more than 1 model to finish the prediction.
+Here just averaging the prediction results 
+by using voting. 
+
+\subsubsection{Original Train Data}
+
+\begin{table}[h]  \centering
+	\caption{Metrics Classification Report of Ensemble Model}
+	\label{tbl:metrics_classification_ensemble_old}
+	\begin{tabular}{ccccc}
+		\hline
+		& precision  &  recall & f1-score &  support\\
+		\hline
+		Ghost   &    0.80   &   0.83  & 0.82 & 24\\
+		Ghoul  &  0.88  &  0.79  &   0.84   &   29\\
+		Goblin  &   0.67  &  0.73 &  0.70  &   22\\
+		\hline
+		micro avg  &  0.79  &  0.79  & 0.79    &  75\\
+		macro avg  &  0.78  & 0.78  &  0.78  &  75\\
+		weighted avg  &   0.79  &  0.79 &  0.79  &  75\\
+		\hline 
+		%\bottomrule
+	\end{tabular}
+\end{table}
+	
+\subsubsection{Original Train Data}
+
+\begin{table}[h]  \centering
+	\caption{Metrics Classification Report of Ensemble Model}
+	\label{tbl:metrics_classification_ensemble_new}
+	\begin{tabular}{ccccc}
+		\hline
+		& precision  &  recall & f1-score &  support\\
+		\hline
+		Ghost   &    0.80   &   0.83  & 0.82 & 24\\
+		Ghoul  &  0.88  &  0.79  &   0.84   &   29\\
+		Goblin  &   0.67  &  0.73 &  0.70  &   22\\
+		\hline
+		micro avg  &  0.79  &  0.79  & 0.79    &  75\\
+		macro avg  &  0.78  & 0.78  &  0.78  &  75\\
+		weighted avg  &   0.79  &  0.79 &  0.79  &  75\\
+		\hline 
+		%\bottomrule
+	\end{tabular}
+\end{table}	
+
+\subsection{Forecast Result of all Models}
+
+\subsection{Analysis}
  
 
 
