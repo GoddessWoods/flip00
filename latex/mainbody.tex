@@ -413,7 +413,7 @@ the internal laws of things
 	\item Principle
 	
 	\begin{description}
-		\item[Hypothesis] h(x)=W^{T} x+b
+		\item[Hypothesis] $h(x)=W^{T} x+b$
 		\item[Parameters] $ W$, $x$
 	\end{description}
 	
@@ -430,10 +430,75 @@ the internal laws of things
 \subsection{BaggingClassifier}
 
 
+Bagging can improve the stability and accuracy 
+of machine learning algorithms, 
+it can reduce the variance of 
+the model and avoid overfitting
+
+\begin{itemize}
+	\item Principle
+	
+	\begin{description}
+		\item[INPUT] train data $ D = \left\{ 
+		\left(x_1,y_1 \right), \left(x_2,y_2 \right),
+		\dots,\left(x_m,y_m \right) \right\}$
+		
+		Base learning algorithm $L$
+	
+		Frequency of training $T$
+		\item[OUTPUT] The best base learning algorithm $f(x)$
+	
+	\end{description}
+	
+	\item Parameters
+	
+	\begin{description}
+		\item[n_estimators] Number of combined basic evaluators
+		\item[max_samples] Number of basic estimator samples
+	\end{description}
+	
+\end{itemize}
 
 \subsection{GradientBoostingClassifier}
 
+Gradient boosting uses gradient descend 
+to find the best solvtion.
+A major step in machine learning is 
+to minimize the loss function $L(θ)$ 
+by an optimization method to 
+find the corresponding parameter $θ$. 
+Gradient descent is 
+a classic numerical optimization method.
 
+\begin{itemize}
+	\item Principle
+	
+	\begin{description}
+		\item[Initialization] $ f_{0}(x)=	
+		\operatorname{arg\,max}_\gamma 
+		\sum\nolimits_{i=1}^n L(y_i,\gamma)$
+		
+		\item[for $m=1$ to $M$] 
+		
+		\begin{itemize}
+			\item calculate negative gradient
+			\item through minimizing the square error, 
+			fitting the $ \tilde{y_i} $ 
+			with the base learner $h_m(x)$
+			\item use line search to 
+			determine the step size $\rho_m$ to minimize $L$
+		\end{itemize}
+		
+		\item[OUTPUT] $f_M(x)$
+	\end{description}
+	
+	\item Parameters
+	
+	\begin{description}
+		\item[learning_rate] learning rate
+	\end{description}
+\end{itemize}
+%\frac{\partial f}{\partial x} = 2\,\sqrt{a}\,x
 \subsection{SVC}
 
 
