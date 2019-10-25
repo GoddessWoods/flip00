@@ -337,7 +337,7 @@ for classification problem.
 Choose the following algorithms, 
 explain the principles of
 these algorithms and 
-show the code.
+show the most important parameters.
 
 \begin{itemize}
 	\item RandomForestClassifier
@@ -384,15 +384,67 @@ the mode of the individual tree output.
 		according to each tree in a multi-winning manner.
 	\end{itemize}
 	
-	\item Parameter
+	\item Parameters
 	
 	\begin{description}
-		\item[n_estimators] 
-		\item[criteriom] description 
+		\item[n_estimators] the number of decision trees
+		\item[criteriom] criterion of choosing 
+		the most appropriate node
+		\item[max_depth] The maximum depth of the tree, 
+		the default is None 
+		\item[max_features] The feature that is divided 
+		when selecting the optimal attribute 
+		cannot exceed this value.
+	\end{description}
+
+\end{itemize}
+
+
+\subsection{LogisticRegression}
+
+Logistic regression is the algorithm that 
+processing a large amount of 
+observation data to 
+obtain mathematical expressions 
+that are in line with 
+the internal laws of things
+
+\begin{itemize}
+	\item Principle
+	
+	\begin{description}
+		\item[Hypothesis] h(x)=W^{T} x+b
+		\item[Parameters] $ W$, $x$
 	\end{description}
 	
-	\item Code
+	\item Parameters
+	
+	\begin{description}
+		\item[Penalty] Regular function
+		\item[C] Regular coefficient
+	\end{description}
+	
 \end{itemize}
+%J=sum(logloss(f(xi), yi)) + C* penalty
+
+\subsection{BaggingClassifier}
+
+
+
+\subsection{GradientBoostingClassifier}
+
+
+\subsection{SVC}
+
+
+\subsection{KNeighborsClassifier}
+
+
+\subsection{XGBClassifier}
+ 
+
+\subsection{Netual Network}
+
 
 \subsection{Ensemble Model}
 There are many machine learning algorithms, 
