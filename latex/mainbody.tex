@@ -604,20 +604,66 @@ this is a functional optimization, multi-target.
 
 \subsection{Netual Network}
 
+Netual network is widely used in various fields.
 
-
+\begin{itemize}
+	\item Princible
+	
+	The neural network generally consists of 
+	an Input Layer, a Hidden Layer, and an Output Layer. 
+	Each layer is composed of Units. 
+	The input layer is passed in by 
+	the instance feature vector of the training set. 
+	The weight of the node is passed to the next layer. 
+	The output of the upper layer is 
+	the input of the next layer. 
+	The number of hidden layers is arbitrary. 
+	There is only one output layer and input layer.
+	
+	\item Parameters
+	
+	\begin{description}
+		\item[hidden_layer_sizes] The i-th element represents 
+		the number of neurons in the i-th hidden layer
+		\item[activation] activation function
+		\item[solver] weight optimization solver
+		\item[learning_rate] weight update speed
+	\end{description}
+\end{itemize}
 
 \subsection{Ensemble Model}
-There are many machine learning algorithms, 
-select the following machine learning algorithms as Ensemble Model’s base models. 
 
+There are many machine learning algorithms, 
+use the above machine learning algorithms 
+as Ensemble Model’s base models. 
+Through Grid Search and
+ten-fold cross-validation
+to find the optimal parameters.
 
 \section{Experiment and Result}
 
-\subsection{Model Training}
-meters,but the more important ones are generally not too many. Determine a set of optimal parameters through Grid Search. Because the training data is relatively small, a ten-fold cross-validation is used. %
+In the Data Exploration, 
+has created some new feaures.
+The following experiment is divided into two parts,
+one is to use the original train data, 
+the other is to use new features.
+Determine a set of optimal parameters 
+through Grid Search. 
+Because the training data is relatively small, 
+a ten-fold cross-validation is used. 
+Test the trained models using test data and 
+analyze the experimental results.
 
+\subsection{Model Training Result}
 
+\subsubsection{Original Train Data}
+
+\begin{itemize}
+	\item Best Parameters of Models
+	
+	
+	\item Best Score in Ten-Fold Cross-Validation
+\end{itemize}
 
 \subsection{Ensemble Model Training Result}
 
@@ -826,12 +872,6 @@ a = b \times \sqrt{ab}
 \end{equation}
 
 \blindmathpaper
-
-\section{Preliminaries} \label{sec-preliminaries}
-
-\blindtext
-
-\gliMarker  %TODO: GLi Here
 
 
 \section{Method} \label{sec-method}
