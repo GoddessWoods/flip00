@@ -163,9 +163,9 @@ cf={Flip00 Project Final Test Presentationn},
 
 %%==========================================================================================
 %%
-\begin{slide}[toc=,bm=]{Problem Definition}
+\begin{slide}{Problem Definition}
 \begin{center}
-\twotonebox{\rotatebox{90}{Defn}}{\parbox{.86\textwidth}
+\twotonebox{\rotatebox{90}{Defn}}{\parbox{.88\textwidth}
 {
 	After a month of making scientific observations 
 	and taking careful measurements, 
@@ -188,9 +188,48 @@ cf={Flip00 Project Final Test Presentationn},
 \end{center}
 \skip
 
-
-
 \end{slide}
+
+%=====================================================================
+
+\begin{slide}{Data Set}
+	\begin{center}
+		\twotonebox{\rotatebox{90}{Info}}{\parbox{.88\textwidth}
+			{
+				There are 4 numerical variables and 1 categorical,
+				and no missing values.
+				Numerical columns are either normalized or show a percentage, 
+				so no need to scale them. 
+		}}
+	\end{center}
+%缩小这两个的间距
+	\begin{center}
+		\begin{itemize}
+			\item Data List
+			\begin{description}
+				\item[id] id of the creature
+				\item[bone\_length] average length of bone in the creature, 
+				normalized between \emph{0} and \emph{1}
+				\item[rotting\_flesh] percentage of rotting flesh in the creature
+				\item[hair\_length] average hair length, 
+				normalized between \emph{0} and \emph{1}
+				\item[has\_soul] percentage of soul in the creature
+				\item[Color] dominant color of the creature: 
+				\emph{white},\emph{black},\emph{clear},
+				\emph{blue},\emph{green},\emph{blood}
+				\item[type] target variable: 
+				\emph{Ghost}, \emph{Goblin}, and \emph{Ghoul}
+			\end{description}
+			\item Train Data and Test Data
+			\
+			  
+			Divide the raw train set into train data 
+			and test data, 
+			and the ratio is 8:2. 		
+		\end{itemize}
+	\end{center}
+\end{slide}
+
 %%
 %%==========================================================================================
 
