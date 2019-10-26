@@ -649,19 +649,22 @@ to find the optimal parameters.
 \section{Experiment and Analysis}
 
 In the Data Exploration, 
-has created some new feaures.
+I has created some new feaures.
 The following experiment is divided into two parts,
 one is to use the original train data, 
 the other is to use new features as train data.
-Determine a set of optimal parameters 
-through Grid Search. 
+Grid Search make it easier to 
+determine a set of optimal parameters
+for these model I adpot.
 Because the train data is relatively small, 
 a ten-fold cross-validation is used. 
-Test the trained models using test data and 
+Then I can test the trained models 
+using test data and 
 analyze the experimental results.
 And use the trained models as 
 the base models of ensemble model,
 then do experiment. 
+\WBJianginMarker
 
 \subsection{Base Models Training Result}
 \subsubsection{Original Train Data}
@@ -722,11 +725,9 @@ in original train data.
 \end{itemize}
 
 \subsubsection{New Train Data}
-
-The following are the best parameters and 
-the Best Score in training of 
-the base models 
-in new train data. 
+The following are the base models 
+with the best parameters 
+provided by Grid Search.
 
 \begin{itemize}
 	\item Best Parameters of Models
@@ -752,7 +753,7 @@ in new train data.
 	
 	Compare with the table ~\Cref{tbl:best_score_base_models_old}
 	above,
-	can find that the accuracy of the models increases,
+	you can find that the accuracy of the models increases,
 	although it's not obvious.
 	
 	\begin{table}[h]  \centering
