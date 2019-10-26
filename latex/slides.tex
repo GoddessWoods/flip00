@@ -106,22 +106,22 @@ basicstyle=\footnotesize\ttfamily}
 % TODO: add yourself here:
 %
 \newcommand{\gangli}[1]{\draftnote{blue}{GLi:}{#1}}
-\newcommand{\wenbin}[1]{\draftnote{green}{wb:}{#1}}
-\newcommand{\mumu}[1]{\draftnote{red}{sx:}{#1}}
+\newcommand{\wb}[1]{\draftnote{green}{wb:}{#1}}
+\newcommand{\mumu}[1]{\draftnote{red}{mumu:}{#1}}
 \newcommand{\gliMarker}
 	{\todo[author=GLi,size=\tiny,inline,color=blue!40]
 	{Gang Li has worked up to here.}}
 \newcommand{\wbMarker}
 	{\todo[author=wb,size=\tiny,inline,color=green!40]
-		{WenbinJ has worked up to here.}}
+	{wb has worked up to here.}}
 \newcommand{\mumuMarker}
-{\todo[author=sx,size=\tiny,inline,color=green!40]
-	{sx has worked up to here.}}
+{\todo[author=mumu,size=\tiny,inline,color=red!40]
+	{mumu has worked up to here.}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % title
 % TODO: Customize to your Own Title, Name, Address
 %
-\title{Flip 00 Project Final Report}
+\title{Flip00 Project Final Test Presentationn}
 \author{
 Shuxia Lin
 \\
@@ -129,13 +129,14 @@ Shuxia Lin
 }
 \date{\gitCommitterDate}
 
+
 % Customize the setting of slides
 \pdsetup{
 % TODO: Customize the left footer, and right footer
 rf=\href{http://www.tulip.org.au}{
 Last Changed by: \textsc{\gitCommitterName}\ \gitVtagn-\gitAbbrevHash\ (\gitAuthorDate)
 },
-cf={Flip 00 Project Final Report},
+cf={Flip00 Project Final Test Presentationn},
 }
 
 
@@ -162,51 +163,32 @@ cf={Flip 00 Project Final Report},
 
 %%==========================================================================================
 %%
-\begin{slide}{Problem Statement}
+\begin{slide}[toc=,bm=]{Problem Definition}
 \begin{center}
 \twotonebox{\rotatebox{90}{Defn}}{\parbox{.86\textwidth}
 {
 	After a month of making scientific observations 
 	and taking careful measurements, 
-	can determined that 900 ghouls, ghosts, and goblins.
-	The raw dataset contains train set with \textcolor{orange}{371} samples 
-	and \textcolor{orange}{529} unlabeled samples as test set.
+	can determined that 900 \textcolor{orange}{ghouls},
+	\textcolor{orange}{ghosts}, 
+	and \textcolor{orange}{goblins}.
+	The raw dataset contains train set with \textcolor{orange}{371} 
+	samples and \textcolor{orange}{529} unlabeled samples as test set.
 	Through the train data, find the relationship
 	between the attributes and species, 
-	and then identify the ghastly creatures.
+	and then identify the ghastly creatures in test data.
 	
 }}
-
 \end{center}
-\bigskip
+
+\skip
 
 \begin{center}
 	\includegraphics[width=.8\linewidth]{figures/bar.eps}
 \end{center}
+\skip
 
-\bigskip
 
-%%==========================================================================================
-\begin{note}
-First, I will introduce the problem definition.
-In the real life,
-a teacher may be interested in the characteristics that
-make one student obvious different from others.
-Or,
-NBA sports coaches would prefer to
-know the advantages and disadvantages of one player.
-Here, the player can be regarded as a query object.
-
-For example, team A has five players,
-each player has four features.
-The NBA sports coaches may want to know the features of
-player $1$ that are different from others.
-
-The above example can be seen as outlying aspects mining.
-The main purpose of outlying aspects mining is to identify
-the outstanding features of the query object.
-\end{note}
-%%==========================================================================================
 
 \end{slide}
 %%
@@ -269,28 +251,6 @@ Find out \textcolor{orange}{all} unusual
 \end{itemize}
 }
 
-%%==========================================================================================
-\begin{note}
-Based on the above example,
-I will compare the differences
-between outlying aspects mining and outlier detection.
-
-Outlying aspects mining aims to
-explain the distinctive aspects of the query object.
-The query object may or may not be an outlier.
-In contrast,
-Outlier detection aims to discover all possible
-outlying objects in the dataset.
-Without explaining how and why they are different.
-
-Let's go back to the NBA example,
-in that example,
-the output of the outlying aspects mining may be
-a combination of four features,
-but the output of the outlier detection may be any of those five players.
-\end{note}
-%%==========================================================================================
-
 \end{slide}
 %%
 %%==========================================================================================
@@ -335,17 +295,6 @@ disadvantages of \textcolor{orange}{the team}.
 }
 
 %%==========================================================================================
-\begin{note}
-However,
-there is such a phenomenon in real life.
-Doctors desire to identify the characteristics between
-a group of cancer patients and normal people.
-NBA coaches are passionate about exploring the obvious strengths and
-weaknesses of the team compared with other teams.
-
-Based on such a phenomenon in the real life,
-we proposed the concept of group outlying aspects mining.
-\end{note}
 %%==========================================================================================
 
 \end{slide}
@@ -375,22 +324,6 @@ Each object in the group has $d$ features $F = \{f_1, f_2, ..., f_d\}$.
 }}
 
 %%==========================================================================================
-\begin{note}
-Next,
-let me talk about the concept of group outlying aspects mining.
-
-For example,
-Dataset $G$ has $n$ groups.
-$G_q$ is the query group.
-and other groups are comparison groups.
-Each object in the group has d features $F = $ $f_1$, $f_2$, $f_3$ to $f_d$.
-The group outlying aspects mining is to identify the top-k group outlying subspaces,
-which are different from other groups.
-
-What does the top-k group outlying subspaces mean?
-Next, I will explain it.
-\end{note}
-
 %%==========================================================================================
 \end{slide}
 %%
@@ -443,15 +376,7 @@ to identify top K group outlying subspaces.
 \end{figure}
 
 %%==========================================================================================
-\begin{note}
-We use $\rho_s(\cdot)$ to describe an outlying scoring function.
-$\rho_s(\cdot)$ quantifies the outlying degree of the query group in a subspaces $s$.
-In addition,
-we use the scoring function to make a descending order and at last
-filter out the top k group outlying subspaces.
-It is obvious that the outlying subspaces make the
-query group different from other groups.
-\end{note}
+
 %%==========================================================================================
 
 \end{slide}
@@ -496,21 +421,7 @@ ${G_q}$'s outlying degree $\rho(\cdot)$ $>$ $\alpha$.
 \end{table}
 
 %%==========================================================================================
-\begin{note}
-In order to identify the top-k outlying subspaces,
-we categorize the features into $2$ non-overlapping groups,
-trivial outlying features and non-trivial outlying subspaces.
 
-First, let me introduce the trivial outlying features.
-
-Trivial outlying features are one-dimension subspaces.
-In the subspace,
-the query group's outlying degree is larger than the threshold $\alpha$.
-
-We can see from table $1$,
-when the specified threshold $\alpha = 4$,
-the trivial outlying feature is \{$F_1$\}.
-\end{note}
 %%==========================================================================================
 
 \end{slide}
@@ -556,17 +467,7 @@ ${G_q}$'s outlying degree $\rho(\cdot)$ $>$ $\alpha$.
 \end{table}
 
 %%==========================================================================================
-\begin{note}
-Next,
-I will introduce the non-trivial outlying subspaces.
-Non-Trivial outlying subspaces are multi-dimension subspaces.
-In the subspace,
-the query group's outlying degree is larger than the threshold $\alpha$.
 
-Table $2$ shows that,
-when the threshold $\alpha$ equal four,
-the non-trivial outlying subspace is \{$F_3$, $F_4$\}.
-\end{note}
 %%==========================================================================================
 
 \end{slide}
