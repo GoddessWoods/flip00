@@ -9,8 +9,8 @@ After a month of making scientific observations
 and taking careful measurements, 
 can determined that 900 ghouls, ghosts, and goblins
 like what is shown in~\Cref{fig:animal}  .
-The raw dataset contains train set with 10000 %modify as your true values
-samples and 5000 unlabeled samples as test set.
+The raw dataset contains train set with 371 %modify as your true values
+samples and 529 unlabeled samples as test set.
 Through the train data, I can find the relationship
 between the attributes and species, 
 and then identify 371 of the ghastly creatures.
@@ -277,13 +277,13 @@ As it can be seen from
 the pictures above 
 the data is distributed normally. 
 But some of them show clusters: 
-hair_length and has_soul, 
-hair_length and bone_length. 
+hair\_length and has\_soul, 
+hair\_length and bone\_length. 
 So I create new variables 
 with multiplication of these columns: 
 
 \begin{description}
-	\item[hair_soul] row[’hair_length’]*row[’has_soul’] 
+	\item[hair\_soul] row[’hair\_length’]*row[’has_soul’] 
 	\item[hair_bone]  row[hair_length]*row[bone_length] 
 	\item[bone_soul]  row[bone_length]*row[has_soul] 
 	\item[hair_soul_bone]  row[hair_length]*row[has_soul]*row[bone_length] 
