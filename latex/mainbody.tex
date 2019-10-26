@@ -368,23 +368,30 @@ to form a new train data, the rest are discarded.
 
 There are many machine learning algorithms 
 for classification problem. 
-Choose the following algorithms, 
-explain the principles of
-these algorithms and 
-show the most important parameters.
+Choose the following algorithms
+as the base models of ensemble model,show the most important parameters.
 
 \begin{itemize}
 	\item RandomForest 
-	\item Bagging
-	\item GradientBoosting
+	%\item Bagging
+	%\item GradientBoosting
 	\item LogisticRegression
 	\item SVC
 	\item KNeighbors 
 	\item XGBoost
 	\item Netual Network
 \end{itemize}
+\subsection{Base Models}
+\
 
-\subsection{RandomForest}
+The base models have many parameters,
+select the some parameters that 
+have a larger impact on 
+the forecast results,
+the use Grid Search to find 
+the optimal paratemers set.	
+The following is training result. 
+\subsubsection{RandomForest}
 \
 
 Random forest is a classifier with 
@@ -392,49 +399,22 @@ multiple decision trees, and
 the output is determined by 
 the mode of the individual tree output.
 
-\begin{itemize}
-	\item Principle
-	
-	\begin{itemize}
-		\item Use M to indicate the number of training samples, 
-		and N to indicate the number of features.
-		\item The number of feature inputs n is 
-		used to determine the decision result 
-		of a node on the decision tree; 
-		where n should be much smaller than N.
-		\item From the M training samples, 
-		the sampling is performed k times to 
-		form a training set (ie bootstrap sampling), 
-		and the unused use cases (samples) are 
-		used for prediction to evaluate the error.
-		\item For each node, 
-		n features are randomly selected, 
-		and the decision of each node on each decision tree is 
-		determined based on these characteristics. 
-		According to these n features, 
-		calculate the best split mode.
-		\item Finally, predict the test data and 
-		decide the classification 
-		according to each tree in a multi-winning manner.
-	\end{itemize}
-	
-	\item Parameters
-	
-	\begin{description}
-		\item[n_estimators] the number of decision trees
-		\item[criteriom] criterion of choosing 
-		the most appropriate node
-		\item[max_depth] The maximum depth of the tree, 
-		the default is None 
-		\item[max_features] The feature that is divided 
-		when selecting the optimal attribute 
-		cannot exceed this value.
-	\end{description}
 
-\end{itemize}
+\begin{description}
+	\item[n_estimators] the number of decision trees
+	\item[criteriom] criterion of choosing 
+	the most appropriate node
+	\item[max_depth] The maximum depth of the tree, 
+	the default is None 
+	\item[max_features] The feature that is divided 
+	when selecting the optimal attribute 
+	cannot exceed this value.
+\end{description}
 
 
-\subsection{LogisticRegression}
+
+
+\subsubsection{LogisticRegression}
 \
 
 Logistic regression is the algorithm that 
@@ -443,103 +423,18 @@ observation data to
 obtain mathematical expressions 
 that are in line with 
 the internal laws of things
-
-\begin{itemize}
-	\item Principle
 	
-	\begin{description}
-		\item[Hypothesis] $h(x)=W^{T} x+b$
-		\item[Parameters] $ W$, $x$
-	\end{description}
 	
-	\item Parameters
+\begin{description}
+	\item[Penalty] Regular function
+	\item[C] Regular coefficient
+\end{description}
 	
-	\begin{description}
-		\item[Penalty] Regular function
-		\item[C] Regular coefficient
-	\end{description}
-	
-\end{itemize}
 %J=sum(logloss(f(xi), yi)) + C* penalty
 
-\subsection{Bagging}
-\
 
-Bagging can improve the stability and accuracy 
-of machine learning algorithms, 
-it can reduce the variance of 
-the model and avoid overfitting
-
-\begin{itemize}
-	\item Principle
-	
-	\begin{description}
-		\item[INPUT] train data $ D = \left\{ 
-		\left(x_1,y_1 \right), \left(x_2,y_2 \right),
-		\dots,\left(x_m,y_m \right) \right\}$
-		
-		Base learning algorithm $L$
-	
-		Frequency of training $T$
-		\item[OUTPUT] The best base learning algorithm $f(x)$
-	
-	\end{description}
-	
-	\item Parameters
-	
-	\begin{description}
-		\item[n_estimators] Number of combined basic evaluators
-		\item[max_samples] Number of basic estimator samples
-	\end{description}
-	
-\end{itemize}
-
-\subsection{GradientBoosting}
-\
-
-Gradient boosting uses gradient descend 
-to find the best solvtion.
-A major step in machine learning is 
-to minimize the loss function $L(θ)$ 
-by an optimization method to 
-find the corresponding parameter $θ$. 
-Gradient descent is 
-a classic numerical optimization method.
-
-\begin{itemize}
-	\item Principle
-	
-	\begin{description}
-		\item[Initialization] $ f_{0}(x)=	
-		\operatorname{arg\,max}_\gamma 
-		\sum\nolimits_{i=1}^n L(y_i,\gamma)$
-		
-		\item[for $m=1$ to $M$] 
-		\
-		
-		\begin{itemize}
-			\item calculate negative gradient
-			\item through minimizing the square error, 
-			fitting the $ \tilde{y_i} $ 
-			with the base learner $h_m(x)$
-			\item use line search to 
-			determine the step size $\rho_m$ to minimize $L$
-		\end{itemize}
-		
-		\item[OUTPUT] $f_M(x)$
-	\end{description}
-	
-	\item Parameters
-	
-	\begin{description}
-		\item[learning_rate] control the speed of each update
-		\item[n_estimators] he number of decision trees that 
-		need to be used
-		\item[max_depth] the maximum depth of the tree
-	\end{description}
-\end{itemize}
 %\frac{\partial f}{\partial x} = 2\,\sqrt{a}\,x
-\subsection{SVC}
+\subsubsection{SVC}
 \
 
 The basic principle of the SVM algorithm is 
@@ -547,26 +442,14 @@ to find a hyper plane that can
 distinguish between two types, 
 so that the margin is the largest.
 
-\begin{itemize}
-	\item Princible
-	
-	\begin{itemize}
-		\item choose a kernel function, reduce the amount of calculation
-		\item determining the hyperplane equation
-		\item optimization model
-	\end{itemize}
 
-	\item Parameters
+\begin{description}
+	\item[kernel] kernel function
+	\item[C] penalty factor for error terms
+	\item[degree] order of polynomial kernel function
+\end{description}
 	
-	\begin{description}
-		\item[kernel] kernel function
-		\item[C] penalty factor for error terms
-		\item[degree] order of polynomial kernel function
-	\end{description}
-	
-\end{itemize}
-
-\subsection{KNeighbors}
+\subsubsection{KNeighbors}
 \
 
 The meaning of the knn algorithm is that 
@@ -576,35 +459,18 @@ each feature in the training set,
 and select the classification tag with 
 the most similar feature (nearest neighbor: k)
 
-\begin{itemize}
-	\item Princible
-	\begin{itemize}
-		\item calculate the Euler distance of 
-		the new sample point in the sample space 
-		from all training samples
-		\item Sort the Euler distances and 
-		find the nearest k points
-		\item Classify statistics on k points to 
-		see which type of points has 
-		the most number. 
-		This type is the type of 
-		prediction for new samples.
-	\end{itemize}
-	
-	\item Parameters
-	\begin{description}
-		\item[n_neighbors] number of neighbors to use 
-		by default for kneighbors queries
-		\item[leaf_size] leaf size passed to BallTree or KDTree
-		\item[p] power parameter for choosing 
-		the distance calculation formula
-		\item[weights] used in prediction
-		\item[algorithm] compute the nearest neighbors
+
+\begin{description}
+	\item[n_neighbors] number of neighbors to use 
+	by default for kneighbors queries
+	\item[leaf_size] leaf size passed to BallTree or KDTree
+	\item[p] power parameter for choosing 
+	the distance calculation formula
+	\item[weights] used in prediction
+	\item[algorithm] compute the nearest neighbors
 	\end{description}
 	
-\end{itemize}
-
-\subsection{XGBoost}
+\subsubsection{XGBoost}
 \
  
 XGBoost is to establish K regression trees 
@@ -615,63 +481,34 @@ has the greatest generalization ability.
 From a mathematical point of view, 
 this is a functional optimization, multi-target.
 
-\begin{itemize}
-	\item Princible
-	\begin{description}
-		\item[predictive model] $\hat{y_i}=\sum\nolimits_{k=1}^K f_k(x_i)$
-		
-		$K$ is the number of trees,
-		$f_k$ represents the kth tree,
-		$\hat{y_i}$ is the predictive result of $x_i$
-		\item[loss function] $Obj(\theta)=\sum\nolimits_{i=1}^n l(y_i,\hat{y_i})+
-		\sum\nolimits_{k=1}^K \Omega(f_k)$
-		
-		$l(y_i,\hat{y_i}$ is the train error of example 
-		$x-i$, $\Omega(f_k)$ is the regular item of the kth tree.
-	\end{description}
-	
-	\item Parameters
-	\begin{description}
-		\item[learning_rate]  control the speed of each update
-		\item[n_estimators] number of iterations
-		\item[max_depth] the depth of tree
-		\item[gamma] penalty factor%惩罚系数
-		\item[subsample] the proportion of data used in 
+\begin{description}
+	\item[learning_rate]  control the speed of each update
+	\item[n_estimators] number of iterations
+	\item[max_depth] the depth of tree
+	\item[gamma] penalty factor%惩罚系数
+	\item[subsample] the proportion of data used in 
 		all training sets when training each tree
-		\item[colsample_bytree] the proportion of features used 
+	\item[colsample_bytree] the proportion of features used 
 		in all trees when training each tree
 	\end{description}
-\end{itemize} 
 
-\subsection{Netual Network}
+\subsubsection{Netual Network}
 \
 
 Netual network is widely used in various fields.
-
-\begin{itemize}
-	\item Princible
+It generally consists of 
+an Input Layer, a Hidden Layer, and an Output Layer. 
+Each layer is composed of Units. 
 	
-	The neural network generally consists of 
-	an Input Layer, a Hidden Layer, and an Output Layer. 
-	Each layer is composed of Units. 
-	The input layer is passed in by 
-	the instance feature vector of the training set. 
-	The weight of the node is passed to the next layer. 
-	The output of the upper layer is 
-	the input of the next layer. 
-	The number of hidden layers is arbitrary. 
-	There is only one output layer and input layer.
 	
-	\item Parameters
-	
-	\begin{description}
-		\item[hidden_layer_sizes] The i-th element represents 
+\begin{description}
+	\item[hidden_layer_sizes] The i-th element represents 
 		the number of neurons in the i-th hidden layer
-		\item[activation] activation function
-		\item[solver] weight optimization solver
-		\item[learning_rate] weight update speed
-	\end{description}
-\end{itemize}
+	\item[activation] activation function
+	\item[solver] weight optimization solver
+	\item[learning_rate] weight update speed
+\end{description}
+
 
 \subsection{Ensemble Model}
 \
@@ -717,10 +554,6 @@ in original train data.
 	\begin{description}
 		\item[RandomForest] 'criterion': 'entropy', 'max_depth': 5, 
 		'max_features': None, 'n_estimators': 100
-		\item[Bagging] 'max_samples': 10, 'n_estimators': 100,
-		'n_estimators': 100
-		\item[GradientBoosting] 'learning_rate': 0.3, 'max_depth': 2, 
-		'n_estimators': 20
 		\item[LogisticRegression] 'C': 1, 'penalty': 'l1'
 		\item[SVC] 'C': 10, 'degree': 3, 'kernel': 'linear'
 		\item[KNeighbors] 'algorithm': 'auto', 'leaf_size': 10, 
@@ -743,25 +576,20 @@ in original train data.
 	\begin{table}[h]  \centering
 		\caption{Best Score of the Base Models}
 		\label{tbl:best_score_base_models_old}
-		\begin{tabular}{ccccc}
+		\begin{tabular}{ccccccc}
 			%\bottomrule
 			\toprule
-			& RandomForest & Bagging & GradientBoosting & 
-			LogisticRegression \\
+			& RF  & LR & SVC & KNN & XGBoost & Netual Network\\
 			\midrule
-			Best Score & 0.7224 & 0.7251 & 0.7385 & 
-			0.7547\\
-			\bottomrule
-			\toprule
-			& SVC & KNeighbors & XGBoost & Netual Network\\
-			\midrule
-			Best Score & 0.7493 & 0.7251 & 0.9314 & 0.7466\\
+			Best Score & 0.7224  & 0.7547 & 0.7493 & 0.7251 & 0.9314 & 0.7466\\
 			\bottomrule
 		\end{tabular}
 	\end{table}
 \end{itemize}
 
 \subsubsection{New Train Data}
+\
+
 The following are the base models 
 with the best parameters 
 provided by Grid Search.
@@ -771,9 +599,6 @@ provided by Grid Search.
 	\begin{description}
 		\item[RandomForest] 'criterion': 'entropy', 'max_depth': 5, 
 		'max_features': 'auto', 'n_estimators': 100 
-		\item[Bagging] 'max_samples': 10, 'n_estimators': 50
-		\item[GradientBoosting] 'learning_rate': 0.3, 
-		'max_depth': 1, 'n_estimators': 10
 		\item[LogisticRegression] 'C': 10, 'penalty': 'l2'
 		\item[SVC] 'C': 5, 'degree': 3, 'kernel': 'rbf'
 		\item[KNeighbors] 'algorithm': 'auto', 'leaf_size': 10, 
@@ -796,27 +621,43 @@ provided by Grid Search.
 	\begin{table}[h]  \centering
 		\caption{Best Score of the Base Models}
 		\label{tbl:best_score_base_models_new}
-		\begin{tabular}{ccccc}
+		\begin{tabular}{ccccccc}
 			\toprule
 			% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-			& RandomForest & Bagging & GradientBoosting & 
-			LogisticRegression \\
+			& RF & LR & SVC & KNeighbors & XGBoost & Netual Network\\
 			\midrule
-			Best Score & 0.7224 & 0.7251 & 0.7385 & 
-			0.7547 \\
+			Best Score & 0.7224 & 0.7547 & 0.7493 & 0.7251 & 0.9326 & 0.7466\\
 			\bottomrule
-			\toprule 
-			& SVC & KNeighbors & XGBoost & Netual Network\\
-			\midrule
-			Best Score & 0.7493 & 0.7251 & 0.9326 & 0.7466\\
-			\bottomrule
-			%\bottomrule
 		\end{tabular}
 	\end{table}
 \end{itemize}
 
+\subsection{Forecast Result of Base Models}
+\
 
-\subsection{Ensemble Model Training Result}
+From the table below
+shows the result of base models
+on test data.
+Some models have improved accuracy, 
+but some models have reduced accuracy.
+
+\begin{table}[h]\centering
+	\caption{Forecast Result of Base Models}
+	\begin{tabular}{ccccccccc}
+		\toprule
+		& Acc_old & Acc_new & Prec_old & Prec_new & Rec_old & Rec_new & F1_old & F1_new\\
+		\midrule
+		RF & 0.81 & 0.83 & 0.84 & 0.84 & 0.81 & 0.83 & 0.82 & 0.83\\
+		LR & 0.76 & 0.75 & 0.76 & 0.75 & 0.76 & 0.75 & 0.76 & 0.75\\
+		SVC & 0.75 & 0.69 & 0.77 & 0.71 & 0.75 & 0.69 & 0.75 & 0.70\\
+		KNN & 0.73 & 0.71 & 0.77 & 0.73 & 0.73 & 0.71 & 0.74 & 0.71\\
+		XGBoost & 0.92 & 0.95 & 0.92 & 0.95 & 0.92 & 0.95 & 0.92 & 0.95\\
+		NN & 0.73 & 0.68 & 0.75 & 0.71 & 0.73 & 0.68 & 0.74 & 0.69\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{Forecast Result of Ensemble Model }
 \
 
 Ensemble model means using 
@@ -848,7 +689,7 @@ of ensemble model in original train data.
 		%\bottomrule
 	\end{tabular}
 \end{table}
-	
+
 \subsubsection{New Train Data}
 \
 
@@ -873,45 +714,6 @@ of ensemble model in new train data.
 	\end{tabular}
 \end{table}	
 
-\subsection{Forecast Result of all Models}
-\
-
-From the table below,
-can find that 
-the accuracy of ensemble model is 
-increased the most.
-And ensemble model has 
-the highest accuracy
-
-\begin{table}[h]  \centering
-	\caption{Forecast Result of all Models}
-	\label{tbl:forecast_score_models}
-	\begin{tabular}{cccccc}
-		\toprule
-		% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-		& RandomForest & Bagging & GradientBoosting & 
-		LogisticRegression & SVC \\
-		\midrule
-		Accuracy_old & 0.8133 & 0.6800 & 0.8800 & 
-		0.7600 & 0.7467 \\
-		Accuracy_new & 0.8267 & 0.7200 & 0.7866 &
-		0.7333 & 0.6933 \\
-		F1_score_old & 0.8133 & 0.6800 & 0.8800 &
-		0.7600 & 0.7467 \\
-		F1_score_new & 0.8267 & 0.7200 & 0.7866 &
-		0.7333 & 0.6933 \\
-		\bottomrule 
-		\toprule
-		& KNeighbors & XGBoost & Netual Network & Ensemble &\\
-		\midrule
-		Accuracy_old & 0.7333 & 0.9200 & 0.7333 & 0.7867 &\\
-		Accuracy_new & 0.7067 & 0.9467 & 0.6800 & 0.8667 &\\
-		F1_score_old & 0.7333 & 0.9200 & 0.7333 & 0.7867 &\\
-		F1_score_new & 0.7067 & 0.9467 & 0.6800 & 0.8667 &\\
-		\bottomrule
-		%\bottomrule
-	\end{tabular}
-\end{table}
 
 \section{Conclusion}
 

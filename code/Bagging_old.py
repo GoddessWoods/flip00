@@ -35,3 +35,7 @@ print ('Best parameters of BaggingClassifier: {}'.format(clf.best_params_))
 print('BaggingClassifier classification report')
 print (metrics.classification_report(y_test, y_pred))
 print ('\nAccuracy score of BaggingClassifier is: '+str(metrics.accuracy_score(y_test, y_pred)))
+
+from sklearn.metrics import f1_score
+f1_micro = f1_score(y_test,y_pred,average='micro')
+print('f1_micro: {0}'.format(f1_micro))
