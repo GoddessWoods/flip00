@@ -106,23 +106,19 @@ basicstyle=\footnotesize\ttfamily}
 % TODO: add yourself here:
 %
 \newcommand{\gangli}[1]{\draftnote{blue}{GLi:}{#1}}
-\newcommand{\wb}[1]{\draftnote{green}{wb:}{#1}}
-\newcommand{\mumu}[1]{\draftnote{red}{mumu:}{#1}}
+\newcommand{\shaoni}[1]{\draftnote{green}{sn:}{#1}}
 \newcommand{\gliMarker}
 	{\todo[author=GLi,size=\tiny,inline,color=blue!40]
 	{Gang Li has worked up to here.}}
-\newcommand{\wbMarker}
-	{\todo[author=wb,size=\tiny,inline,color=green!40]
-	{wb has worked up to here.}}
-\newcommand{\mumuMarker}
-{\todo[author=mumu,size=\tiny,inline,color=red!40]
-	{mumu has worked up to here.}}
+\newcommand{\snMarker}
+	{\todo[author=Sn,size=\tiny,inline,color=green!40]
+	{Shaoni has worked up to here.}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % title
 % TODO: Customize to your Own Title, Name, Address
 %
-\title{Flip00 Project Final Test Presentationn}
-\author{
+\title{Flip00 Project Final Test Presentation}
 Shuxia Lin
 \\
 \\SouthEast University
@@ -136,7 +132,7 @@ Shuxia Lin
 rf=\href{http://www.tulip.org.au}{
 Last Changed by: \textsc{\gitCommitterName}\ \gitVtagn-\gitAbbrevHash\ (\gitAuthorDate)
 },
-cf={Flip00 Project Final Test Presentationn},
+cf={Flip00 Project Final Test Presentation},
 }
 
 
@@ -165,138 +161,64 @@ cf={Flip00 Project Final Test Presentationn},
 %%
 \begin{slide}{Problem Definition}
 \begin{center}
-\twotonebox{\rotatebox{90}{Defn}}{\parbox{.88\textwidth}
-{
-	After a month of making scientific observations 
-	and taking careful measurements, 
-	can determined that 900 \textcolor{orange}{ghouls},
-	\textcolor{orange}{ghosts}, 
-	and \textcolor{orange}{goblins}.
-	The raw dataset contains train set with \textcolor{orange}{371} 
-	samples and \textcolor{orange}{529} unlabeled samples as test set.
-	Through the train data, find the relationship
-	between the attributes and species, 
-	and then identify the ghastly creatures in test data.
-	
+\twotonebox{\rotatebox{90}{Defn}}{\parbox{.86\textwidth}
+{After a month of making scientific observations 
+and taking careful measurements, 
+can determined that 900 \textcolor{orange}{ghouls},
+\textcolor{orange}{ghosts}, 
+and \textcolor{orange}{goblins}.
+The raw dataset contains train set with \textcolor{orange}{371} 
+samples and \textcolor{orange}{529} unlabeled samples as test set.
+Through the train data, find the relationship
+between the attributes and species, 
+and then identify the ghastly creatures in test data.
 }}
 \end{center}
-
-\skip
-
 \begin{center}
 	\includegraphics[width=.8\linewidth]{figures/bar.eps}
 \end{center}
-\skip
-
 \end{slide}
 
-%=====================================================================
+%%==========================================================================================
 
 \begin{slide}{Data Set}
-	\begin{center}
-		\twotonebox{\rotatebox{90}{Info}}{\parbox{.88\textwidth}
-			{
-				There are 4 numerical variables and 1 categorical,
-				and no missing values.
-				Numerical columns are either normalized or show a percentage, 
-				so no need to scale them. 
-		}}
-	\end{center}
-%缩小这两个的间距
-	\begin{center}
-		\begin{itemize}
-			\item Data List
-			\begin{description}
-				\item[id] id of the creature
-				\item[bone\_length] average length of bone in the creature, 
-				normalized between \emph{0} and \emph{1}
-				\item[rotting\_flesh] percentage of rotting flesh in the creature
-				\item[hair\_length] average hair length, 
-				normalized between \emph{0} and \emph{1}
-				\item[has\_soul] percentage of soul in the creature
-				\item[Color] dominant color of the creature: 
-				\emph{white},\emph{black},\emph{clear},
-				\emph{blue},\emph{green},\emph{blood}
-				\item[type] target variable: 
-				\emph{Ghost}, \emph{Goblin}, and \emph{Ghoul}
-			\end{description}
-			\item Train Data and Test Data
-			\
-			  
-			Divide the raw train set into train data 
-			and test data, 
-			and the ratio is 8:2. 		
-		\end{itemize}
-	\end{center}
-\end{slide}
-
-%%
-%%==========================================================================================
-
-
-%%==========================================================================================
-%%
-\begin{slide}[toc=,bm=]{Outlying Aspects Mining vs Outlier Detection}
 \begin{center}
-\begin{tabular}{c| c c c c }
-\toprule
-%\centering
-Player & \texttt{3PT\%}  & \texttt{FTA} & \texttt{FT\%} & \texttt{To} \\
-\midrule
-$P_1$
-&  {$65$} &  {$4$} &  {$33$} &  {$8$} \\
-$P_2$
-&  {$78$} &  {$1$}&  {$65$}&  {$5$} \\
-$P_3$
-&  {$58$} &  {$6$} &  {$46$} &  {$3$} \\
-$P_4$
-&  {$68$} &  {$1.2$}&  {$85$}&  {$6.2$} \\
-$P_5$
-&  {$58$} &  {$6.2$} &  {$36$} &  {$3.4$}\\
-\bottomrule
-\end{tabular}
+	\twotonebox{\rotatebox{90}{Defn}}{\parbox{.86\textwidth}
+		{There are 4 numerical variables and 1 categorical,
+			and no missing values.
+			Numerical columns are either normalized or show a percentage, 
+			so no need to scale them.
+	}}
 \end{center}
-
-\bigskip
-
-\twocolumn[
-\savevalue{lfrheight}=4.6cm,
-\savevalue{lfrprop}={
-linestyle=solid,framearc=.2,linewidth=1pt},
-rfrheight=\usevalue{lfrheight},
-rfrprop=\usevalue{lfrprop}
-]{
-Outlying Aspects Mining
-\begin{itemize}
-\item
-\smallskip
-Explain the distinctive \textcolor{orange}{aspects} of the query object.
-\smallskip
-\item
-\smallskip
-The query object may (or may not) be an outlier.
-\end{itemize}
-}{
-Outlier Detection
-\begin{itemize}
-\item
-\smallskip
-Find out \textcolor{orange}{all} unusual
-\textcolor{orange}{objects} in the whole dataset.
-\smallskip
-\item
-\smallskip
-\textcolor{orange}{No} explanation on how they are different.
-\end{itemize}
-}
-
+\begin{center}
+	\begin{itemize}
+		\item Data List
+		\begin{description}
+			\item[id] id of the creature
+			\item[bone\_length] average length of bone in the creature, 
+			normalized between \emph{0} and \emph{1}
+			\item[rotting\_flesh] percentage of rotting flesh in the creature
+			\item[hair\_length] average hair length, 
+			normalized between \emph{0} and \emph{1}
+			\item[has\_soul] percentage of soul in the creature
+			\item[Color] dominant color of the creature: 
+			\emph{white},\emph{black},\emph{clear},
+			\emph{blue},\emph{green},\emph{blood}
+			\item[type] target variable: 
+			\emph{Ghost}, \emph{Goblin}, and \emph{Ghoul}
+		\end{description}
+		\item Train Data and Test Data
+		\
+		
+		Divide the raw train set into train data 
+		and test data, 
+		and the ratio is 8:2. 		
+	\end{itemize}
+\end{center}
 \end{slide}
-%%
-%%==========================================================================================
-
 
 %%==========================================================================================
-%%
+
 \begin{slide}{Group Outlying Aspects Mining}
 \twotonebox {\rotatebox{90}{Defn}}{\parbox{.88\textwidth}
 {
@@ -334,6 +256,17 @@ disadvantages of \textcolor{orange}{the team}.
 }
 
 %%==========================================================================================
+\begin{note}
+However,
+there is such a phenomenon in real life.
+Doctors desire to identify the characteristics between
+a group of cancer patients and normal people.
+NBA coaches are passionate about exploring the obvious strengths and
+weaknesses of the team compared with other teams.
+
+Based on such a phenomenon in the real life,
+we proposed the concept of group outlying aspects mining.
+\end{note}
 %%==========================================================================================
 
 \end{slide}
@@ -363,6 +296,22 @@ Each object in the group has $d$ features $F = \{f_1, f_2, ..., f_d\}$.
 }}
 
 %%==========================================================================================
+\begin{note}
+Next,
+let me talk about the concept of group outlying aspects mining.
+
+For example,
+Dataset $G$ has $n$ groups.
+$G_q$ is the query group.
+and other groups are comparison groups.
+Each object in the group has d features $F = $ $f_1$, $f_2$, $f_3$ to $f_d$.
+The group outlying aspects mining is to identify the top-k group outlying subspaces,
+which are different from other groups.
+
+What does the top-k group outlying subspaces mean?
+Next, I will explain it.
+\end{note}
+
 %%==========================================================================================
 \end{slide}
 %%
@@ -415,7 +364,15 @@ to identify top K group outlying subspaces.
 \end{figure}
 
 %%==========================================================================================
-
+\begin{note}
+We use $\rho_s(\cdot)$ to describe an outlying scoring function.
+$\rho_s(\cdot)$ quantifies the outlying degree of the query group in a subspaces $s$.
+In addition,
+we use the scoring function to make a descending order and at last
+filter out the top k group outlying subspaces.
+It is obvious that the outlying subspaces make the
+query group different from other groups.
+\end{note}
 %%==========================================================================================
 
 \end{slide}
@@ -460,7 +417,21 @@ ${G_q}$'s outlying degree $\rho(\cdot)$ $>$ $\alpha$.
 \end{table}
 
 %%==========================================================================================
+\begin{note}
+In order to identify the top-k outlying subspaces,
+we categorize the features into $2$ non-overlapping groups,
+trivial outlying features and non-trivial outlying subspaces.
 
+First, let me introduce the trivial outlying features.
+
+Trivial outlying features are one-dimension subspaces.
+In the subspace,
+the query group's outlying degree is larger than the threshold $\alpha$.
+
+We can see from table $1$,
+when the specified threshold $\alpha = 4$,
+the trivial outlying feature is \{$F_1$\}.
+\end{note}
 %%==========================================================================================
 
 \end{slide}
@@ -506,7 +477,17 @@ ${G_q}$'s outlying degree $\rho(\cdot)$ $>$ $\alpha$.
 \end{table}
 
 %%==========================================================================================
+\begin{note}
+Next,
+I will introduce the non-trivial outlying subspaces.
+Non-Trivial outlying subspaces are multi-dimension subspaces.
+In the subspace,
+the query group's outlying degree is larger than the threshold $\alpha$.
 
+Table $2$ shows that,
+when the threshold $\alpha$ equal four,
+the non-trivial outlying subspace is \{$F_3$, $F_4$\}.
+\end{note}
 %%==========================================================================================
 
 \end{slide}
