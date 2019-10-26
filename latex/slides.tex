@@ -119,9 +119,8 @@ basicstyle=\footnotesize\ttfamily}
 % TODO: Customize to your Own Title, Name, Address
 %
 \title{Flip00 Project Final Test Presentation}
-Shuxia Lin
-\\
-\\SouthEast University
+Shuxia Lin\\
+SouthEast University
 }
 \date{\gitCommitterDate}
 
@@ -161,7 +160,7 @@ cf={Flip00 Project Final Test Presentation},
 %%
 \begin{slide}{Problem Definition}
 \begin{center}
-\twotonebox{\rotatebox{90}{Defn}}{\parbox{.86\textwidth}
+\twotonebox{\rotatebox{90}{Defn}}{\parbox{.96\textwidth}
 {After a month of making scientific observations 
 and taking careful measurements, 
 can determined that 900 \textcolor{orange}{ghouls},
@@ -183,7 +182,7 @@ and then identify the ghastly creatures in test data.
 
 \begin{slide}{Data Set}
 \begin{center}
-	\twotonebox{\rotatebox{90}{Defn}}{\parbox{.86\textwidth}
+	\twotonebox{\rotatebox{90}{Defn}}{\parbox{.96\textwidth}
 		{There are 4 numerical variables and 1 categorical,
 			and no missing values.
 			Numerical columns are either normalized or show a percentage, 
@@ -219,56 +218,43 @@ and then identify the ghastly creatures in test data.
 
 %%==========================================================================================
 
-\begin{slide}{Group Outlying Aspects Mining}
-\twotonebox {\rotatebox{90}{Defn}}{\parbox{.88\textwidth}
-{
-{\textcolor{orange}{Group outlying aspects mining} aims to
-identify the outstanding features of the group of query object.
-\begin{itemize}
-\item
-Doctors desire to identify the merits \& demerits between
-\textcolor{orange}{a group of cancer patients} and normal people.
-\item
-NBA coaches are passionate about exploring the obvious advantages \&
-disadvantages of \textcolor{orange}{the team}.
-\end{itemize}
-}
-}}
+\begin{slide}{Evaluation Methods}
+\begin{center}
+	\begin{itemize}
+		\item F1 Score
+		\item Precision
+		\item Recall
+		\item AUC
+	\end{itemize}
+\end{center}
 
-\vspace{1.5cm}
-
-\twocolumn{
-\begin{figure}
-  \centering
-  \selectcolormodel{rgb}
-  \missingfigure{Testing.}
-  %\includegraphics[width=0.6\textwidth]{figures//demical.eps}\\
-  \caption{Medical}\label{fig:demical}
-\end{figure}
-}{
-\begin{figure}
-  \centering
-  \selectcolormodel{rgb}
-  \missingfigure{Testing.}
-  %\includegraphics[width=0.6\textwidth]{figures//NBA_team.eps}\\
-  \caption{NBA-Team}\label{fig:timg}
-\end{figure}
-}
+\end{slide}
 
 %%==========================================================================================
-\begin{note}
-However,
-there is such a phenomenon in real life.
-Doctors desire to identify the characteristics between
-a group of cancer patients and normal people.
-NBA coaches are passionate about exploring the obvious strengths and
-weaknesses of the team compared with other teams.
 
-Based on such a phenomenon in the real life,
-we proposed the concept of group outlying aspects mining.
-\end{note}
+\section{Data Exploration}
+
 %%==========================================================================================
 
+\begin{slide}{Data Visualize}
+\begin{center}
+	\twotonebox{\rotatebox{90}{Exp}}{\parbox{.96\textwidth}
+		{Use EDA to plot the distribution of the data,
+			can observate the data intuitively and
+			find the relation between the attribute values. 
+	}}
+\end{center}
+\begin{center}
+	\begin{itemize}
+		\item Figures
+		\begin{itemize}
+			\item Histogrm
+			\item Boxplot
+			\item Pairplot
+			\item Correllogram
+		\end{itemize}
+	\end{itemize}
+\end{center}
 \end{slide}
 %%
 %%==========================================================================================
@@ -276,382 +262,54 @@ we proposed the concept of group outlying aspects mining.
 
 %%==========================================================================================
 %%
-\begin{slide}[toc=,bm=]{Problem Formalization}
-\twotonebox {\rotatebox{90}{Defn}}{\parbox{.88\textwidth}
-{
-{\textcolor{orange}{Group outlying aspects mining} aims to identify
-the \textcolor{orange}{top-k group outlying subspace $s \subseteq F$} in
-which the query group $G_q$ is \textcolor{orange} {distinctive with other groups}.
-\begin{itemize}
-\item
-$G = \{G_q, G_2, G_3,..., G_n\}$ $\Leftrightarrow$ a set of groups.
-\item
-$G_q$ $\Leftrightarrow$ the query group.
-\item
-Other groups $\Leftrightarrow$ comparison groups.
-\item
-Each object in the group has $d$ features $F = \{f_1, f_2, ..., f_d\}$.
-\end{itemize}
-}
-}}
-
-%%==========================================================================================
-\begin{note}
-Next,
-let me talk about the concept of group outlying aspects mining.
-
-For example,
-Dataset $G$ has $n$ groups.
-$G_q$ is the query group.
-and other groups are comparison groups.
-Each object in the group has d features $F = $ $f_1$, $f_2$, $f_3$ to $f_d$.
-The group outlying aspects mining is to identify the top-k group outlying subspaces,
-which are different from other groups.
-
-What does the top-k group outlying subspaces mean?
-Next, I will explain it.
-\end{note}
-
-%%==========================================================================================
+\begin{slide}[toc=,bm=]{Data Visualize}
+	\begin{center}
+		\twotonebox{\rotatebox{90}{Exp}}{\parbox{.96\textwidth}
+			{It seems that all numerical features may be useful, 
+				but many colors are evenly distributes among the monsters,
+				which means they maybe have little effect on classification. 
+		}}
+	\end{center}
+	
+\begin{center}
+	\includegraphics[width=.5\linewidth]{figures/his_1.eps}
+	\quad\includegraphics[width=.5\linewidth]{figures/his_2.eps}
+\end{center}
 \end{slide}
 %%
 %%==========================================================================================
 
-
-%%==========================================================================================
-%%
-\begin{slide}[toc=,bm=]{Term Definition}
-\begin{itemize}
-\item
-Top-k group outlying subspaces
-
-\begin{itemize}
-\item
-$\rho_s(\cdot)$ $\Rightarrow$ outlying scoring function.
-
-\item
-$\rho_s(\cdot)$ quantifies the outlying degree of the
-query group $G_q$ in the subspace $s$.
-
-\item
-Order by DESC using scoring function $\rho(\cdot)$
-to identify top K group outlying subspaces.
-\end{itemize}
-\end{itemize}
-
-\begin{figure}[htbp]
-    \centering
-    \subfigure[Original Feature Spaces]{
-      \selectcolormodel{rgb}
-      \missingfigure[figwidth=5.5cm]{Test.}
-        %\includegraphics[width=0.3\textwidth]{figures//example-basketball-original.eps}
-        \label{fig:basketball-original}
-    }
-    \subfigure[Group Outlying Spaces]{
-       \selectcolormodel{rgb}
-       \missingfigure[figwidth=5.5cm]{Test.}
-        %\includegraphics[width=0.3\textwidth]{figures//example-basketball-projection.eps}
-        \label{fig:basketball-projection}
-    }
-    \subfigure[Another Subspaces]{
-      \selectcolormodel{rgb}
-      \missingfigure[figwidth=5.5cm]{Test.}
-        %\includegraphics[width=0.28\textwidth]{figures//basketball-another-subspaces.eps}
-        \label{fig:basketball-projection1}
-    }
-%    \caption{Histogram representation of a group on three single features}
-    \label{fig:Basketball-Example}
-\end{figure}
-
-%%==========================================================================================
-\begin{note}
-We use $\rho_s(\cdot)$ to describe an outlying scoring function.
-$\rho_s(\cdot)$ quantifies the outlying degree of the query group in a subspaces $s$.
-In addition,
-we use the scoring function to make a descending order and at last
-filter out the top k group outlying subspaces.
-It is obvious that the outlying subspaces make the
-query group different from other groups.
-\end{note}
-%%==========================================================================================
-
+\begin{slide}[toc=,bm=]{Data Visualize}
+	\begin{center}
+		\twotonebox{\rotatebox{90}{Exp}}{\parbox{.96\textwidth}
+			{Based on the above observation on boxplot,
+				we guess that the predictive accuracy of Ghost and Ghoul 
+				will be better than Goblin.
+				And the outliers are very small,
+				which can be ignored. 
+				As for correllogram, can find that it is 
+				no obvious linear relationship 
+				between these variables.
+		}}
+	\end{center}
+	
+	\begin{center}
+		\includegraphics[width=.5\linewidth]{figures/boxplot.eps}
+		\quad\includegraphics[width=.5\linewidth,height=.25\linewidth]{figures/corr.eps}	
+	\end{center}
 \end{slide}
-%%
-%%==========================================================================================
-
 
 %%==========================================================================================
 %%
-\begin{slide}[toc=,bm=]{Term Definition}
-\begin{itemize}
-\item
-Trivial Outlying Features
 
-\begin{itemize}
-\item
-\smallskip
-One-dimension subspaces.
-
-\item
-${G_q}$'s outlying degree $\rho(\cdot)$ $>$ $\alpha$.
-\end{itemize}
-\end{itemize}
-\begin{table}
-\setlength{\abovecaptionskip}{0pt}
-\setlength{\belowcaptionskip}{10pt}
-\centering
-\caption{$\alpha = 4$}
-
-\begin{tabular}{  c  |  c }
-\toprule
-\centering
-\texttt{Feature}  & \texttt{Outlying Degree}  \\
-\midrule
- {\textcolor{orange}{\{$F_1$\}}} & $4.351$ \\
- {\{$F_3, F_4$\}}                & $4.024$ \\
- {\{$F_2, F_4$\}}                & $2.318$ \\
- {\{$F_2$\}}                     & $2.002$ \\
- {\{$F_3$\}}                     & $1.028$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-%%==========================================================================================
-\begin{note}
-In order to identify the top-k outlying subspaces,
-we categorize the features into $2$ non-overlapping groups,
-trivial outlying features and non-trivial outlying subspaces.
-
-First, let me introduce the trivial outlying features.
-
-Trivial outlying features are one-dimension subspaces.
-In the subspace,
-the query group's outlying degree is larger than the threshold $\alpha$.
-
-We can see from table $1$,
-when the specified threshold $\alpha = 4$,
-the trivial outlying feature is \{$F_1$\}.
-\end{note}
-%%==========================================================================================
-
+\begin{slide}[toc=,bm=]{Data Visualize}
+	\begin{center}
+		\includegraphics[width=.5\linewidth]{figures/pairplot.eps}	
+	\end{center}
 \end{slide}
-%%
-%%==========================================================================================
 
+%%=========================================================================================
 
-%%==========================================================================================
-%%
-\begin{slide}[toc=,bm=]{Term Definition}
-\begin{itemize}
-\item
-Non-Trivial Outlying Subspaces
-\begin{itemize}
-\item
-\smallskip
-Multi-dimension subspaces.
-
-\item
-\smallskip
-${G_q}$'s outlying degree $\rho(\cdot)$ $>$ $\alpha$.
-\end{itemize}
-\end{itemize}
-
-\begin{table}
-\setlength{\abovecaptionskip}{0pt}
-\setlength{\belowcaptionskip}{10pt}
-\centering
-\caption{$\alpha = 4$}
-
-\begin{tabular}{  c  |  c }
-\toprule
-\centering
-\texttt{Feature}  & \texttt{Outlying Degree}  \\
-\midrule
- {\{$F_1$\}}                           & $4.351$ \\
- {\textcolor{orange}{\{$F_3, F_4$\}}}  & $4.024$ \\
- {\{$F_2, F_4$\}}                      & $2.318$ \\
- {\{$F_2$\}}                           & $2.002$ \\
- {\{$F_3$\}}                           & $1.028$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-%%==========================================================================================
-\begin{note}
-Next,
-I will introduce the non-trivial outlying subspaces.
-Non-Trivial outlying subspaces are multi-dimension subspaces.
-In the subspace,
-the query group's outlying degree is larger than the threshold $\alpha$.
-
-Table $2$ shows that,
-when the threshold $\alpha$ equal four,
-the non-trivial outlying subspace is \{$F_3$, $F_4$\}.
-\end{note}
-%%==========================================================================================
-
-\end{slide}
-%%
-%%==========================================================================================
-
-
-\section{Related Work and Challenges}
-
-
-%%==========================================================================================
-%%
-\begin{slide}{Related Work - Outlying Aspects Mining}
-%Related Work - Outlying Aspects Mining
-\begin{itemize}
-\item
-Existing Methods - \textcolor{orange}{Feature selection}
-
-\begin{itemize}
-\item
-To distinguish two classes:
-the query point (positive) \& rest of data (negative)
-\end{itemize}
-\vspace{1cm}
-\twocolumn[
-\savevalue{lfrheight}=5cm,
-\savevalue{lfrprop}={
-linestyle=solid,framearc=.2,linewidth=1pt},
-rfrheight=\usevalue{lfrheight},
-rfrprop=\usevalue{lfrprop}
-]{
-Disadvantages
-\begin{itemize}
-\item
-\smallskip
-Positive and negative classes are \textcolor{orange}{Not} balanced.
-
-\item
-\smallskip
-\textcolor{orange}{Not} quantify the outlying degree accurately.
-
-\item
-\smallskip
-\textcolor{orange}{Not} identify group outlying aspects.
-\end{itemize}
-}
-{
-Advantages
-\begin{itemize}
-\item
-\smallskip
-Easy to operate.
-
-\item
-\smallskip
-Resolve dimensionality bias.
-\end{itemize}
-}
-\end{itemize}
-
-%%==========================================================================================
-\begin{note}
-Let me introduce two existing methods:
-Feature selection and score-and-search.
-
-For feature selection,
-the query point can be regarded as positive class and
-the rest of the data can be regarded as negative class,
-selected the features that best distinguish the two classes.
-
-The advantages of this method are easy to operate,
-and it's able to resolve dimensionality bias.
-However, it has some drawbacks.
-Firstly,
-positive and negative classes are Not balanced,
-secondly,
-it can't quantify the outlying degree correctly.
-Most importantly,
-it doesn't identify group outlying aspects.
-\end{note}
-%%==========================================================================================
-
-\end{slide}
-%%
-%%==========================================================================================
-
-
-%%==========================================================================================
-%%
-\begin{slide}[toc=,bm=]{Related Work - Outlying Aspects Mining}
-
-\begin{itemize}
-\item
-Existing Methods - \textcolor{orange} {Score-and-search}
-
-\begin{itemize}
-\item
-Define an outlying score function.
-
-\item
-Search subspaces.
-\end{itemize}
-\bigskip
-\twocolumn[
-\savevalue{lfrheight}=5cm,
-\savevalue{lfrprop}={
-linestyle=solid,framearc=.2,linewidth=1pt},
-rfrheight=\usevalue{lfrheight},
-rfrprop=\usevalue{lfrprop}
-]{
-Disadvantages
-\begin{itemize}
-\item
-\smallskip
-Dimensionality bias.
-
-\item
-\smallskip
-Search efficiency is \textcolor{orange}{Not} high (dataset is large).
-
-\item
-\smallskip
-\textcolor{orange}{Not} identify group outlying aspects.
-\end{itemize}
-}{
-Advantages
-\begin{itemize}
-\item
-\smallskip
-Quantify the outlying degree correctly.
-
-\item
-\smallskip
-High Comprehensibility.
-
-\end{itemize}
-}
-\end{itemize}
-
-%%==========================================================================================
-\begin{note}
-For score-and-search method,
-it defines an outlying score function,
-and then searches for each subspace until it finds out a subspace that
-makes the query point show the best score.
-
-The advantages of this method are:
-first, it enables to quantify the outlying degree accurately.
-Besides, its comprehensibility is high.
-
-While the disadvantages include three main aspects:
-the first one is it has dimensionality bias;
-Additionally, its search efficiency is low.
-Last but not least, it doesn't identify group outlying aspects.
-\end{note}
-%%==========================================================================================
-
-\end{slide}
-%%
-%%==========================================================================================
-
-
-%%==========================================================================================
-%%
 \begin{slide}[toc=,bm=]{}
 \twocolumn
 {
