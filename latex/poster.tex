@@ -124,14 +124,21 @@
 
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
 \block{Data Visualization}{
-	Use EDA to plot the distribution of the data 
-	to can observate the data intuitively and
-	find the relation between the attribute values. 
+	The following figures show
+	the distribution of the data. 
+	The pairplot shows that 
+	data is distributed normally. 
+	and most pairs are widely scattered  
+	but some of them show clusters.
+	Through correlogram can gain that
+	it is no obvious linear relationship 
+	between variables.
+	And boxplot shows the outliers are very small,
+	which can be ignored.
 	\begin{center}
-		\includegraphics[width=.3\linewidth]{figures/boxplot.eps}
-		\quad\includegraphics[width=.3\linewidth]{figures/his_1.eps}
-		\quad\includegraphics[width=.3\linewidth]{figures/his_2.eps}
-		
+		\includegraphics[width=.3\linewidth]{figures/pairplot.eps}
+		\quad\includegraphics[width=.3\linewidth]{figures/corr.eps}
+		\quad\includegraphics[width=.3\linewidth,height=.25\linewidth]{figures/boxplot.eps}	
 	\end{center}
 	
 }
@@ -149,55 +156,33 @@
 
 
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
-\block{GOAM Algorithm}{
-  	We propose the \emph{GOAM} algorithm to solve the research problem of
-    \emph{Group Outlying Aspects Mining}.
-  	The \emph{GOAM} algorithm includes three major steps.
-%    1) Group Feature Extraction,
-%    2) Outlying Degree Scoring, and
-%    3) Outlying Aspects Identification.
+\block{Feature Engineering}{
+  	Some of attributes show clusters: 
+  	hair\_length and has\_soul, 
+  	hair\_length and bone\_length. 
+  	So create new variables 
+  	with multiplication of these columns: 
   	
+  	\begin{description}
+  		\item[hair\_soul] ’hair\_length’ * ’has\_soul’
+  		\item[hair\_bone] 'hair\_length' * 'bone\_length]'
+  		\item[bone\_soul] 'row[bone\_length' * 'has\_soul'
+  		\item[hair\_soul\_bone]  'hair\_length' * 'has\_soul' * 'bone\_length' 
+  	\end{description}
+    Using the Feature Importance 
+    this function of Random Forest
+    to select the most important features
+    to form a new train data.
+    The two picture, one is pairplot 
+    which is ploted by using new features data.
+    another is the bar plot which shows 
+    the importance of features
+  	
+  	\begin{center}
+  		\includegraphics[width=.3\linewidth]{figures/hist_1.eps}
+  		\includegraphics[width=.3\linewidth]{figures/FEATURE.eps}
+  	\end{center}
 
-\begin{description}
-  	\item[Group Feature Extraction]
-  	Let $f_1$, $f_2$, $f_3$ represent three features of $G_q$.
-    We count the frequency of each value for one feature.
-    Then use the histogram to represent each feature.
-    Similarly,
-    we can extract other features for each group.
-
-%    \item
-%    The histogram of $G_q$ on three features are as follows.
-\end{description}
-
-\begin{center}
-    
-    \hfill
-    \begin{minipage}{0.3\linewidth}
-    \centering
-    \begin{tikzfigure}
-    \missingfigure[figcolor=white]{figures/boxplot.eps}
-    {\small{Histogram of $G_q$ on $f_2$}}
-    \end{tikzfigure}%
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.3\linewidth}
-    \centering
-    \begin{tikzfigure}
-    \missingfigure[figcolor=white]{Testing figcolor}
-    {\small{Histogram of $G_q$ on $f_3$}}
-    \end{tikzfigure}%
-    \end{minipage}
-\end{center}
-\begin{description}
-\item[Outlying Degree Scoring]
-    In this step,
-    we first calculate the \emph{earth mover distance} (EMD) of one feature among different groups.
-    The earth mover distance reflects the minimum mean distance
-    between groups on one feature.
-    So,
-    we utilize the EMD to measure the difference between groups of each feature.
-\end{description}
 }
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
 
@@ -207,108 +192,87 @@
  %Second column with first block's top edge aligned with with previous column's top.
 
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
-\block{GOAM Algorithm}{
-\begin{description}
-    \item
-    Second,
-    based on the \emph{earth move distance},
-    we calculate the outlying degree.
-\end{description}
+\block{Algorithm}{
+	Choose the following algorithms, 
+	use original train data and 
+	new train data to train the models,
+	and determine a set of optimal parameters 
+	through Grid Search.
+	Because the train data is relatively small, 
+	a ten-fold cross-validation is used.
+	
+	\begin{itemize}
+		\item RandomForest 
+		\item Bagging
+		\item GradientBoosting
+		\item LogisticRegression
+		\item SVC
+		\item KNeighbors 
+		\item XGBoost
+		\item Netual Network
+	\end{itemize}
+	
+	Take the trained models as
+	the base models of ensemble model,
+	and average the prediction results 
+	by using voting
 
-\begin{tikzfigure}%[Overall architecture of \emph{GOAM} algorithm]
-    \missingfigure[figcolor=white]{Testing figcolor}
-\end{tikzfigure}
-  where $G_q$ is the query group,
-  $n$ is the number of compare groups,
-  and $h_{k_s}$ is the histogram representation of $G_k$ in the subspace $s$.
-
-\begin{description}
-  	\item[Outlying Aspects Identification]
-    In this step,
-    based on the value of outlying degree
-    we will identify the group outlying aspects.
-    If a feature's outlying degree is greater than a threshold,
-    the more likely the feature is group outlying aspect.
-    When the dimensionality of features is high,
-    we adopt a stage-wise candidate subspace construction strategy to
-    alleviate the exponential explosion.
-\end{description}
 }
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
 % Second column - first block
 
 
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
-\block[titleleft]{Experiment}
+\block[titleleft]{Experiment Result}
 {
-\begin{description}
-  	\item[Synthetic Dataset] contains $10$ groups and $8$ features.
-    Each group consists of $10$ members,
-    and each member has $8$ features.
-\end{description}
-\vspace{.5cm}
-\begin{tabular}{ c | c | c | c }
-    \toprule
-    Method     &  Truth Outlying Aspects    & Identified Aspects & Accuracy      \\
-    \midrule
-    GOAM       &  $\{F_1\}$, $\{F_2F_4\}$   &  $\{F_1\}$, $\{F_2F_4\}$    & 100\%    \\
+	The tables below are the metrics classification report 
+	of ensemble model in original and new train data.
+	\begin{itemize}
+  		\item Metrics Classification Report of Ensemble Model in original train data
+	\end{itemize}
+	\vspace{.5cm}
+	\begin{center}
+		\begin{tabular}{ccccc}
+			\hline
+			& precision  &  recall & f1-score &  support\\
+			\hline
+			Ghost   &    0.80   &   0.83  & 0.82 & 24\\
+			Ghoul  &  0.88  &  0.79  &   0.84   &   29\\
+			Goblin  &   0.67  &  0.73 &  0.70  &   22\\
+			\hline
+			micro avg  &  0.79  &  0.79  & 0.79    &  75\\
+			macro avg  &  0.78  & 0.78  &  0.78  &  75\\
+			weighted avg  &   0.79  &  0.79 &  0.79  &  75\\
+			\hline 
+			%\bottomrule
+		\end{tabular}
+	\end{center}
+	\vspace{.5cm}
 
-     Arithmetic Mean based OAM &  $\{F_1\}$, $\{F_2F_4\}$   &  $\{F_4\}$, $\{F_2\}$    &  0\% \\
+	\begin{itemize}
+		\item Metrics Classification Report of Ensemble Model in new train data
+	\end{itemize}
 
-     Median based OAM &  $\{F_1\}$, $\{F_2F_4\}$   &  $\{F_2\}$, $\{F_4\}$    &           0\% \\
-     \bottomrule
-\end{tabular}
-\vspace{.2cm}
-\begin{description}
-    \item
-    It can be observed that the GOAM method can identify the trivial outlying features
-    and non-trivial outlying subspaces correctly and is obvious from the table
-    that the accuracy of GOAM is the best, which is ($100\%$).
-\end{description}
-
-\begin{description}
-\item[NBA Dataset] was collected from Yahoo Sports
-website (\url{http://sports.yahoo.com.cn/nba}).
-The data include all teams from the six divisions,
-and each player in the team has $12$ features.
-\end{description}
-\vspace{.5cm}
-\begin{tabular}{ c | c | c }
-    \toprule
-    Teams                   & Trivial Outlying Aspects  & NonTrivial Outlying Aspects    \\
-    \toprule
-    Cleveland Cavaliers     & \{3FA\}                   & \{FGA, FT\%\}, \{FGA, FG\%\} \\
-    Orlando Magic           & \{Stl\}                   & None                         \\
-    Milwaukee Bucks         & \{To\}, \{FTA\}           & \{FGA, FTA\}, \{3FA, FTA\}     \\
-%    Golden State Warriors   & \{FG\%\}                  & \{FT\%, Blk\}, \{FGA, 3PT\%, FTA\}\\
-%    Utah Jazz               & \{Blk\}                   & \{3FA, 3PT\%\}                    \\
-    New Orleans Pelicans    & \{FT\%\}, \{FTA\}         & \{FTA, Stl\}, \{FTA, To\}          \\
-    \bottomrule
-\end{tabular}
-           
-\begin{minipage}{0.5\linewidth}
-    \centering
-    \begin{tikzfigure}
-    \missingfigure[figcolor=white]{Testing figcolor}
-
-    {\small{New Orleans Pelicans on FT\%}}
-    \end{tikzfigure}%
-\end{minipage}
-\hfill
-\begin{minipage}{0.5\linewidth}
-    \centering
-    \begin{tikzfigure}
-    \missingfigure[figcolor=white]{Testing figcolor}
-
-    {\small{New Orleans Pelicans on FTA}}
-    \end{tikzfigure}%
-\end{minipage}
-\vspace{.2cm}
-\begin{description}
-\item
-\texttt{New Orleans Pelicans} has more players with
-lower \{free throw percentage\}, \{free throws attempted\}.
-\end{description}
+	\begin{center}
+		\begin{tabular}{ccccc}
+			\hline
+			&precision & recall & f1-score & support\\
+			\hline
+			Ghost  &  0.84  &  0.88  & 0.86 &  24\\
+			Ghoul  &  0.93  & 0.97 &  0.95 &   29\\
+			Goblin  &  0.80 &  0.73  & 0.76  &  22\\
+			\hline
+			micro avg & 0.87  & 0.87  & 0.87  & 75\\
+			macro avg &  0.86  &  0.86 & 0.86 &   75\\
+			weighted avg  &  0.86 & 0.87  &  0.86  &  75\\
+			\hline 
+			%\bottomrule
+		\end{tabular}
+	\end{center}
+	\vspace{.5cm}
+	It can be observed that ensemble model
+	performaces better in new features.
+	
 }
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
 
@@ -318,17 +282,24 @@ lower \{free throw percentage\}, \{free throws attempted\}.
 \block[titlewidthscale=1, bodywidthscale=1]
 {Conclusion}
 {
-\begin{description}
-  \item[Problem Definition]
-  Formalize the problem of Group Outlying Aspects Mining by extending outlying aspects mining.
-
-  \item[GOAM algorithm]
-  Propose GOAM algorithm to solve the \emph{Group}\\
-  \emph{Outlying Aspects Mining} problem.
-
-  \item[Strategies]
-  Utilize the pruning strategies to \\ reduce time complexity.
-\end{description}
+	\begin{description}
+		\item[Data Exploration] It is an 
+		exploratory analysis of the data to 
+		provide the necessary conclusions 
+		for data processing and modeling.
+		\item[Data Preprocessing] This step contains
+		dealing with missing data and outliers,
+		changing categorical variable 
+		into one-hot code and so on.
+		\item[Feature Engineering] It's the 
+		most important thing.
+		Create as more as poosible features,
+		then select the most useful features.
+		\item[Model Training] The models have 
+		many parameters,
+		and can use Grid Search to find 
+		the optimal paratemers.	
+	\end{description}
 }
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
 
