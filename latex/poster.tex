@@ -24,6 +24,7 @@
 
 \documentclass{tikzposter} %Options for format can be included here
 
+\usepackage{showframe}
 \usepackage{todonotes}
 
 \usepackage[tikz]{bclogo}
@@ -49,14 +50,12 @@
 \usepackage{lipsum}
 \usepackage[english]{babel}
 \usepackage[pangram]{blindtext}
-
 \colorlet{backgroundcolor}{blue!10}
 
  % Title, Author, Institute
-\title{Group Outlying Aspects Mining}
-\author{Shaoni Wang$^1$, Gang Li$^2$}
-\institute{$^1$ Xi'an Shiyou University, China \\
-	$^2$ Deakin University, Australia
+\title{Flip00 Final Test}
+\author{Shuxia Lin}
+\institute{ SouthEast University, China
 }
 %\titlegraphic{logos/tulip-logo.eps}
 
@@ -96,84 +95,45 @@
 
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
 \block{Introduction}{
-    Many real world applications call for one important function
-    of identifying the set of features
-    on which the interested object is most distinguished from others.
-    Usually,
-    this object is termed as the query object,
-    and the set of features are referred to as the \emph{subspaces} or \emph{aspects}.
-    Accordingly,
-    this research problem is referred to as
-    \emph{outlying aspects mining},
-    which is different from \emph{outlier detection}.
-  	
+    After a month of making scientific observations 
+    and taking careful measurements, 
+    can determined that 900 ghouls, ghosts, and goblins.
+    The raw dataset contains train set with \emph{371} %modify as your true values
+    samples and \emph{529} unlabeled samples as test set.
+    Through the train data, find the relationship
+    between the attributes and species, 
+    and then identify the ghastly creatures.
+    The following is the attributes list of data:
   	\begin{description}
-  	\item[Outlying Aspects Mining] aims to identify a subspace
-    which makes the query object most outlying,
-    rather than verifying whether it is an outlier or not.
-    The task of \emph{Outlying Aspects Mining}
-    is to explain which aspects make the query object most different.
-  	
-  	\item[Outlier Detection] aims to identify all possible outliers in the dataset,
-    without explaining why or how they are different.
-    Hence,
-    the outlying aspects mining is also referred to
-    \emph{outlier interpretation}
-    or \emph{object explanation}.
+  		\item[id] id of the creature
+  		\item[bone\_length] average length of bone in the creature, 
+  		normalized between \emph{0} and \emph{1}
+  		\item[rotting\_flesh] percentage of rotting flesh in the creature
+  		\item[hair\_length] average hair length, 
+  		normalized between \emph{0} and \emph{1}
+  		\item[has\_soul] percentage of soul in the creature
+  		\item[Color] dominant color of the creature: 
+  		\emph{white},\emph{black},\emph{clear},
+  		\emph{blue},\emph{green},\emph{blood}
+  		\item[type] target variable: 
+  		\emph{Ghost}, \emph{Goblin}, and \emph{Ghoul}
   	\end{description}
-
-  	In this paper,
-    we extend the task of \emph{outlying aspects mining} to the \emph{group} level,
-    formalize the research problem of \emph{group outlying aspects mining},
-    and propose a novel algorithm named GOAM to solve the
-    \emph{group outlying aspects mining} problem.
 }
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
 
 
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
-\block{Group Outlying Aspects Mining}{
-\begin{itemize}
-    \item
-    %\emph{Group Outlying Aspects Mining}
-    It aims to \emph{identify a subset of aspects (or subspace)
-    which makes the query group, rather than the single object,
-    obviously different}.
-    What we are interested in the task of \emph{group outlying aspects mining}
-    is to explain which aspects make the query group distinctive
-    different from the other groups.
-
-    \item
-    \emph{Group Outlying Aspects Mining},
-    \emph{Outlying Aspects Mining} and
-    \emph{Outlier Detection} are different with each other.
-\end{itemize}
-
-\begin{center}
-    \begin{minipage}{0.3\linewidth}
-    \centering
-    \begin{tikzfigure}
-    \missingfigure[figcolor=white]{Testing figcolor}
-    {\small{Group Outlying Aspects Mining}}
-    \end{tikzfigure}%
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.3\linewidth}
-    \centering
-    \begin{tikzfigure}
-    \missingfigure[figcolor=white]{Testing figcolor}
-    {\small{Outlying Aspects Mining}}
-    \end{tikzfigure}%
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.3\linewidth}
-    \centering
-    \begin{tikzfigure}
-    \missingfigure[figcolor=white]{Testing figcolor}
-    {\small{Outlier Detection}}
-    \end{tikzfigure}%
-    \end{minipage}
-\end{center}
+\block{Data Visualization}{
+	Use EDA to plot the distribution of the data 
+	to can observate the data intuitively and
+	find the relation between the attribute values. 
+	\begin{center}
+		\includegraphics[width=.3\linewidth]{figures/boxplot.eps}
+		\quad\includegraphics[width=.3\linewidth]{figures/his_1.eps}
+		\quad\includegraphics[width=.3\linewidth]{figures/his_2.eps}
+		
+	\end{center}
+	
 }
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
 
@@ -197,11 +157,7 @@
 %    2) Outlying Degree Scoring, and
 %    3) Outlying Aspects Identification.
   	
-\begin{tikzfigure}%[Overall architecture of \emph{GOAM} algorithm]
-%  \includegraphics[width=0.8\linewidth]{figures//framework.pdf}
-    \missingfigure[figcolor=white]{Testing figcolor}
-\end{tikzfigure}
-		
+
 \begin{description}
   	\item[Group Feature Extraction]
   	Let $f_1$, $f_2$, $f_3$ represent three features of $G_q$.
@@ -215,18 +171,12 @@
 \end{description}
 
 \begin{center}
-    \begin{minipage}{0.3\linewidth}
-    \centering
-    \begin{tikzfigure}
-    \missingfigure[figcolor=white]{Testing figcolor}
-    {\small{Histogram of $G_q$ on $f_1$}}
-    \end{tikzfigure}%
-    \end{minipage}
+    
     \hfill
     \begin{minipage}{0.3\linewidth}
     \centering
     \begin{tikzfigure}
-    \missingfigure[figcolor=white]{Testing figcolor}
+    \missingfigure[figcolor=white]{figures/boxplot.eps}
     {\small{Histogram of $G_q$ on $f_2$}}
     \end{tikzfigure}%
     \end{minipage}
