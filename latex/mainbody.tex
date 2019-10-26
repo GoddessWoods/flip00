@@ -90,8 +90,8 @@ usually it has two kinds of method for classification problem:
 
 The following  ~\cref{tbl:data information}
 is the statistical result of the attribute values.
-There are 4 numerical variables and 1 categorical. 
-And no missing values.
+There are 4 numerical variables and 1 categorical,
+and no missing values.
 Numerical columns are either normalized or show a percentage, 
 so no need to scale them. 
 
@@ -123,16 +123,15 @@ so no need to scale them.
 \subsection{Data Visualization}
 \
 
-Use EDA to plot the distribution of the data 
-to can observate the data intuitively and
+Use EDA to plot the distribution of the data,
+we can observate the data intuitively and
 find the relation between the attribute values. 
 For example boxplot can visually observe 
 the distribution of numerical variables, 
 scatterplot can show their distribution trends 
-and whether there are outliers.
-And for classification problems, 
-the data is drawn according to 
-the different colors of the Label, 
+and whether exists outliers.
+For classification problems, 
+the data with the same label is drawn in same color, 
 which is very helpful for 
 the construction of the Feature.
 
@@ -146,8 +145,8 @@ and the figure ~\Cref{fig:his_2}
 is the number of different color 
 about types of ghastly creatures.
 It seems that all numerical features may be useful, 
-but many colors are evenly distributes among the monsters. 
-So they maybe not very useful for classification.
+but many colors are evenly distributes among the monsters,
+which means they maybe have little effect on classification.
 
 
 \begin{figure}[htbp]
@@ -170,17 +169,18 @@ So they maybe not very useful for classification.
  
 When analyzing the data, 
 the boxplot can effectively 
-help us identify the characteristics of the data: 
-visually identify outliers in the dataset. 
-Determine the data dispersion and 
+help us identify the characteristics of the data:
+visually identify outliers in the dataset or
+determine the data dispersion and 
 bias of the data set. 
 Through the figure ~\Cref{fig:boxplot}, 
-know that the two types of Ghost and Ghoul 
+we know that the two types of Ghost and Ghoul 
 in the monster have higher discrimination 
 on the four variables, 
 while Goblin is in the middle position, 
 which intersects with the other two types of features.
-Guess that the predictive accuracy of Ghost and Ghoul 
+Based on the above observation,
+we guess that the predictive accuracy of Ghost and Ghoul 
 will be better than Goblin.
 And the outliers are very small,
 which can be ignored.
@@ -224,15 +224,15 @@ visually see the correlation metric
 between all possible pairs of numeric variables 
 in a given dataframe. 
 This figure ~\Cref{fig:corr} 
-help us to analyze features 
-and their impact on the 'type' column. 
+make it convenient for us to analyze features,
+especially their impact on the 'type' column. 
 As we can see the 'type' column 
 has a high value of negative correlation 
-with columns 'has_soul' and 'rotting_flesh'. 
-Although the correlation 
+with columns 'has_soul' and 'rotting_flesh',
+but the correlation 
 with the 'hair_length' is not very big.
 There is no obvious linear relationship 
-between variables
+between these variables.
 
 \begin{figure}[htbp]
 	\centering
@@ -246,7 +246,7 @@ between variables
 
 The following pictures 
 are independent of 
-the choice of algorithm. 
+the choice of algorithm,
 Because they look great, 
 so I want to share with you.
 %如果有时间的话，把这三张图片放在一排，然后稍微介绍一下
@@ -279,7 +279,7 @@ the data is distributed normally.
 But some of them show clusters: 
 hair_length and has_soul, 
 hair_length and bone_length. 
-So create new variables 
+So I create new variables 
 with multiplication of these columns: 
 
 \begin{description}
@@ -308,8 +308,8 @@ between the variables.
 \subsubsection{Feature Selection}
 \
 
-Train Random Forest model first, 
-then using the Feature Importance this function 
+We train Random Forest model first, and
+then using the a function of Feature Importance
 to select the most important features. 
 The following figure ~\Cref{fig:feature_importance}
 is a histogram ordered by feature importance. 
@@ -322,9 +322,9 @@ is a histogram ordered by feature importance.
 	\caption{Feature Importance}\label{fig:feature_importance}
 \end{figure}
 
-Take the top seven features 
+We take the top seven features 
 with higher importance 
-to form a new train data.
+to form a new train data, the rest are discarded.
 
 
 \section{Method}
