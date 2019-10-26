@@ -9,9 +9,9 @@ After a month of making scientific observations
 and taking careful measurements, 
 can determined that 900 ghouls, ghosts, and goblins
 like what is shown in~\Cref{fig:animal}  .
-The raw dataset contains train set with 371 %modify as your true values
+The raw dataset contains train set with 371 
 samples and 529 unlabeled samples as test set.
-Through the train data, I can find the relationship
+Through the train data, find the relationship
 between the attributes and species, 
 and then identify 371 of the ghastly creatures.
 
@@ -36,10 +36,10 @@ name and meaning of attributes
 
 \begin{description}
 	\item[id] id of the creature
-	\item[bone_length] average length of bone in the creature, normalized between 0 and 1
-	\item[rotting_flesh] percentage of rotting flesh in the creature
-	\item[hair_length] average hair length, normalized between 0 and 1
-	\item[has_soul] percentage of soul in the creature
+	\item[bone\_length] average length of bone in the creature, normalized between 0 and 1
+	\item[rotting\_flesh] percentage of rotting flesh in the creature
+	\item[hair\_length] average hair length, normalized between 0 and 1
+	\item[has\_soul] percentage of soul in the creature
 	\item[Color] dominant color of the creature: 'white','black','clear','blue','green','blood'
 	\item[type] target variable: 'Ghost', 'Goblin', and 'Ghoul'
 \end{description}
@@ -52,11 +52,11 @@ name and meaning of attributes
 
 Because this game is over, 
 it can't submit the predictive values for testing. 
-So I divide the raw train set into train data and test data, 
-and the ratio between the two is 8:2. 
+So I divide the raw train data into train data and test data, 
+and the ratio is 8:2. 
 Another vexed problem is the data too small, 
 so I use ten-fold cross-validation 
-to train the data.
+to train the models.
 
 
 \subsubsection{Problem Possible Solutions}
@@ -67,7 +67,9 @@ can solve the three classification problem,
 such as ensemble algorithms,
 decision tree algorithm and so on.
 Use CV to find the best parameters of the algorithms 
-and then validate with testing data 
+and then validate with testing data.
+But the most important thing is 
+do  feature engineering to improve accuracy. 
 
 
 \subsubsection{Evaluation Methods}
@@ -75,7 +77,8 @@ and then validate with testing data
 
 Before experiment, determine the evaluation methods
 to assess the model performance is very important,
-usually it has two kinds of method for classification problem:
+usually it has the following methods
+for classification problem:
 
 \begin{itemize}
 	\item F1 Score/AUC
@@ -101,7 +104,7 @@ so no need to scale them.
 	\begin{tabular}{ccccccc}
 		\hline
 		% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-		& bone_length & rotting_flesh & hair_length & has_soul & color & type\\
+		& bone\_length & rotting\_flesh & hair\_length & has\_soul & color & type\\
 		\hline
 		count & 371.0 & 371.0 & 371.0 & 371.0 & 371 & 371 \\
 		unique & NaN & NaN & NaN & NaN & 6 & 3 \\
@@ -124,7 +127,7 @@ so no need to scale them.
 \
 
 Use EDA to plot the distribution of the data,
-we can observate the data intuitively and
+can observate the data intuitively and
 find the relation between the attribute values. 
 For example boxplot can visually observe 
 the distribution of numerical variables, 
@@ -206,8 +209,8 @@ shows that data is distributed normally.
 And while most pairs are widely scattered 
 (in relationship to the type), 
 some of them show clusters: 
-hair_length and has_soul, 
-hair_length and bone_length. 
+hair\_length and has\_soul, 
+hair\_length and bone\_length. 
 So it may need to reassemble the data.
 
 \begin{figure}[htbp]
@@ -228,9 +231,9 @@ make it convenient for us to analyze features,
 especially their impact on the 'type' column. 
 As we can see the 'type' column 
 has a high value of negative correlation 
-with columns 'has_soul' and 'rotting_flesh',
+with columns 'has\_soul' and 'rotting\_flesh',
 but the correlation 
-with the 'hair_length' is not very big.
+with the 'hair\_length' is not very big.
 There is no obvious linear relationship 
 between these variables.
 
@@ -283,10 +286,10 @@ So I create new variables
 with multiplication of these columns: 
 
 \begin{description}
-	\item[hair\_soul] row[’hair\_length’]*row[’has_soul’] 
-	\item[hair_bone]  row[hair_length]*row[bone_length] 
-	\item[bone_soul]  row[bone_length]*row[has_soul] 
-	\item[hair_soul_bone]  row[hair_length]*row[has_soul]*row[bone_length] 
+	\item[hair\_soul] row[hair\_length]*row[has\_soul] 
+	\item[hair\_bone]  row[hair\_length]*row[bone\_length] 
+	\item[bone\_soul]  row[bone\_length]*row[has\_soul] 
+	\item[hair\_soul\_bone]  row[hair\_length]*row[has\_soul]*row[bone\_length] 
 \end{description}
 
 
@@ -308,12 +311,46 @@ between the variables.
 \subsubsection{Feature Selection}
 \
 
-We train Random Forest model first, and
-then using the a function of Feature Importance
-to select the most important features. 
+Use the algorithm below to 
+calculate the importance of features.
 The following figure ~\Cref{fig:feature_importance}
 is a histogram ordered by feature importance. 
 
+\begin{algorithm}[htbp]
+	\small
+	\caption{Features Selection}
+	\label{alg:features_selection}
+	\begin{algorithmic}[1]
+		\REQUIRE
+		Features $X=\{ X_1, X_2, ... , X_n \}$,
+		The number of tree node $M$,
+		$GI_m$ Gini index of node $m$, 
+		$ K $ the number of target,
+		$ p_mk $ proportion of target $k$ in node $m$,
+		$ VIM_{jm}^{\small(Gini)} $ the importance of feature $X_j$ in node $m$ ,
+		$ n$ the tree number of RF.
+		\ENSURE
+		Variable Importance Measures $VIM_{j}^{\small(Gini)}$.
+		\STATE
+		Initialize $GI_m$ , 
+		$VIM_{j}^{\small(Gini)} $;
+		\FOR {$m \leftarrow 1...M$}
+		\FOR {$k \leftarrow 1...K$}
+		\STATE Compute the Gini index of node $m$
+		$GI_m = \sum_{k=1}^{|K|} \sum_{k'\neq k} {p_{mk}}{p_{mk'}}=1- \sum_{k=1}^{|K|} p^2_{mk}$
+		\ENDFOR
+		\STATE Divide node m into node r and node l
+		\STATE Compute the importance of feature $X_j$ in node $m$ 
+		$VIM_{jm}^{\small(Gini)} = GI_m-GI_l-GI_r $
+		\ENDFOR
+		\FOR {$i \leftarrow 1...N$}
+		\STATE Compute variable importance measures 
+		$VIM_{j}^{\small(Gini)} = VIM_{j}^{\small(Gini)} + VIM_{ij}^{\small(Gini)}$
+		\ENDFOR
+		\RETURN $VIM_{j}^{\small(Gini)}$
+	\end{algorithmic}
+    %\caption{Feature Selection Algorithm}
+\end{algorithm}
 
 \begin{figure}[htbp]
 	\centering
@@ -327,7 +364,7 @@ with higher importance
 to form a new train data, the rest are discarded.
 
 
-\section{Method}
+\section{Methods}
 
 There are many machine learning algorithms 
 for classification problem. 
@@ -914,6 +951,7 @@ the highest accuracy
 %clf.fit(X_train, y_train)
 %y_pred = clf.predict(X_test)
 %\end{lstlisting}
+
 
 
 
