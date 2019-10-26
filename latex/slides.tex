@@ -106,25 +106,26 @@ basicstyle=\footnotesize\ttfamily}
 % TODO: add yourself here:
 %
 \newcommand{\gangli}[1]{\draftnote{blue}{GLi:}{#1}}
-\newcommand{\shaoni}[1]{\draftnote{green}{sn:}{#1}}
+\newcommand{\wenbin}[1]{\draftnote{green}{wb:}{#1}}
+\newcommand{\mumu}[1]{\draftnote{red}{sx:}{#1}}
 \newcommand{\gliMarker}
 	{\todo[author=GLi,size=\tiny,inline,color=blue!40]
 	{Gang Li has worked up to here.}}
-\newcommand{\snMarker}
-	{\todo[author=Sn,size=\tiny,inline,color=green!40]
-	{Shaoni has worked up to here.}}
-
+\newcommand{\wbMarker}
+	{\todo[author=wb,size=\tiny,inline,color=green!40]
+		{WenbinJ has worked up to here.}}
+\newcommand{\mumuMarker}
+{\todo[author=sx,size=\tiny,inline,color=green!40]
+	{sx has worked up to here.}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % title
 % TODO: Customize to your Own Title, Name, Address
 %
-\title{Group Outlying Aspects Mining}
+\title{Flip 00 Project Final Report}
 \author{
 Shuxia Lin
 \\
-\\Xi'an Shiyou University
-\\Deakin University
-\\Chinese Academy of Sciences
+\\SouthEast University
 }
 \date{\gitCommitterDate}
 
@@ -134,7 +135,7 @@ Shuxia Lin
 rf=\href{http://www.tulip.org.au}{
 Last Changed by: \textsc{\gitCommitterName}\ \gitVtagn-\gitAbbrevHash\ (\gitAuthorDate)
 },
-cf={Group Outlying Aspects Mining},
+cf={Flip 00 Project Final Report},
 }
 
 
@@ -156,44 +157,33 @@ cf={Group Outlying Aspects Mining},
 %%==========================================================================================
 
 
-\section{Problem Definition}
+\section{Problem Statement}
 
 
 %%==========================================================================================
 %%
-\begin{slide}{Outlying Aspects Mining}
+\begin{slide}{Problem Statement}
 \begin{center}
 \twotonebox{\rotatebox{90}{Defn}}{\parbox{.86\textwidth}
-{Outlying Aspects Mining aims to
-identify the outstanding features of the query object.
-\begin{itemize}
-\item A teacher may be interested in the \textcolor{orange}{characteristics} that
-make \textcolor{orange}{one student} \textcolor{orange}{distinctive} from others.
-\item NBA coaches would prefer to
-find out the strengths and weaknesses of the player (a query object).
-\end{itemize}
+{
+	After a month of making scientific observations 
+	and taking careful measurements, 
+	can determined that 900 ghouls, ghosts, and goblins.
+	The raw dataset contains train set with \textcolor{orange}{371} samples 
+	and \textcolor{orange}{529} unlabeled samples as test set.
+	Through the train data, find the relationship
+	between the attributes and species, 
+	and then identify the ghastly creatures.
+	
 }}
 
 \end{center}
 \bigskip
+
 \begin{center}
-\begin{tabular}{c| c c c c }
-\toprule
-Player & \texttt{3PT\%}  & \texttt{FTA} & \texttt{FT\%} & \texttt{To} \\
-\midrule
-$P_1$
-&  {$65$} &  {$4$} &  {$33$} &  {$8$} \\
-$P_2$
-&  {$78$} &  {$1$}&  {$65$}&  {$5$} \\
-$P_3$
-&  {$58$} &  {$6$} &  {$46$} &  {$3$} \\
-$P_4$
-&  {$68$} &  {$1.2$}&  {$85$}&  {$6.2$} \\
-$P_5$
-&  {$58$} &  {$6.2$} &  {$36$} &  {$3.4$}\\
-\bottomrule
-\end{tabular}
+	\includegraphics[width=.8\linewidth]{figures/bar.eps}
 \end{center}
+
 \bigskip
 
 %%==========================================================================================
