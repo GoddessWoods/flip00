@@ -165,13 +165,14 @@
   	hair\_length and bone\_length. 
   	So create new variables 
   	with multiplication of these columns: 
-  	
+  \vspace{.5cm}	
   	\begin{description}
   		\item[hair\_soul] ’hair\_length’ * ’has\_soul’
   		\item[hair\_bone] 'hair\_length' * 'bone\_length]'
   		\item[bone\_soul] 'row[bone\_length' * 'has\_soul'
   		\item[hair\_soul\_bone]  'hair\_length' * 'has\_soul' * 'bone\_length' 
   	\end{description}
+  \vspace{.5cm}
     Using the Feature Importance 
     this function of Random Forest
     to select the most important features
@@ -180,12 +181,12 @@
     which is ploted by using new features data.
     another is the bar plot which shows 
     the importance of features
-  	
+  	\vspace{.5cm}
   	\begin{center}
   		\includegraphics[width=.3\linewidth]{figures/hist_1.eps}
+  		\quad
   		\includegraphics[width=.3\linewidth]{figures/FEATURE.eps}
   	\end{center}
-
 }
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
 
@@ -203,23 +204,21 @@
 	through Grid Search.
 	Because the train data is relatively small, 
 	a ten-fold cross-validation is used.
-	
+	\vspace{.5cm}
 	\begin{itemize}
 		\item RandomForest 
-		\item Bagging
-		\item GradientBoosting
 		\item LogisticRegression
 		\item SVC
 		\item KNeighbors 
 		\item XGBoost
 		\item Netual Network
 	\end{itemize}
-	
+	\vspace{.5cm}
 	Take the trained models as
 	the base models of ensemble model,
 	and average the prediction results 
 	by using voting
-
+	\vspace{.5cm}
 }
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
 % Second column - first block
@@ -230,6 +229,7 @@
 {
 	The tables below are the metrics classification report 
 	of ensemble model in original and new train data.
+	\vspace{.4cm}
 	\begin{itemize}
   		\item Metrics Classification Report of Ensemble Model in original train data
 	\end{itemize}
@@ -255,7 +255,7 @@
 	\begin{itemize}
 		\item Metrics Classification Report of Ensemble Model in new train data
 	\end{itemize}
-
+	\vspace{.5cm}
 	\begin{center}
 		\begin{tabular}{ccccc}
 			\hline
@@ -286,18 +286,22 @@
 {Conclusion}
 {
 	\begin{description}
-		\item[Data Exploration] It is an 
-		exploratory analysis of the data to 
+		\item[Exploratory Data Analysis] It is an 
+		exploratory analysis of the data can 
+		 
 		provide the necessary conclusions 
 		for data processing and modeling.
+		\vspace{.5cm}
 		\item[Data Preprocessing] This step contains
 		dealing with missing data and outliers,
 		changing categorical variable 
 		into one-hot code and so on.
+		\vspace{.5cm}
 		\item[Feature Engineering] It's the 
 		most important thing.
 		Create as more as poosible features,
 		then select the most useful features.
+		\vspace{.5cm}
 		\item[Model Training] The models have 
 		many parameters,
 		and can use Grid Search to find 
