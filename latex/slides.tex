@@ -119,6 +119,7 @@ basicstyle=\footnotesize\ttfamily}
 % TODO: Customize to your Own Title, Name, Address
 %
 \title{Flip00 Project Final Test Presentation}
+\author{
 Shuxia Lin\\
 SouthEast University
 }
@@ -272,8 +273,8 @@ and then identify the ghastly creatures in test data.
 	\end{center}
 	
 \begin{center}
-	\includegraphics[width=.35\linewidth]{figures/his_1.eps}
-	\quad\includegraphics[width=.35\linewidth]{figures/his_2.eps}
+	\includegraphics[width=.4\linewidth,height=.4\linewidth]{figures/his_1.eps}
+	\quad\includegraphics[width=.4\linewidth,height=.4\linewidth]{figures/his_2.eps}
 \end{center}
 \end{slide}
 %%
@@ -294,8 +295,8 @@ and then identify the ghastly creatures in test data.
 	\end{center}
 	
 	\begin{center}
-		\includegraphics[width=.35\linewidth]{figures/boxplot.eps}
-		\quad\includegraphics[width=.35\linewidth,height=.25\linewidth]{figures/corr.eps}	
+		\includegraphics[width=.4\linewidth,height=.4\linewidth]{figures/boxplot.eps}
+		\quad\includegraphics[width=.4\linewidth,height=.4\linewidth]{figures/corr.eps}	
 	\end{center}
 \end{slide}
 
@@ -316,225 +317,103 @@ and then identify the ghastly creatures in test data.
 		}}
 	\end{center}
 	\begin{center}
-		\includegraphics[width=.5\linewidth]{figures/pairplot.eps}	
+		\includegraphics[width=.5\linewidth,height=.4\linewidth]{figures/pairplot.eps}	
 	\end{center}
 \end{slide}
 
-%%=========================================================================================
-
-\begin{slide}[toc=,bm=]{}
-\twocolumn
-{
-Group Outlying Aspects Mining
-\begin{itemize}
-\item
-\smallskip
-Focus on differences between \textcolor{orange}{groups}.
-
-\item
-\smallskip
-\textcolor{orange}{Multiple} points.
-\medskip
-\end{itemize}
-\vspace{0.75cm}
-%\vspace{0.1cm}
-\begin{figure}
-  \centering
-  \selectcolormodel{rgb}
-  \missingfigure{Testing a long text string.}
-  %\includegraphics[width=0.6\textwidth]{figures//example-basketball-projection.eps}\\
-  \caption{Group Outlying Aspects Target}\label{fig:GroupOutAspect-target}
-\end{figure}
-}
-{
-Outlying Aspects Mining
-\begin{itemize}
-\item
-Concentrates on differences between \textcolor{orange}{objects}.
-
-\item
-\textcolor{orange}{One} point.
-\end{itemize}
-\bigskip
-\begin{figure}
-  \centering
-  \selectcolormodel{rgb}
-  \missingfigure{Testing a long text string.}
-%  \includegraphics[width=0.5\textwidth]{figures//OutAspect_target.eps}\\
-  \caption{Outlying Aspects Target}\label{fig:OutAspect-target}
-\end{figure}
-}
-
 %%==========================================================================================
-\begin{note}
-In this research paper,
-we proposed the group outlying aspects mining.
-Now,
-let me summarize the differences between group outlying aspects mining and outlying aspects mining.
+%%
+\begin{slide}{Data Engineering}
+As it can be seen from 
+the pairplot front 
+the data is distributed normally. 
+But some of them show clusters: 
+hair\_length and has\_soul, 
+hair\_length and bone\_length. 
+So  create new variables 
+with multiplication of these columns: 
 
-Group outlying aspects mining mainly focuses on the differences between groups.
-But outlying aspects mining mainly concentrates on the differences between objects.
-The target of group outlying aspects mining can be seen as many points.
-While the target of outlying aspects mining can be regarded as one point.
-
-In the NBA example,
-group outlying aspects mining focuses on the advantages
-or disadvantages of one team,
-however,
-outlying aspects mining focuses on the advantages or disadvantages of one player.
-\end{note}
-%%==========================================================================================
+\begin{center}
+	\begin{itemize}
+		\item New Features
+		\
+		\begin{description}
+			\item[hair\_soul] row[hair\_length]*row[has\_soul] 
+			\item[hair\_bone]  row[hair\_length]*row[bone\_length] 
+			\item[bone\_soul]  row[bone\_length]*row[has\_soul] 
+			\item[hair\_soul\_bone]  row[hair\_length]*row[has\_soul]*row[bone\_length] 
+		\end{description}
+	\end{itemize}
+	
+\end{center}
 
 \end{slide}
-%%
-%%==========================================================================================
 
+%%=====================================================================
 
-%%==========================================================================================
-%%
-\begin{slide}{Challenges (1)}
-%Challenges (1)
-\begin{itemize}
-\item
-How to \textcolor{orange}{represent} the group features.
+\begin{slide}[toc=,bm=]{Data Engineering}
 
-\begin{itemize}
-\item
-Can be affected by outlier values.
-
-\item
-Can \textcolor{orange}{Not} reflect the overall distribution of group features.
-\end{itemize}
-\end{itemize}
-
-%%==========================================================================================
-\begin{note}
-Based on current existing methods,
-there still remains some research challenges.
-
-The first one is how to represent the group features
-based on the features of the individuals in the group.
-
-Although the arithmetic mean of all elements
-in each feature can describe the features of one group.
-It can be affected by outlier values,
-and can't reflect the entire distribution of group features.L
-\end{note}
-%%==========================================================================================
-
+Analyse the new features in a pairplot, 
+it can be seen from the picture that 
+there is a clear linear relationship 
+between the variables. 
+	
+	\begin{center}
+		\includegraphics[width=.5\linewidth]{figures/hist_1.eps}
+	\end{center}
+	
 \end{slide}
-%%
-%%==========================================================================================
 
+%%=============================================================
 
-%%==========================================================================================
-%%
-\begin{slide}[toc=,bm=]{Challenges (2)}
-
-\begin{itemize}
-\item
-How to \textcolor{orange}{evaluate} the outlying degree in different aspects.
-
-\begin{itemize}
-\item
-Need design a scoring function when necessary.
-
-\item
-Adopting an appropriate scoring function (without dimension bias) remains a problem.
-
-\end{itemize}
-\end{itemize}
-
-%%==========================================================================================
-\begin{note}
-The second challenge is how to evaluate the outlying degree of
-the query group between different aspects.
-
-In that case,
-we need to design a scoring function to measure the outlying degree.
-But adopting an appropriate scoring function without dimension bias still remains a problem.
-\end{note}
-%%==========================================================================================
-
+\begin{slide}[toc=,bm=]{New Train Data}
+	
+	The following figure is 
+	a histogram ordered by 
+	feature importance. 
+	We take the top seven features 
+	with higher importance 
+	to form a new train data, 
+	the rest are discarded.
+	\begin{center}
+		\includegraphics[scale=0.5]{figures/FEATURE.eps}
+	\end{center}
+	
 \end{slide}
-%%
-%%==========================================================================================
+
+%%=============================================================
+
+\section{Methods}
 
 
 %%==========================================================================================
 %%
-\begin{slide}[toc=,bm=]{Challenges (3)}
+\begin{slide}{Methods}
 
-\begin{itemize}
-\item
-How to \textcolor{orange}{improve} the efficiency.
+There are many machine learning algorithms, 
+use the machine learning algorithms below
+as Ensemble Model’s base models. 
+Through Grid Search and
+ten-fold cross-validation
+to find the optimal parameters.
+Then use the ensemble model on
+test data.
 
-\begin{itemize}
-
-\item
-When the dimension of the \textcolor{orange}{data is high},
-the candidate subspace grows exponentially.
-
-\item
-It will easily go beyond the limits of the computation resources.
-
-\end{itemize}
-\end{itemize}
-
-%%==========================================================================================
-\begin{note}
-The third challenge is how to improve efficiency.
-
-To be specific,
-when the dimension of data is high,
-the candidate subspace increase dramatically,
-so that it is very easy to exceed the limit of computer resources.
-\end{note}
-%%==========================================================================================
-
-\end{slide}
-%%
-%%==========================================================================================
-
-
-\section{GOAM Algorithm}
-
-
-%%==========================================================================================
-%%
-\begin{slide}[toc=,bm=]{}
-
-Framework of GOAM algorithm:
-
-\bigskip
-
-\begin{figure}
-  \centering
-  \selectcolormodel{rgb}
-  \missingfigure{Testing a long text string.}
-%  \includegraphics[width=0.55\textwidth]{figures//framework1.eps}\\
-  \caption{Framework of GOAM Algorithm} \label{framework}
-\end{figure}
-
-%%==========================================================================================
-\begin{note}
-In order to tackle the above issues,
-GOAM algorithm is involved.
-
-Let's have a look at the framework of this algorithm.
-The first step is to use the histogram to represent the group features
-based on all individuals in the group.
-
-Following that,
-we utilize the earth mover distances to measure the
-outlying degree between groups.
-This is the second step:
-outlying degree scoring.
-
-The last step is to identify the outlying aspects.
-
-\end{note}
-%%==========================================================================================
+\begin{center}
+	\begin{itemize}
+		\item Base Models
+		\
+		\begin{itemize}
+			\item RandomForeset
+			\item LogisticRegression
+			\item SVC
+			\item KNeighbors
+			\item XGBoost
+			\item Netual Network
+		\end{itemize}
+	    \item Ensemble Model
+	\end{itemize}
+\end{center}
 
 \end{slide}
 %%

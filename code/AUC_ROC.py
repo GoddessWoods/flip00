@@ -6,8 +6,29 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegressionCV
 from sklearn import metrics
 from sklearn.preprocessing import label_binarize
+import pandas as pd
+from sklearn import preprocessing, metrics
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import VotingClassifier, RandomForestClassifier, BaggingClassifier, GradientBoostingClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics  import roc_curve,auc
+from sklearn.metrics import confusion_matrix
+from sklearn.svm import SVC
+
 
 if __name__ == '__main__':
+    data = pd.read_csv('train.csv')
+    #traindf = data.drop(['id'], axis=1)
+    #df = pd.get_dummies(traindf.drop('type', axis=1))
+    #X_train, X_test, y_train, y_test = train_test_split(df, traindf['type'], test_size=0.2, random_state=42)
+    #X_train = pd.get_dummies(traindf.drop('type', axis=1))
+    #y_train = traindf['type']
+    accuracy_scorer = metrics.make_scorer(metrics.accuracy_score)
+
+
+
     np.random.seed(0)
     data = pd.read_csv('train.csv')
     iris_types = data['type'].unique()
@@ -17,6 +38,25 @@ if __name__ == '__main__':
     x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.7, random_state=0)
     y_one_hot = label_binarize(y_test, np.arange(n_class))
     alpha = np.logspace(-2, 2, 20)
+
+    rf_best = RandomForestClassifier(n_estimators=100, criterion='entropy', max_depth=5, random_state=0,
+                                     max_features=None)
+    bag_best = BaggingClassifier(max_samples=10, n_estimators=100, random_state=0)
+    gbc_best = GradientBoostingClassifier(n_estimators=20, max_depth=2, learning_rate=0.3, random_state=0)
+    lr_best = LogisticRegression(C=1, penalty='l1')
+    svc_best = SVC(C=10, degree=3, kernel='linear')
+    knc_best = KNeighborsClassifier(algorithm='auto', leaf_size=10, n_neighbors=20, p=5, weights='uniform')
+
+    # voting
+    '''
+    model = VotingClassifier(
+        estimators=[('rf', rf_best), ('bag', bag_best), ('gbc', gbc_best), ('lr', lr_best), ('svc', svc_best),
+                    ('knc', knc_best)],voting='soft')
+    #voting_clf.fit(x_train, y_train)
+    #y_pred = voting_clf.predict(x_test)
+    #y_pred = voting_clf.predict(x_test)
+    '''
+
     model = LogisticRegressionCV(Cs=alpha, cv=3, penalty='l2')
     model.fit(x_train, y_train)
     print( model.C_)
