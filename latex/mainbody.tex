@@ -83,10 +83,12 @@ for classification problem:
 \begin{itemize}
 	\item F1 Score/AUC
 	\item Class Accuracy
+	\item Recall
+	\item Precision
 \end{itemize} 
 
 
-\section{Data exploration} \label{sec-data_exploration}
+\section{Exploratory Data Analysis} \label{sec-data_exploration}
 
 \subsection{Data Information}
 \
@@ -538,7 +540,7 @@ analyze the experimental results.
 And use the trained models as 
 the base models of ensemble model,
 then do experiment. 
-\WBJianginMarker
+%\WBJianginMarker
 
 \subsection{Base Models Training Result}
 \subsubsection{Original Train Data}
@@ -568,7 +570,7 @@ in original train data.
 	
 	\item Best Score in Ten-Fold Cross-Validation
 	
-	From the table ~\Cref{tbl:best_score_base_models_old},
+	From the  ~\Cref{tbl:best_score_base_models_old},
 	it shows that the accuracy of 
 	each model is not much different,
 	except XGBoost.
@@ -613,7 +615,7 @@ provided by Grid Search.
 	
 	\item Best Score in Ten-Fold Cross-Validation
 	
-	Compare with the table ~\Cref{tbl:best_score_base_models_old}
+	Compare with the  ~\Cref{tbl:best_score_base_models_old}
 	above,
 	you can find that the accuracy of the models increases,
 	although it's not obvious.
@@ -647,12 +649,16 @@ but some models have reduced accuracy.
 		\toprule
 		& Acc_old & Acc_new & Prec_old & Prec_new & Rec_old & Rec_new & F1_old & F1_new\\
 		\midrule
-		RF & 0.81 & 0.83 & 0.84 & 0.84 & 0.81 & 0.83 & 0.82 & 0.83\\
-		LR & 0.76 & 0.75 & 0.76 & 0.75 & 0.76 & 0.75 & 0.76 & 0.75\\
-		SVC & 0.75 & 0.69 & 0.77 & 0.71 & 0.75 & 0.69 & 0.75 & 0.70\\
-		KNN & 0.73 & 0.71 & 0.77 & 0.73 & 0.73 & 0.71 & 0.74 & 0.71\\
+		RF & 0.81 &      0.83 & 0.84 & 0.84 & 0.81 & 0.83 & 0.82 & 0.83\\
+		LR & 0.76 &      0.75 & 0.76 & 0.75 & 0.76 & 0.75 & 0.76 & 0.75\\
+		SVC & 0.75 &     0.69 & 0.77 & 0.71 & 0.75 & 0.69 & 0.75 & 0.70\\
+		KNN & 0.73 &     0.71 & 0.77 & 0.73 & 0.73 & 0.71 & 0.74 & 0.71\\
 		XGBoost & 0.92 & 0.95 & 0.92 & 0.95 & 0.92 & 0.95 & 0.92 & 0.95\\
-		NN & 0.73 & 0.68 & 0.75 & 0.71 & 0.73 & 0.68 & 0.74 & 0.69\\
+		NN & 0.73 &      0.68 & 0.75 & 0.71 & 0.73 & 0.68 & 0.74 & 0.69\\
+		mean $\pm$ var & .78$\pm$.005 & .77$\pm$.009 &
+		.80$\pm$.004 & .78$\pm$.008 &
+		.78$\pm$.005 & .77$\pm$.009 &
+		.79$\pm$.004 & .77$\pm$.009\\	
 		\bottomrule
 	\end{tabular}
 \end{table}
