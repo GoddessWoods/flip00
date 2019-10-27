@@ -24,7 +24,7 @@
  style=tuliplab,  	% TULIP Lab style
  pauseslide,
  fleqn,leqno]{powerdot}
-
+\usepackage[chapter]{algorithm}
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{amssymb}
@@ -50,7 +50,7 @@
 \usepackage{multirow}
 \usepackage{gitinfo2}
 \usepackage{xcolor}
-
+\usepackage[]{algorithm2e}
 \usepackage{todonotes}
 % \usepackage{pst-rel-points}
 \usepackage{animate}
@@ -344,6 +344,9 @@ with multiplication of these columns:
 %%=====================================================================
 
 \begin{slide}{Features Selection}
+	\begin{cecnter}
+		
+	
 	 \begin{algorithm}[H]
 		\small
 		\begin{algorithmic}[1]
@@ -379,6 +382,7 @@ with multiplication of these columns:
 		\caption{Features Selection}
 		\label{alg:features_selection}
 	\end{algorithm}
+\end{cecnter}
 \end{slide}
 
 
@@ -539,37 +543,6 @@ performaces better in new features.
 %
 
 \section{Thanks for attending and welcome for questions}
-\begin{slide}
-	
-	\begin{center}
-		\begin{algorithm}[H]
-			\small
-			\begin{algorithmic}[1]
-				\REQUIRE
-				Profile $S=\{ s_1, s_2, ... , s_N \}$,
-				$K$ Hash functions,
-				overall privacy budget $\epsilon$.
-				\ENSURE
-				Perturbed MinHash signature $\widetilde{h_{(K)}}(S)$.
-				\FOR {$k \leftarrow 1...K$}
-				\FOR {$n \leftarrow 1...N$}
-				\STATE  Compute the hash value $h_{k}(s_n)$;
-				\ENDFOR
-				\STATE  Construct the hash values set
-				$h_{k}(S)=\{ h_{k}(s_1), h_{k}(s_2), ..., h_{k}(s_N) \}$;
-				\STATE  Select a hash value $r \in h_{k}(S)$
-				with probability proportional to
-				$\textsf{exp}(\frac{\epsilon u(S,r)}{2K\bigtriangleup u})$;
-				\STATE  Append to the $k^{th}$ position of $\widetilde{h_{(K)}}(S)$;
-				\ENDFOR
-				\RETURN $\widetilde{h_{(K)}}(S)$
-			\end{algorithmic}
-			\caption{PrivMin}
-			\label{alg:private_minhash}
-		\end{algorithm}
-	\end{center}
-\end{slide}
-
 %%
 %%==========================================================================================
 
