@@ -24,10 +24,9 @@
  style=tuliplab,  	% TULIP Lab style
  pauseslide,
  fleqn,leqno]{powerdot}
-
-\usepackage[]{algorithm2e}
 %\usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage{algorithm2e}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{rotating}
@@ -51,7 +50,7 @@
 \usepackage{multirow}
 \usepackage{gitinfo2}
 \usepackage{xcolor}
-
+\usepackage[]{algorithm2e}
 \usepackage{todonotes}
 % \usepackage{pst-rel-points}
 \usepackage{animate}
@@ -344,48 +343,46 @@ with multiplication of these columns:
 
 %%=====================================================================
 
-
-\begin{slide}[toc=,bm=]{Data Engineering}
-	
+\begin{slide}{Features Selection}
 	\begin{center}
 		
-		\begin{algorithm}[H]
-			\small
-			\begin{algorithmic}[1]
-				\REQUIRE
-				Features $X=\{ X_1, X_2, ... , X_n \}$,
-				The number of tree node $M$,
-				$GI_m$ Gini index of node $m$, 
-				$ K $ the number of target,
-				$ p_mk $ proportion of target $k$ in node $m$,
-				$ VIM_{jm}^{\small(Gini)} $ the importance of feature $X_j$ in node $m$ ,
-				$ n$ the tree number of RF.
-				\ENSURE
-				Variable Importance Measures $VIM_{j}^{\small(Gini)}$.
-				\STATE
-				Initialize $GI_m$ , 
-				$VIM_{j}^{\small(Gini)} $;
-				\FOR {$m \leftarrow 1...M$}
-				\FOR {$k \leftarrow 1...K$}
-				\STATE Compute the Gini index of node $m$
-				$GI_m = \sum_{k=1}^{|K|} \sum_{k'\neq k} {p_{mk}}{p_{mk'}}=1- \sum_{k=1}^{|K|} p^2_{mk}$
-				\ENDFOR
-				\STATE Divide node m into node r and node l
-				\STATE Compute the importance of feature $X_j$ in node $m$ 
-				$VIM_{jm}^{\small(Gini)} = GI_m-GI_l-GI_r $
-				\ENDFOR
-				\FOR {$i \leftarrow 1...N$}
-				\STATE Compute variable importance measures 
-				$VIM_{j}^{\small(Gini)} = VIM_{j}^{\small(Gini)} + VIM_{ij}^{\small(Gini)}$
-				\ENDFOR
-				\RETURN $VIM_{j}^{\small(Gini)}$
-				
-			\end{algorithmic}
-			\caption{Features Selection}
-			\label{alg:features_selection}
-		\end{algorithm}
-	\end{center}
 	
+	 \begin{algorithm}[H]
+		\small
+		\begin{algorithmic}[1]
+			\REQUIRE
+			Features $X=\{ X_1, X_2, ... , X_n \}$,
+			The number of tree node $M$,
+			$GI_m$ Gini index of node $m$, 
+			$ K $ the number of target,
+			$ p_mk $ proportion of target $k$ in node $m$,
+			$ VIM_{jm}^{\small(Gini)} $ the importance of feature $X_j$ in node $m$ ,
+			$ n$ the tree number of RF.
+			\ENSURE
+			Variable Importance Measures $VIM_{j}^{\small(Gini)}$.
+			\STATE
+			Initialize $GI_m$ , 
+			$VIM_{j}^{\small(Gini)} $;
+			\FOR {$m \leftarrow 1...M$}
+			\FOR {$k \leftarrow 1...K$}
+			\STATE Compute the Gini index of node $m$
+			$GI_m = \sum_{k=1}^{|K|} \sum_{k'\neq k} {p_{mk}}{p_{mk'}}=1- \sum_{k=1}^{|K|} p^2_{mk}$
+			\ENDFOR
+			\STATE Divide node m into node r and node l
+			\STATE Compute the importance of feature $X_j$ in node $m$ 
+			$VIM_{jm}^{\small(Gini)} = GI_m-GI_l-GI_r $
+			\ENDFOR
+			\FOR {$i \leftarrow 1...N$}
+			\STATE Compute variable importance measures 
+			$VIM_{j}^{\small(Gini)} = VIM_{j}^{\small(Gini)} + VIM_{ij}^{\small(Gini)}$
+			\ENDFOR
+			\RETURN $VIM_{j}^{\small(Gini)}$
+			
+		\end{algorithmic}
+		\caption{Features Selection}
+		\label{alg:features_selection}
+	\end{algorithm}
+\end{center}
 \end{slide}
 
 
