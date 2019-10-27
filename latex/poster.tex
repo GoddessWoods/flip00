@@ -26,11 +26,12 @@
 
 \usepackage{showframe}
 \usepackage{todonotes}
-
+\usepackage[ruled]{algorithm2e}
 \usepackage[tikz]{bclogo}
 \usepackage{lipsum}
 \usepackage{amsmath}
-
+\usepackage{algorithm}
+\usepackage{algorithmic}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage[absolute]{textpos}
@@ -222,7 +223,18 @@
 }
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
 % Second column - first block
-
+\block{Algorithm}{
+	\begin{algorithm}[htbp]
+		\small
+		\caption{Features Selection}
+		\label{alg:features_selection}
+		\begin{algorithmic}[1]
+			
+		\end{algorithmic}
+		%\caption{Feature Selection Algorithm}
+	\end{algorithm}
+	
+}
 
 %%%%%%%%%% -------------------------------------------------------------------- %%%%%%%%%%
 \block[titleleft]{Experiment Result}
